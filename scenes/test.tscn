@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b2tbjupfm6b2b"]
+
+[node name="Test" type="Control" unique_id=140004513]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="." unique_id=2029276840]
+layout_mode = 0
+offset_right = 593.0
+offset_bottom = 712.0
+focus_neighbor_right = NodePath("../Button2")
+text = "test"
+
+[node name="Button2" type="Button" parent="." unique_id=1952580264]
+layout_mode = 0
+offset_left = 739.0
+offset_top = 26.0
+offset_right = 1332.0
+offset_bottom = 738.0
+focus_neighbor_left = NodePath("../Button")
+text = "test"
