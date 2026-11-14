@@ -7,9 +7,13 @@ class_name PowerupMenu
 
 var t: Tween
 
+func _ready():
+	start_anim()
+
 func start_anim() -> void:
 	show() 
 	first_focus.grab_focus()
+	_assign_focus()
 	pass
 func end_anim() -> void: 
 	hide()
@@ -18,3 +22,27 @@ func end_anim() -> void:
 func _assign_focus() -> void:
 	var left_side_children = left_side.get_children()
 	var right_side_children = right_side.get_children()
+	
+	assert(left_side_children.size() == right_side_children.size(),
+		"Powerup menu sides must be the same height!")
+	
+	for i in left_side_children.size():
+		var left : PowerupMenuItem = left_side_children[i]
+		var right : PowerupMenuItem = right_side_children[i]
+		# assign top and bottom
+		if (i > 0):
+			left.focus_neighbor_top = left.get_path_to(left_side_children[i - 1])
+			right.focus_neighbor_top = right.get_path_to(right_side_children[i - 1])
+		if (i < left_side_children.size() - 1):
+			var left_bot = left_side_children[i + 1]
+			var right_bot = right_side_children[i + 1]
+			if !left_bot.is_empty:
+				left.focus_neighbor_bottom = left.get_path_to(left_side_children[i + 1])
+			if !right_bot.is_empty:
+				right.focus_neighbor_bottom = right.get_path_to(right_side_children[i + 1])
+		# assign left and right
+		if !right.is_empty:
+			left.focus_neighbor_right = left.get_path_to(right)
+		if !left.is_empty:
+			right.focus_neighbor_left = right.get_path_to(left)
+		
