@@ -38,11 +38,19 @@ func _assign_focus() -> void:
 			var right_bot = right_side_children[i + 1]
 			if !left_bot.is_empty:
 				left.focus_neighbor_bottom = left.get_path_to(left_side_children[i + 1])
+			else:
+				left.focus_neighbor_bottom = "."
 			if !right_bot.is_empty:
 				right.focus_neighbor_bottom = right.get_path_to(right_side_children[i + 1])
+			else:
+				right.focus_neighbor_bottom = "."
 		# assign left and right
 		if !right.is_empty:
 			left.focus_neighbor_right = left.get_path_to(right)
+		else:
+			left.focus_neighbor_right = "."
 		if !left.is_empty:
 			right.focus_neighbor_left = right.get_path_to(left)
+		else:
+			right.focus_neighbor_left = "."
 		
