@@ -23,3 +23,28 @@ layout_mode = 2
 
 [node name="Game2" parent="HBoxContainer" unique_id=1085034286 instance=ExtResource("1_o5qli")]
 layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1014993860]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=361896595]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1298066236]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TemporaryBorder" type="ColorRect" parent="CanvasLayer/HBoxContainer" unique_id=435520289]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1836573595]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2

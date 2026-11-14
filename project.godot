@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Steakbite"
+run/main_scene="uid://ch81su7nh77vx"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
@@ -26,7 +27,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/StyleboxFancy/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/log/plugin.cfg", "res://addons/reload_current_scene/plugin.cfg")
+enabled=PackedStringArray("res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [file_customization]
 
