@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://duf028te6deh6"]
+
+[ext_resource type="Script" uid="uid://d5om0tmqjsly" path="res://scenes/powerups/powerup_menu.gd" id="1_2s6hi"]
+[ext_resource type="PackedScene" uid="uid://bx8cu1fkd3ud6" path="res://scenes/powerups/powerup_menu_item.tscn" id="1_ytud3"]
+[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_2s6hi"]
+
+[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("first_focus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2s6hi")
+first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
+metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1834804925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2s6hi")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=266400849]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=222520164]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=2003184387]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=1273595009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=861183747 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=72329359 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1869064438 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem5" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=881111203 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=928331506]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel2" unique_id=326314080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1624719131 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=624455387 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=290449159 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem5" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=785562660 instance=ExtResource("1_ytud3")]
+layout_mode = 2
