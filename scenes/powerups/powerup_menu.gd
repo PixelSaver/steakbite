@@ -1,6 +1,8 @@
 extends PixelMenu
 class_name PowerupMenu
 
+@export var player_name_label: RichTextLabel
+@export var player_balance: RichTextLabel
 @export var first_focus: Control
 @export var left_side: Control
 @export var right_side: Control
@@ -13,7 +15,7 @@ func _ready():
 	start_anim()
 
 func start_anim() -> void:
-	_fill_powerups()
+	_fill_visuals()
 	show() 
 	first_focus.grab_focus()
 	_assign_focus()
@@ -22,9 +24,17 @@ func end_anim() -> void:
 	hide()
 	pass
 
-func _fill_powerups() -> void:
+func _fill_visuals() -> void:
+	# TODO: let players write their names
+	var player_name = "Player 1" if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else "Player 2"
+	player_name_label.text = "[font_size=50]" + player_name + ": Select a Powerup"
+	
+	
+	
 	var left_side_children = left_side.get_children()
 	var right_side_children = right_side.get_children()
+	left_side_children.pop_front()
+	right_side_children.pop_front()
 	
 	var combined = left_side_children
 	combined.append_array(right_side_children)
@@ -66,7 +76,9 @@ func _assign_focus() -> void:
 		if right is PowerupMenuItem && right.is_empty:
 			left.focus_neighbor_right = left.get_path_to(continue_button)
 		right.focus_neighbor_left = right.get_path_to(left)
-		
+	
+	left_side_children.pop_front()
+	right_side_children.pop_front()
 	var combined = left_side_children
 	combined.append_array(right_side_children)
 	var last_idx = powerup_resources.size() - 1

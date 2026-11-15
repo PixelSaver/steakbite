@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0sek4b7g6v26" path="res://scenes/powerups/powerup_menu_item.gd" id="1_7pncx"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="1_kums3"]
-[ext_resource type="FontFile" uid="uid://dvuonm3c2y5p5" path="res://assets/Fonts/just-serif.extra-bold.otf" id="3_11dd4"]
+[ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="3_of63m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4062"]
 
@@ -35,6 +35,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7pncx")
+is_empty = null
 outline = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/Highlight")
 icon_container = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer")
 power_icon = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/TextureRect")
@@ -99,7 +100,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_fonts/normal_font = ExtResource("3_11dd4")
+theme_override_fonts/normal_font = ExtResource("3_of63m")
 bbcode_enabled = true
 text = "[font_size=35]Powerup Name"
 fit_content = true
@@ -109,7 +110,7 @@ autowrap_mode = 0
 [node name="Cost" type="RichTextLabel" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=266834357]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/normal_font = ExtResource("3_11dd4")
+theme_override_fonts/normal_font = ExtResource("3_of63m")
 bbcode_enabled = true
 text = "[font_size=35]Cost: 1"
 fit_content = true
@@ -122,6 +123,6 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size=20][b]This is a powerup description. Here is another sentence to see how a multi line description would look in this font."
+text = "[font_size=20]This is a powerup description. Here is another sentence to see how a multi line description would look in this font."
 scroll_active = false
 autowrap_mode = 2

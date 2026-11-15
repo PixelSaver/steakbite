@@ -8,5 +8,5 @@ class_name Powerup
 @export var texture: Texture2D
 
 
-func apply(_target_player_id: int) -> void:
+func apply(_is_player_one: bool) -> void:
 	pass

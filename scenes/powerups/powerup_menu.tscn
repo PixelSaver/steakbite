@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b1k6jju8wwgf1" path="res://standalones/powerup/powerup.gd" id="2_u25pn"]
 [ext_resource type="Script" uid="uid://by4cmd2o8bbwx" path="res://scenes/powerups/next_button.gd" id="4_3fqmn"]
 [ext_resource type="Resource" uid="uid://cfbl2wrx6wg6g" path="res://assets/powerup_resources/newTestResource.tres" id="4_b1m4a"]
+[ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="6_1ypni"]
 [ext_resource type="Resource" uid="uid://fnvo2mu1puff" path="res://assets/powerup_resources/powerup2.tres" id="6_b1m4a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pncx"]
@@ -43,7 +44,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("first_focus", "left_side", "right_side", "continue_button")]
+[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("player_name_label", "player_balance", "first_focus", "left_side", "right_side", "continue_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +53,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2s6hi")
+player_name_label = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/Player Name")
+player_balance = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Balance")
 first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
 left_side = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer")
 right_side = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
@@ -78,7 +81,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 290
-theme_override_constants/margin_top = 120
+theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 290
 theme_override_constants/margin_bottom = 80
 
@@ -103,20 +106,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
+[node name="Player Name" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=2130179915]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_1ypni")
+bbcode_enabled = true
+text = "[font_size=50]Player 1: Select a Powerup"
+fit_content = true
+scroll_active = false
+
 [node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=861183747 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=72329359 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1869064438 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem5" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=881111203 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=928331506]
 layout_mode = 2
@@ -133,17 +149,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
+[node name="Balance" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1150570165]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_1ypni")
+bbcode_enabled = true
+text = "[font_size=50]Balance: 0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
 [node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1624719131 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=624455387 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=290449159 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+is_empty = false
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1911362908]
 layout_mode = 2

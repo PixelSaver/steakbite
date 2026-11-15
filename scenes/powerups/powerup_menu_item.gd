@@ -10,18 +10,26 @@ class_name PowerupMenuItem
 @export var cost_label: RichTextLabel
 @export var description_label: RichTextLabel
 
+var resource: Powerup
 var t: Tween
 
 func _ready() -> void:
 	self.focus_entered.connect(_set_focus.bind(true))
 	self.focus_exited.connect(_set_focus.bind(false))
 	icon_container.pivot_offset_ratio = Vector2(0.5, 0.5)
+	self.pressed.connect(_use)
 
-func set_visuals(resource: Powerup) -> void:
-	power_icon.texture = resource.texture
-	power_name.text = "[font_size=35]" + resource.name
-	cost_label.text = "[font_size=35]" + str(resource.cost)
-	description_label.text = "[font_size=20]" + resource.description
+func _use() -> void:
+	var is_player_one = true if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else false
+	resource.apply(is_player_one)
+	pass
+
+func set_visuals(_resource: Powerup) -> void:
+	self.resource = _resource
+	power_icon.texture = _resource.texture
+	power_name.text = "[font_size=35]" + _resource.name
+	cost_label.text = "[font_size=35]" + str(_resource.cost)
+	description_label.text = "[font_size=20]" + _resource.description
 
 func set_empty() -> void:
 	is_empty = true
