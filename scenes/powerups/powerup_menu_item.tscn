@@ -2,18 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c0sek4b7g6v26" path="res://scenes/powerups/powerup_menu_item.gd" id="1_7pncx"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="1_kums3"]
+[ext_resource type="FontFile" uid="uid://dvuonm3c2y5p5" path="res://assets/Fonts/just-serif.extra-bold.otf" id="3_11dd4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11dd4"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.13333334, 0.13333334, 0.13333334, 0.5372549)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4062"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pncx"]
 content_margin_left = 0.0
@@ -37,8 +28,8 @@ corner_detail = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1004.0
-offset_bottom = -834.0
+offset_right = -1233.0
+offset_bottom = -903.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -55,7 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_11dd4")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l4062")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=842573583]
 layout_mode = 1
@@ -75,6 +66,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/MarginContainer/HBoxContainer" unique_id=214428448]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
@@ -99,20 +91,33 @@ size_flags_horizontal = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1560436398]
 layout_mode = 2
 
-[node name="PowerupName" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=658105143]
+[node name="PowerupName" type="RichTextLabel" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=650403319]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-text = "This is a powerup"
+theme_override_fonts/normal_font = ExtResource("3_11dd4")
+bbcode_enabled = true
+text = "[font_size=35]Powerup Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="Cost" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1782705513]
+[node name="Cost" type="RichTextLabel" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=266834357]
 layout_mode = 2
 mouse_filter = 1
-text = "Cost: 1"
+theme_override_fonts/normal_font = ExtResource("3_11dd4")
+bbcode_enabled = true
+text = "[font_size=35]Cost: 1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="PowerupDescription" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=287688871]
+[node name="PowerupDescription" type="RichTextLabel" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=644306840]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-text = "This is a powerup description."
+bbcode_enabled = true
+text = "[font_size=20][b]This is a powerup description. Here is another sentence to see how a multi line description would look in this font."
+scroll_active = false
 autowrap_mode = 2
