@@ -24,7 +24,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 5
 
-[node name="PowerupMenuItem" type="Button" unique_id=537402995 node_paths=PackedStringArray("outline", "icon_container")]
+[node name="PowerupMenuItem" type="Button" unique_id=537402995 node_paths=PackedStringArray("outline", "icon_container", "power_icon", "power_name", "cost_label", "description_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,6 +37,10 @@ size_flags_vertical = 3
 script = ExtResource("1_7pncx")
 outline = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/Highlight")
 icon_container = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer")
+power_icon = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/TextureRect")
+power_name = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/PowerupName")
+cost_label = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Cost")
+description_label = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/PowerupDescription")
 
 [node name="Panel" type="Panel" parent="." unique_id=873190866]
 layout_mode = 1

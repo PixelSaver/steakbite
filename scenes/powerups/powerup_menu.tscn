@@ -4,7 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bx8cu1fkd3ud6" path="res://scenes/powerups/powerup_menu_item.tscn" id="1_ytud3"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_2s6hi"]
 [ext_resource type="Texture2D" uid="uid://df02ldtj04gsx" path="res://assets/art/Menu.png" id="2_l4062"]
+[ext_resource type="Script" uid="uid://b1k6jju8wwgf1" path="res://standalones/powerup/powerup.gd" id="2_u25pn"]
 [ext_resource type="Script" uid="uid://by4cmd2o8bbwx" path="res://scenes/powerups/next_button.gd" id="4_3fqmn"]
+[ext_resource type="Resource" uid="uid://cfbl2wrx6wg6g" path="res://assets/powerup_resources/newTestResource.tres" id="4_b1m4a"]
+[ext_resource type="Resource" uid="uid://fnvo2mu1puff" path="res://assets/powerup_resources/powerup2.tres" id="6_b1m4a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pncx"]
 
@@ -53,6 +56,7 @@ first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/Poweru
 left_side = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer")
 right_side = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
 continue_button = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button")
+powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a")])
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1834804925]
