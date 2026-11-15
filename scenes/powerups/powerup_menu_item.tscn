@@ -3,7 +3,38 @@
 [ext_resource type="Script" uid="uid://c0sek4b7g6v26" path="res://scenes/powerups/powerup_menu_item.gd" id="1_7pncx"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="1_kums3"]
 
-[node name="PowerupMenuItem" type="Button" unique_id=537402995]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11dd4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pncx"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.888077, 0.6646302, 0.06703601, 0.6)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8593231, 0.61253023, 0.18184328, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[node name="PowerupMenuItem" type="Button" unique_id=537402995 node_paths=PackedStringArray("outline")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,6 +45,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_7pncx")
+outline = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/Highlight")
 
 [node name="Panel" type="Panel" parent="." unique_id=873190866]
 layout_mode = 1
@@ -23,6 +55,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_11dd4")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=842573583]
 layout_mode = 1
@@ -41,10 +74,19 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer" unique_id=324634501]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/MarginContainer/HBoxContainer" unique_id=304528340]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/AspectRatioContainer" unique_id=324634501]
 layout_mode = 2
 texture = ExtResource("1_kums3")
 expand_mode = 3
+
+[node name="Highlight" type="Panel" parent="Panel/MarginContainer/HBoxContainer/AspectRatioContainer" unique_id=1007139878]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7pncx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer" unique_id=1685223033]
 layout_mode = 2

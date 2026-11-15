@@ -30,6 +30,8 @@ func _assign_focus() -> void:
 	for i in left_side_children.size():
 		var left : Control = left_side_children[i]
 		var right : Control = right_side_children[i]
+		if (right is Panel):
+			right = right.get_node("./AspectRatioContainer/Next Button")
 		# assign top and bottom
 		if (i > 0):
 			left.focus_neighbor_top = left.get_path_to(left_side_children[i - 1])
@@ -49,7 +51,7 @@ func _assign_focus() -> void:
 		if right is PowerupMenuItem && !right.is_empty:
 			left.focus_neighbor_right = left.get_path_to(right)
 		else:
-			left.focus_neighbor_right = "."
+			left.focus_neighbor_right = left.get_path_to(continue_button)
 		if !left.is_empty:
 			right.focus_neighbor_left = right.get_path_to(left)
 		else:
