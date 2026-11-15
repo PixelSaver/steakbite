@@ -140,7 +140,7 @@ func eat_steak(pos: Vector2i) -> TileType:
 	return out
 #endregion
 
-func _input(event: InputEvent) -> void:
-	if OS.is_debug_build() and event.is_action_pressed("1"):
-		var p = get_random_position()
-		eat_steak(p)
+#func _input(event: InputEvent) -> void:
+	#if OS.is_debug_build() and event.is_action_pressed("1"):
+		#var p = get_random_position()
+		#eat_steak(p)
