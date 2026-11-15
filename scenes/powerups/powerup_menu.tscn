@@ -25,12 +25,11 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.6064222, 0.30272415, 0.26498824, 0.6)
 draw_center = false
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.9471846, 0.76052517, 0.58193964, 1)
-border_blend = true
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.85882354, 0.6117647, 0.18039216, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -70,6 +69,7 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=222520164]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -152,9 +152,9 @@ icon = ExtResource("2_2s6hi")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_3fqmn")
-outline = NodePath("../Panel")
+outline = NodePath("../Highlight")
 
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/AspectRatioContainer" unique_id=1783826205]
+[node name="Highlight" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/AspectRatioContainer" unique_id=1783826205]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
