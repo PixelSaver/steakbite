@@ -10,22 +10,29 @@ const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
 const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
+@export var spotlight: Node2D
 ## x, y size
 @export var grid_container : GridContainer
 @export var map_size := Vector2i(5, 4)
 @export var margin_bottom : int = 100
 @export var margin_sides : int = 100
 @export var num_poisoned := 8
+@export var spotlight_offset := Vector2i(0,0)
+@export var is_right := false
 var map : Array[Array] 
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
 var visual_tiles: Array[Control] = []
 
 func _ready() -> void:
+	spotlight.hide()
 	SignalBus.game_start.connect(_on_game_start)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
-	get_viewport().gui_focus_changed.connect(func(node: Control):
-		if node != game_subviewport_container: return
+	get_viewport().gui_focus_changed.connect(func(node: Control): 
+		if node != game_subviewport_container and node != self: 
+			spotlight.hide()
+			return
+		spotlight.show()
 		_grab_first_focus()
 	)
 	_on_game_start()
@@ -56,6 +63,19 @@ func _on_focus_changed(node: Control) -> void:
 	if top_neighbor_idx >= 0:
 		var target = visual_tiles[top_neighbor_idx]
 		node.focus_neighbor_top = node.get_path_to(target)
+	
+	# highlight
+	spotlight.global_position = node.global_position + node.size * 0.5
+	var spotlight_target := Vector2i.ZERO
+	if is_right:
+		spotlight_target = Vector2i(
+			subviewport.size.x - spotlight_offset.x, 
+			spotlight_offset.y
+		)
+	else:
+		spotlight_target = spotlight_offset
+	spotlight.look_at(spotlight_target)
+	spotlight.rotate(PI/2)
 #endregion
 
 #region Internal functions

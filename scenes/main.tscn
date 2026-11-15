@@ -23,6 +23,7 @@ layout_mode = 2
 
 [node name="Game2" parent="HBoxContainer" unique_id=1085034286 instance=ExtResource("1_o5qli")]
 layout_mode = 2
+is_right = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1014993860]
 
