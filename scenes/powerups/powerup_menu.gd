@@ -47,6 +47,7 @@ func _fill_visuals() -> void:
 		elif (combined[i] is PowerupMenuItem):
 			combined[i].set_empty()
 			combined[i].focus_mode = Control.FOCUS_NONE
+			combined[i].mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _assign_focus() -> void:
 	var left_side_children = left_side.get_children()
