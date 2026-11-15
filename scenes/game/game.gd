@@ -19,20 +19,21 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var num_poisoned := 8
 @export var spotlight_offset := Vector2i(0,0)
 @export var is_right := false
+var spotlight_target_pos := Vector2.ZERO
+var spotlight_tween: Tween
 var map : Array[Array] 
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
 var visual_tiles: Array[Control] = []
 
 func _ready() -> void:
-	spotlight.hide()
+	spotlight.modulate.a = 0.0
 	SignalBus.game_start.connect(_on_game_start)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
 		if node != game_subviewport_container and node != self: 
-			spotlight.hide()
+			_hide_spotlight()
 			return
-		spotlight.show()
 		_grab_first_focus()
 	)
 	_on_game_start()
@@ -65,16 +66,32 @@ func _on_focus_changed(node: Control) -> void:
 		node.focus_neighbor_top = node.get_path_to(target)
 	
 	# highlight
-	spotlight.global_position = node.global_position + node.size * 0.5
-	var spotlight_target := Vector2i.ZERO
+	var spotlight_target = node.global_position + node.size * 0.5
+	if spotlight_tween and spotlight_tween.is_running(): spotlight_tween.kill()
+	spotlight_tween = create_tween().set_ease(Tween.EASE_OUT)
+	spotlight_tween.set_trans(Tween.TRANS_QUINT).set_parallel(true)
+	spotlight_tween.tween_property(self, "spotlight_target_pos", spotlight_target, 0.7)
+	spotlight_tween.tween_property(spotlight, "modulate:a", 1.0, 0.7)
+
+func _hide_spotlight() -> void:
+	if spotlight_tween and spotlight_tween.is_running(): spotlight_tween.kill()
+	spotlight_tween = create_tween().set_ease(Tween.EASE_OUT)
+	spotlight_tween.set_trans(Tween.TRANS_QUINT).set_parallel(true)
+	spotlight_tween.tween_property(self, "spotlight_target_pos", Vector2.ZERO, 0.7)
+	spotlight_tween.tween_property(spotlight, "modulate:a", 0.0, 0.7)
+	
+
+func _process(_delta: float) -> void:
+	var spotlight_corner := Vector2i.ZERO
 	if is_right:
-		spotlight_target = Vector2i(
+		spotlight_corner = Vector2i(
 			subviewport.size.x - spotlight_offset.x, 
 			spotlight_offset.y
 		)
 	else:
-		spotlight_target = spotlight_offset
-	spotlight.look_at(spotlight_target)
+		spotlight_corner = spotlight_offset
+	spotlight.position = spotlight_target_pos
+	spotlight.look_at(spotlight_corner)
 	spotlight.rotate(PI/2)
 #endregion
 
@@ -184,5 +201,5 @@ func eat_steak(pos: Vector2i) -> TileType:
 
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build() and event.is_action_pressed("1"):
-		var p = get_random_position()
+		#var p = get_random_position()
 		eat_steak(Vector2i(0,4))
