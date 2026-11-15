@@ -1,13 +1,14 @@
-extends Control
+extends Button
 
 class_name PowerupMenuItem
 
 @export var is_empty : bool
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	self.focus_entered.connect(_set_focus.bind(true))
+	self.focus_exited.connect(_set_focus.bind(false))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _set_focus(entered: bool) -> void:
+	if (entered):
+		self.modulate = Color.RED
+	else:
+		self.modulate = Color.WHITE

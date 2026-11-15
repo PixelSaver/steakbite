@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://c0sek4b7g6v26" path="res://scenes/powerups/powerup_menu_item.gd" id="1_7pncx"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="1_kums3"]
 
-[node name="PowerupMenuItem" type="Control" unique_id=726296963]
-layout_mode = 3
+[node name="PowerupMenuItem" type="Button" unique_id=537402995]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -948.0
-offset_bottom = -861.0
+offset_right = -983.0
+offset_bottom = -902.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -23,11 +22,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=842573583]
-layout_mode = 0
-offset_right = 972.0
-offset_bottom = 219.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -36,6 +39,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=972171717]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer" unique_id=324634501]
 layout_mode = 2
@@ -46,10 +50,12 @@ expand_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=658105143]
+[node name="PowerupName" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=658105143]
 layout_mode = 2
+mouse_filter = 1
 text = "This is a powerup"
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=287688871]
+[node name="PowerupDescription" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=287688871]
 layout_mode = 2
+mouse_filter = 1
 text = "This is a powerup description"
