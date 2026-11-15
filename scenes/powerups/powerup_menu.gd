@@ -4,6 +4,7 @@ class_name PowerupMenu
 @export var first_focus: Control
 @export var left_side: Control
 @export var right_side: Control
+@export var continue_button: Control
 
 var t: Tween
 
@@ -27,8 +28,8 @@ func _assign_focus() -> void:
 		"Powerup menu sides must be the same height!")
 	
 	for i in left_side_children.size():
-		var left : PowerupMenuItem = left_side_children[i]
-		var right : PowerupMenuItem = right_side_children[i]
+		var left : Control = left_side_children[i]
+		var right : Control = right_side_children[i]
 		# assign top and bottom
 		if (i > 0):
 			left.focus_neighbor_top = left.get_path_to(left_side_children[i - 1])
@@ -40,12 +41,12 @@ func _assign_focus() -> void:
 				left.focus_neighbor_bottom = left.get_path_to(left_side_children[i + 1])
 			else:
 				left.focus_neighbor_bottom = "."
-			if !right_bot.is_empty:
+			if right_bot is PowerupMenuItem && !right_bot.is_empty:
 				right.focus_neighbor_bottom = right.get_path_to(right_side_children[i + 1])
 			else:
-				right.focus_neighbor_bottom = "."
+				right.focus_neighbor_bottom = right.get_path_to(continue_button)
 		# assign left and right
-		if !right.is_empty:
+		if right is PowerupMenuItem && !right.is_empty:
 			left.focus_neighbor_right = left.get_path_to(right)
 		else:
 			left.focus_neighbor_right = "."

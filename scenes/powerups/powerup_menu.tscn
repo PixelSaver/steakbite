@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bx8cu1fkd3ud6" path="res://scenes/powerups/powerup_menu_item.tscn" id="1_ytud3"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_2s6hi"]
 
-[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("first_focus", "left_side", "right_side")]
+[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("first_focus", "left_side", "right_side", "continue_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,7 @@ script = ExtResource("1_2s6hi")
 first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
 left_side = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer")
 right_side = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
+continue_button = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/AspectRatioContainer/Next Button")
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1834804925]
@@ -37,6 +38,7 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=222520164]
 layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=2003184387]
@@ -51,12 +53,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 
 [node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=861183747 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+icon = ExtResource("2_2s6hi")
+expand_icon = true
 
 [node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=72329359 instance=ExtResource("1_ytud3")]
 layout_mode = 2
@@ -79,6 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
 layout_mode = 2
@@ -92,5 +98,23 @@ layout_mode = 2
 [node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=290449159 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 
-[node name="PowerupMenuItem5" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=785562660 instance=ExtResource("1_ytud3")]
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1911362908]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel" unique_id=678374294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="Next Button" type="Button" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/AspectRatioContainer" unique_id=665904079]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("2_2s6hi")
+icon_alignment = 1
+expand_icon = true
