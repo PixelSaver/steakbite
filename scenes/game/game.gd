@@ -1,3 +1,4 @@
+@tool
 extends AspectRatioContainer
 class_name GameContainer
 
@@ -8,17 +9,25 @@ enum TileType {
 }
 const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
 const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
+@export_subgroup("Nodes")
+@export var left_visual: Control
+@export var right_visual: Control
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
 @export var spotlight: Node2D
 ## x, y size
 @export var grid_container : GridContainer
+@export_category("Tweaks")
 @export var map_size := Vector2i(5, 4)
 @export var margin_bottom : int = 100
 @export var margin_sides : int = 100
 @export var num_poisoned := 8
 @export var spotlight_offset := Vector2i(0,0)
-@export var is_right := false
+@export var is_right := false :
+	set(val):
+		is_right = val
+		_update_leftright()
+@export_tool_button("Place") var place_steaks = _on_game_start
 var spotlight_target_pos := Vector2.ZERO
 var spotlight_tween: Tween
 var map : Array[Array] 
@@ -28,6 +37,10 @@ var visual_tiles: Array[Control] = []
 
 func _ready() -> void:
 	spotlight.modulate.a = 0.0
+	_update_leftright()
+	_on_game_start()
+	# ignoring rest if it's the editor, globals don't exist there
+	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
@@ -37,6 +50,14 @@ func _ready() -> void:
 		_grab_first_focus()
 	)
 	_on_game_start()
+
+func _update_leftright() -> void:
+	if is_right:
+		left_visual.hide()
+		right_visual.show()
+	else:
+		left_visual.show()
+		right_visual.hide()
 
 #region Focus stuff
 func _grab_first_focus(skip_empty_tiles: bool=true) -> void:
@@ -133,9 +154,15 @@ func update_visuals() -> void:
 			var empty = Button.new()
 			empty.size_flags_horizontal = Control.SIZE_FILL
 			empty.size_flags_vertical = Control.SIZE_FILL
-			var scene = STEAK_TILE.instantiate() if tile != TileType.EMPTY else EMPTY_TILE.instantiate()
+			var scene: Control
+			if tile != TileType.EMPTY:
+				scene = STEAK_TILE.instantiate() as SteakTile
+				scene.set_right(is_right)
+			else: 
+				scene = EMPTY_TILE.instantiate()
 			grid_container.add_child(scene)
 			visual_tiles.append(scene)
+			queue_redraw()
 	#var len = tiles.size()
 	#for i in range(len):
 		#var y = roundi(float(i) / map_size.y)
