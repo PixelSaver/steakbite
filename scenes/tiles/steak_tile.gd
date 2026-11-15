@@ -18,7 +18,6 @@ func _ready() -> void:
 	offset_transform_pivot_ratio = Vector2.ONE * 0.5
 
 func _on_mouse(entered:bool) -> void:
-	print("Entered: %s" % entered)
 	# stops the previous tween where it last was
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
@@ -34,7 +33,3 @@ func _on_mouse(entered:bool) -> void:
 
 func _on_pressed() -> void: # pressed
 	steak_pressed.emit()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
