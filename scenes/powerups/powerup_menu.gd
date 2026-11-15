@@ -29,7 +29,9 @@ func _fill_visuals() -> void:
 	var player_name = "Player 1" if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else "Player 2"
 	player_name_label.text = "[font_size=50]" + player_name + ": Select a Powerup"
 	
-	
+	# TODO: hook up player balance
+	var balance: int = 0
+	player_balance.text = "[font_size=50]Balance: " + str(balance)
 	
 	var left_side_children = left_side.get_children()
 	var right_side_children = right_side.get_children()
