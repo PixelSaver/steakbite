@@ -31,7 +31,7 @@ func _assign_focus() -> void:
 		var left : Control = left_side_children[i]
 		var right : Control = right_side_children[i]
 		if (right is Panel):
-			right = right.get_node("./AspectRatioContainer/Next Button")
+			right = right.get_node("./MarginContainer/AspectRatioContainer/Next Button")
 		# assign top and bottom
 		if (i > 0):
 			left.focus_neighbor_top = left.get_path_to(left_side_children[i - 1])

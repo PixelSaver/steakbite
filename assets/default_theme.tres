@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://djxds56cenfds"]
 
+[ext_resource type="FontFile" uid="uid://dvuonm3c2y5p5" path="res://assets/Fonts/just-serif.extra-bold.otf" id="1_81pgw"]
+[ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="1_qew4h"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkedh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plx5h"]
@@ -22,3 +25,6 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/fonts/bold_font = ExtResource("1_81pgw")
+RichTextLabel/fonts/normal_font = ExtResource("1_qew4h")
