@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://3jjh8ogiqas3" path="res://assets/art/table_left.PNG" id="2_vd2ny"]
 [ext_resource type="Texture2D" uid="uid://4xe1unwit1q0" path="res://assets/art/table_right.PNG" id="3_vd2ny"]
 
-[node name="SteakTile" type="Button" unique_id=1796876418 node_paths=PackedStringArray("left", "right")]
+[node name="SteakTile" type="Button" unique_id=1796876418 node_paths=PackedStringArray("left", "right", "steak")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,6 +19,7 @@ mouse_filter = 1
 script = ExtResource("1_ix5c6")
 left = NodePath("CenterContainer/Left")
 right = NodePath("CenterContainer/Right")
+steak = NodePath("CenterContainer/Steak")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=357947545]
 layout_mode = 1
@@ -44,9 +45,10 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_vd2ny")
 offset = Vector2(418, -116)
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=836126179]
+[node name="Steak" type="TextureRect" parent="CenterContainer" unique_id=836126179]
 modulate = Color(1, 0.49, 0.49, 1)
 custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
+offset_transform_enabled = true
 texture = ExtResource("2_6u2fv")
