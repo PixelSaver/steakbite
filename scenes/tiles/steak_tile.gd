@@ -9,8 +9,8 @@ signal steak_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	mouse_entered.connect(_on_mouse.bind(true))
-	mouse_exited.connect(_on_mouse.bind(false))
+	focus_entered.connect(_on_mouse.bind(true))
+	focus_exited.connect(_on_mouse.bind(false))
 	pressed.connect(_on_pressed)
 	
 	# to make sure self expands around center instead of 
@@ -18,6 +18,7 @@ func _ready() -> void:
 	offset_transform_pivot_ratio = Vector2.ONE * 0.5
 
 func _on_mouse(entered:bool) -> void:
+	print("Entered: %s" % entered)
 	# stops the previous tween where it last was
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)

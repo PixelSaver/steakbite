@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://bh3ih6x0mh4xd" path="res://scenes/tiles/steak_tile.gd" id="1_ix5c6"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_6u2fv"]
 
-[node name="SteakTile" type="Button" unique_id=1796876418 node_paths=PackedStringArray("button")]
+[node name="SteakTile" type="Button" unique_id=1796876418]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 offset_transform_enabled = true
 offset_transform_visual_only = false
 mouse_filter = 1
 script = ExtResource("1_ix5c6")
-button = NodePath("")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=357947545]
 layout_mode = 1
