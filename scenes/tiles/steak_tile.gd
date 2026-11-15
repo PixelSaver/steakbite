@@ -1,7 +1,6 @@
-extends Control
+extends Button
 class_name SteakTile
 
-@export var button: Button
 ## Holder variable to access the current tween, so that
 ## stopping current tween is super easy.
 var t: Tween
@@ -10,26 +9,27 @@ signal steak_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	button.mouse_entered.connect(_on_mouse.bind(true))
-	button.mouse_exited.connect(_on_mouse.bind(false))
-	button.pressed.connect(_on_pressed)
+	focus_entered.connect(_on_mouse.bind(true))
+	focus_exited.connect(_on_mouse.bind(false))
+	pressed.connect(_on_pressed)
 	
-	# to make sure button expands around center instead of 
+	# to make sure self expands around center instead of 
 	# top left corner
-	button.offset_transform_pivot_ratio = Vector2.ONE * 0.5
+	offset_transform_pivot_ratio = Vector2.ONE * 0.5
 
 func _on_mouse(entered:bool) -> void:
+	print("Entered: %s" % entered)
 	# stops the previous tween where it last was
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	if entered: # Highlight the steak
-		t.tween_property(button, "offset_transform_scale", Vector2.ONE * 1.1, 0.7)
+		t.tween_property(self, "offset_transform_scale", Vector2.ONE * 1.1, 0.7)
 		# negative y is upwards
-		t.tween_property(button, "offset_transform_position_ratio:y", -0.1, 0.7)
+		t.tween_property(self, "offset_transform_position_ratio:y", -0.1, 0.7)
 	else: # Unhighlight the steak
-		t.tween_property(button, "offset_transform_scale", Vector2.ONE, 0.7)
-		t.tween_property(button, "offset_transform_position_ratio:y", 0.0, 0.7)
+		t.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.7)
+		t.tween_property(self, "offset_transform_position_ratio:y", 0.0, 0.7)
 		pass
 
 func _on_pressed() -> void: # pressed

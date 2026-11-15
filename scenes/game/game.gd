@@ -7,9 +7,10 @@ enum TileType {
 	STEAK_GOOD,
 	STEAK_BAD,
 }
-
+const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
+const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 ## x, y size
-@export var tilemap : TileMapLayer
+@export var grid_container : GridContainer
 @export var map_size := Vector2i(5, 4)
 @export var margin_bottom : int = 100
 @export var margin_sides : int = 100
@@ -18,11 +19,6 @@ enum TileType {
 var map : Array[Array] 
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
-var atlas_coords : Dictionary[TileType, Vector2i] = {
-	TileType.EMPTY: Vector2i(0,0),
-	TileType.STEAK_GOOD: Vector2i(0,0),
-	TileType.STEAK_BAD: Vector2i(0,0),
-}
 
 func _ready() -> void:
 	SignalBus.game_start.connect(_on_game_start)
@@ -32,7 +28,7 @@ func _ready() -> void:
 func _on_game_start() -> void:
 	update_map()
 	update_poisoned()
-	update_tilemap()
+	update_visuals()
 
 func update_map() -> void:
 	map = []
@@ -52,22 +48,20 @@ func update_poisoned() -> void:
 	for i in range(num_poisoned):
 		var p = clean_steaks.pop_front()
 		set_tile(p, TileType.STEAK_BAD)
-func update_tilemap() -> void:
-	var container_size := tilemap.get_viewport_rect().size
-	tilemap.position = Vector2(
-		margin_sides, 
-		container_size.y - margin_bottom
-	)
-	tilemap.tile_set.tile_size = Vector2(
-		(container_size.x - 2*margin_sides) / map_size.x,
-		150
-	)
-	tilemap.clear()
-	for y in range(map_size.y):
+func update_visuals() -> void:
+	grid_container.columns = map_size.x
+	for n in grid_container.get_children():
+		grid_container.remove_child(n)
+		n.queue_free() 
+	for y in range(map_size.y, 0, -1):
 		for x in range(map_size.x):
 			var pos = Vector2i(x, y)
 			var tile = get_tile(pos)
-			set_tilemap_visual(pos, tile)
+			var empty = Button.new()
+			empty.size_flags_horizontal = Control.SIZE_FILL
+			empty.size_flags_vertical = Control.SIZE_FILL
+			var scene = STEAK_TILE.instantiate() if tile != TileType.EMPTY else EMPTY_TILE.instantiate()
+			grid_container.add_child(scene)
 func update_tilemap_action() -> void:
 	_on_game_start()
 
@@ -77,19 +71,9 @@ func _clamp_pos(v:Vector2i) -> Vector2i:
 	return v
 #endregion
 
-#region Interaction with the tilemaplayer
-func to_tilemap_pos(pos: Vector2i) -> Vector2i:
-	pos = _clamp_pos(pos)
-	pos.y = -1 - pos.y
-	return pos
-
-func set_tilemap_visual(pos: Vector2i, tile: TileType) -> void:
-	var tilemap_pos = to_tilemap_pos(pos) 
-	if tile == TileType.EMPTY:
-		tilemap.erase_cell(tilemap_pos)
-	else:
-		tilemap.set_cell(tilemap_pos, 1, Vector2i(0, 0), 1)
-		tilemap.update_internals()
+#region Interaction with the grid
+func set_grid_visual(pos: Vector2i, tile: TileType) -> void:
+	pass
 #endregion
 
 #region external api
@@ -114,7 +98,7 @@ func set_tile(pos: Vector2i, tile: TileType) -> void:
 		clean_steaks.append(tile)
 		clean_steaks.shuffle()
 	map[pos.y][pos.x] = tile
-	update_tilemap()
+	update_visuals()
 
 func get_tile(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
@@ -129,18 +113,18 @@ func flip_tile(pos: Vector2i) -> void:
 	elif t == TileType.STEAK_GOOD:
 		new_t = TileType.STEAK_GOOD
 	set_tile(pos, new_t)
-	update_tilemap()
+	update_visuals()
 
 ## Empties steak position and returns the position
 func eat_steak(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
 	var out = get_tile(pos)
 	set_tile(pos, TileType.EMPTY)
-	update_tilemap()
+	update_visuals()
 	return out
 #endregion
 
-#func _input(event: InputEvent) -> void:
-	#if OS.is_debug_build() and event.is_action_pressed("1"):
-		#var p = get_random_position()
-		#eat_steak(p)
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build() and event.is_action_pressed("1"):
+		var p = get_random_position()
+		eat_steak(Vector2i(0,4))
