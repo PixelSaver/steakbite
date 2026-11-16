@@ -14,7 +14,7 @@ func _on_dialogue_end(_resource):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("space"):
-		#butler_sprite.show()
+		butler_sprite.show()
 		balloon.hide()
 		controls_label.hide()
 		butler_sprite.texture = butler_punch

@@ -1,4 +1,4 @@
-Butler: Are you sure you want to eat that?
+Butler: Are you sure you want to eat this?
 - Yes
 	Butler: Very well. [$> confirm()]
 - No
