@@ -10,9 +10,11 @@ func _ready():
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 
 func _on_dialogue_end(_resource):
+	TurnManager.state = TurnManager.TurnState.STEAK_ONE
+	SignalBus.game_state_changed.emit(TurnManager.TurnState.STEAK_ONE)
 	self.queue_free()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("space"):
 		balloon.visible = false
 		controls_label.visible = false
