@@ -27,7 +27,6 @@ func start_anim():
 	t.tween_property(butler_sprite, "offset_transform_position_ratio:x", 0.0, 0.7)
 	t.tween_property(panel, "modulate:a", 1.0, 0.7)
 	t.tween_callback(func():
-		print(str(game.map_size.x * game.map_size.y))
 		balloon.start(balloon.dialogue_resource, "", [{ "num_poison" = game.num_poisoned }, { "total" = (game.map_size.x * game.map_size.y) }])
 	).set_delay(0.3)
 

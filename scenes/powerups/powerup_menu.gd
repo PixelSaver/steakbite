@@ -29,6 +29,7 @@ func _ready():
 	flip_percentage = 0.
 	await SignalBus.game_start
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
+	SignalBus.balance_changed.connect(update_balance)
 
 func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
@@ -72,8 +73,7 @@ func _fill_visuals() -> void:
 	var player_name = "Player 1" if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else "Player 2"
 	player_name_label.text = "[font_size=50]" + player_name + ": Select a Powerup"
 	
-	var balance: int = main.p1_balance if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else main.p2_balance
-	player_balance.text = "[font_size=50]Balance: " + str(balance)
+	update_balance()
 	
 	var left_side_children = left_side.get_children()
 	var right_side_children = right_side.get_children()
@@ -90,6 +90,10 @@ func _fill_visuals() -> void:
 			combined[i].set_empty()
 			combined[i].focus_mode = Control.FOCUS_NONE
 			combined[i].mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func update_balance():
+	var balance: int = main.p1_balance if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else main.p2_balance
+	player_balance.text = "[font_size=50]Balance: " + str(balance)
 
 func _assign_focus() -> void:
 	var left_side_children = left_side.get_children()

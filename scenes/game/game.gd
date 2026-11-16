@@ -264,6 +264,8 @@ func get_num_poisoned() -> int:
 			if tile == TileType.STEAK_BAD:
 				count += 1
 	return count
+
+
 func get_random_position() -> Vector2i:
 	return Vector2i(
 		randi_range(0, map_size.x-1),
@@ -275,12 +277,16 @@ func set_tile(pos: Vector2i, tile: TileType) -> void:
 	pos = _clamp_pos(pos)
 	if tile == map[pos.y][pos.x]: return
 	if tile == TileType.STEAK_GOOD:
-		if clean_steaks.has(pos):
+		if !clean_steaks.has(pos):
 			clean_steaks.append(pos)
 	else:
 		clean_steaks.erase(pos)
 	map[pos.y][pos.x] = tile
 	update_visuals()
+
+func add_poison() -> void:
+	var pos = clean_steaks.pop_front()
+	map[pos.y][pos.x] = TileType.STEAK_GOOD
 
 func get_tile_type(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)

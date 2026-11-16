@@ -21,7 +21,12 @@ func _ready() -> void:
 
 func _use() -> void:
 	var is_player_one = true if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else false
-	resource.apply(is_player_one)
+	var scene_root = get_tree().current_scene
+	var main = scene_root as Main
+	if not main and scene_root != self:
+		push_warning("Main isn't scene root for Game")
+	resource.apply(is_player_one, main)
+	SignalBus.balance_changed.emit()
 	pass
 
 func set_visuals(_resource: Powerup) -> void:
