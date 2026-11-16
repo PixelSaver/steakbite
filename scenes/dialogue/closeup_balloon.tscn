@@ -290,7 +290,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="Theme" id="Theme_qq3yp"]
+[sub_resource type="Theme" id="Theme_bcs1n"]
 default_font_size = 20
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
@@ -302,7 +302,7 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_qkmqt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cpf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j3pw"]
 bg_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
 border_width_left = 6
 border_width_top = 6
@@ -344,13 +344,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.5, 0.6, 1)
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1337t"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgp4r"]
 _data = {
 &"RESET": SubResource("Animation_nlsx6"),
 &"progress": SubResource("Animation_qkmqt")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqgug"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1mvg"]
 content_margin_left = 20.0
 content_margin_top = 10.0
 content_margin_right = 20.0
@@ -368,10 +368,10 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7j3pw"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bcs1n"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5pkeg"]
 noise = SubResource("FastNoiseLite_7j3pw")
 
-[sub_resource type="Curve" id="Curve_gkedh"]
+[sub_resource type="Curve" id="Curve_feob6"]
 _data = [Vector2(0, 0.40062112), 0.0, 0.0, 0, 0, Vector2(0.50101006, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.40062112), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -380,7 +380,7 @@ layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("1_5r34j")
 
-[node name="Balloon" type="Control" parent="." unique_id=154399927]
+[node name="Balloon" type="Control" parent="." unique_id=329963300]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -388,9 +388,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_qq3yp")
+theme = SubResource("Theme_bcs1n")
 
-[node name="MarginContainer" type="MarginContainer" parent="Balloon" unique_id=1302081376]
+[node name="MarginContainer" type="MarginContainer" parent="Balloon" unique_id=917150184]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -401,24 +401,24 @@ theme_override_constants/margin_top = 69
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 30
 
-[node name="PanelContainer" type="PanelContainer" parent="Balloon/MarginContainer" unique_id=2145270309]
+[node name="PanelContainer" type="PanelContainer" parent="Balloon/MarginContainer" unique_id=1794765195]
 clip_children = 2
 layout_mode = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_e6cpf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7j3pw")
 
-[node name="MarginContainer" type="MarginContainer" parent="Balloon/MarginContainer/PanelContainer" unique_id=903640783]
+[node name="MarginContainer" type="MarginContainer" parent="Balloon/MarginContainer/PanelContainer" unique_id=1372537340]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer" unique_id=1685890612]
+[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer" unique_id=1843959382]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1890134056]
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=472851531]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -15
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1567782692]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1790211030]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
@@ -430,28 +430,28 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1301798052 instance=ExtResource("3_nqgug")]
+[node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1840273907 instance=ExtResource("3_nqgug")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 45
 text = "Dialogue..."
 
-[node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=418507161]
+[node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=863349217]
 custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Progress" type="Polygon2D" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=2091292889]
+[node name="Progress" type="Polygon2D" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=34391863]
 unique_name_in_owner = true
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=1602634471]
-libraries/ = SubResource("AnimationLibrary_1337t")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=1155806322]
+libraries/ = SubResource("AnimationLibrary_sgp4r")
 autoplay = &"progress"
 
-[node name="CenterContainer" type="MarginContainer" parent="Balloon" unique_id=1667318049]
+[node name="CenterContainer" type="MarginContainer" parent="Balloon" unique_id=384235429]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -465,7 +465,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/margin_right = 100
 
-[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/CenterContainer" unique_id=1801308483 node_paths=PackedStringArray("response_template")]
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/CenterContainer" unique_id=1725893925 node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -475,7 +475,7 @@ script = ExtResource("4_j36k0")
 response_template = NodePath("ResponseExample")
 auto_focus_first_item = false
 
-[node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1446810977 node_paths=PackedStringArray("tweenable")]
+[node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1241969538 node_paths=PackedStringArray("tweenable")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
@@ -487,13 +487,13 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = ExtResource("6_nqgug")
 theme_override_styles/hover = ExtResource("6_nqgug")
 theme_override_styles/disabled = ExtResource("6_nqgug")
-theme_override_styles/focus = SubResource("StyleBoxFlat_nqgug")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o1mvg")
 text = "Response example"
 script = ExtResource("7_bcs1n")
 tweenable = NodePath("CenterContainer/Tweenable")
-noise = SubResource("NoiseTexture2D_bcs1n")
+noise = SubResource("NoiseTexture2D_5pkeg")
 
-[node name="CenterContainer" type="CenterContainer" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample" unique_id=106742961]
+[node name="CenterContainer" type="CenterContainer" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample" unique_id=2125654608]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -504,29 +504,29 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-1920, 0)
 offset_transform_position_ratio = Vector2(-0.6, 0)
 
-[node name="Control" type="Control" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1639925381]
+[node name="Control" type="Control" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=653073822]
 layout_mode = 2
 offset_transform_enabled = true
 
-[node name="Line2D2" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=2043596667]
+[node name="Line2D2" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=1634566735]
 points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
 width = 30.0
-width_curve = SubResource("Curve_gkedh")
+width_curve = SubResource("Curve_feob6")
 default_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=2008430407]
+[node name="Line2D" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=1264012840]
 points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
 width = 20.0
-width_curve = SubResource("Curve_gkedh")
+width_curve = SubResource("Curve_feob6")
 default_color = Color(0.6117647, 0.13333334, 0.03529412, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Tweenable" type="Node" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1178666247 node_paths=PackedStringArray("parent")]
+[node name="Tweenable" type="Node" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1052845084 node_paths=PackedStringArray("parent")]
 script = ExtResource("8_7j3pw")
 tween_value = 1.0
 direction = Vector2(-1, 0)
@@ -534,8 +534,5 @@ distance = 1920.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162558754]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1764295120]
 unique_name_in_owner = true
-
-[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="response_selected" from="Balloon/CenterContainer/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
