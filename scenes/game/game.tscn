@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d28d54uw5wsi6" path="res://assets/art/background/BG_right.PNG" id="3_lfrn8"]
 [ext_resource type="Texture2D" uid="uid://bn0axtct8dklb" path="res://assets/art/spotlight.png" id="4_lfrn8"]
 
-[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
+[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("input_blocker", "left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -17,6 +17,7 @@ size_flags_horizontal = 3
 ratio = 0.8889
 stretch_mode = 1
 script = ExtResource("1_0sr1o")
+input_blocker = NodePath("InputBlocker")
 left_visual = NodePath("Game/SubViewport/Control/LeftVisual")
 right_visual = NodePath("Game/SubViewport/Control/RightVisual")
 subviewport = NodePath("Game/SubViewport")
@@ -89,6 +90,7 @@ theme_override_constants/v_separation = -20
 columns = 5
 
 [node name="Spotlight" type="TextureRect" parent="Game/SubViewport/Control" unique_id=1738429383]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -97,3 +99,6 @@ offset_transform_position_ratio = Vector2(-0.5, -0.975)
 offset_transform_scale = Vector2(0.6, 0.7)
 offset_transform_pivot_ratio = Vector2(0.5, 1)
 texture = ExtResource("4_lfrn8")
+
+[node name="InputBlocker" type="Control" parent="." unique_id=1777281362]
+layout_mode = 2
