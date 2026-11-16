@@ -8,9 +8,6 @@
 [ext_resource type="Script" uid="uid://crut4r5gwigu0" path="res://utilities/ui/menus/default_button.gd" id="4_85g3d"]
 [ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://cl0ktb6mlkc2m" path="res://scenes/game/close_up_menu.gd" id="6_tipki"]
-[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="7_85g3d"]
-[ext_resource type="Script" uid="uid://dewgnvloq312d" path="res://scenes/game/close_up_button.gd" id="8_choun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
 content_margin_left = 0.0
@@ -41,18 +38,6 @@ corner_detail = 5
 shadow_color = Color(0.30980393, 0.2, 0.043137256, 0.6)
 shadow_size = 3
 shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(1, 1, 1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2")]
 layout_mode = 3
