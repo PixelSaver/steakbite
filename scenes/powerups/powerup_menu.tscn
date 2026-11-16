@@ -140,6 +140,7 @@ theme_override_constants/separation = 10
 
 [node name="Player Name" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=2002184844]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("6_1ypni")
 bbcode_enabled = true
 text = "[font_size=50]Player 1: Select a Powerup"
@@ -148,21 +149,26 @@ scroll_active = false
 
 [node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=726296963 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=861183747 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=72329359 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=1869064438 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="PowerupMenuItem5" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=881111203 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="Panel2" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer" unique_id=928331506]
@@ -182,6 +188,7 @@ theme_override_constants/separation = 10
 
 [node name="Balance" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=857178799]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("6_1ypni")
 bbcode_enabled = true
 text = "[font_size=50]Balance: 0"
@@ -191,22 +198,27 @@ horizontal_alignment = 2
 
 [node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1577279010 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1624719131 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=624455387 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=290449159 instance=ExtResource("1_ytud3")]
 layout_mode = 2
+mouse_filter = 1
 is_empty = false
 
 [node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1911362908]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_3fqmn")
 
 [node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel" unique_id=1469310678]
@@ -229,6 +241,7 @@ alignment_horizontal = 2
 [node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 text = "Continue?"
 icon_alignment = 1
 expand_icon = true
@@ -243,6 +256,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ypni")
 
 [node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=1783826205]
@@ -253,4 +267,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
