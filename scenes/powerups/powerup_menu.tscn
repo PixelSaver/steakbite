@@ -226,13 +226,14 @@ ratio = 2.4967
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079]
+[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Continue?"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_3fqmn")
+outline = NodePath("Highlight")
 
 [node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=1883338244]
 show_behind_parent = true
