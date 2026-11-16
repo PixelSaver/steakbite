@@ -1,24 +1,63 @@
 extends PixelMenu
 class_name PowerupMenu
 
+const TS = TurnManager.TurnState
 @export var first_focus: Control
 @export var left_side: Control
 @export var right_side: Control
+## Container with all the buttons in it
+@export var subviewport_cont: SubViewportContainer
 @export var continue_button: Control
-
+const PERSPECTIVE_SHADER_MATERIAL = preload("res://assets/perspective_shader_material.tres")
+var flip_percentage := 0.0 :
+	set(val):
+		flip_percentage = val
+		_set_flip_percentage(val)
+var mat: ShaderMaterial
 var t: Tween
 
-func _ready():
-	start_anim()
 
+func _ready():
+	subviewport_cont.offset_transform_enabled = true
+	mat = PERSPECTIVE_SHADER_MATERIAL.duplicate()
+	subviewport_cont.material = mat
+	flip_percentage = 0.
+	SignalBus.game_state_changed.connect(_on_game_state_changed)
+
+func _on_game_state_changed(new_state: TS) -> void:
+	match new_state:
+		TS.POWERUP_ONE:
+			start_anim()
+		TS.STEAK_ONE:
+			end_anim()
+		TS.POWERUP_TWO:
+			start_anim()
+		TS.STEAK_TWO:
+			end_anim()
+
+#region Flipping animation
 func start_anim() -> void:
-	show() 
+	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
+	if t and t.is_running(): t.kill()
+	t = default_tween()
+	t.tween_property(self, "flip_percentage", 1., 0.7)
+	#t.tween_property(subviewport_cont, "offset_transform_position_ratio:y", 0.0, 0.7)
 	first_focus.grab_focus()
 	_assign_focus()
-	pass
-func end_anim() -> void: 
-	hide()
-	pass
+func end_anim() -> void:
+	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
+	if t and t.is_running(): t.kill()
+	t = default_tween()
+	t.tween_property(self, "flip_percentage", 0., 0.7)
+	#t.tween_property(subviewport_cont, "offset_transform_position_ratio:y", 0.5, 0.7)
+	
+## From [0,1] to set the flip visual, 0 is down, 1 is up
+func _set_flip_percentage(ratio: float) -> void:
+	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
+	mat.set_shader_parameter("x_rot", remap(ratio, 0, 1, 90, 0))
+	subviewport_cont.offset_transform_position_ratio.y = remap(ratio, 0, 1, 0.5, 0)
+	visible = not is_equal_approx(0., ratio)
+#endregion
 
 func _assign_focus() -> void:
 	var left_side_children = left_side.get_children()

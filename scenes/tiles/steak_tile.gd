@@ -9,7 +9,7 @@ class_name SteakTile
 ## stopping current tween is super easy.
 var t: Tween
 ## template signal here for now, nothing listens to it
-signal steak_pressed
+signal steak_pressed(steak_tile:SteakTile)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,4 +44,4 @@ func _on_mouse(entered:bool) -> void:
 		pass
 
 func _on_pressed() -> void: # pressed
-	steak_pressed.emit()
+	steak_pressed.emit(self)

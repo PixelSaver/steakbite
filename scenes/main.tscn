@@ -1,16 +1,36 @@
 [gd_scene format=3 uid="uid://ch81su7nh77vx"]
 
 [ext_resource type="PackedScene" uid="uid://dnjyx1trtl6w3" path="res://scenes/game/game.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://hch2bpbfkl2d" path="res://scenes/main.gd" id="1_tefeu"]
 [ext_resource type="Texture2D" uid="uid://ex4o2373hagv" path="res://assets/art/player_left.PNG" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://ij11cfg4ehcl" path="res://assets/art/player_right.PNG" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
+[ext_resource type="Script" uid="uid://cl0ktb6mlkc2m" path="res://scenes/game/close_up_menu.gd" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://dewgnvloq312d" path="res://scenes/game/close_up_button.gd" id="8_choun"]
 
-[node name="Main" type="Control" unique_id=1380770197]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tefeu")
+game_1 = NodePath("HBoxContainer/Game")
+game_2 = NodePath("HBoxContainer/Game2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=703350261]
 layout_mode = 1
@@ -60,3 +80,136 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("3_jyhfs")
+
+[node name="PowerupMenu" parent="CanvasLayer" unique_id=1713500523 instance=ExtResource("5_o6xl0")]
+
+[node name="CloseUp" type="Control" parent="CanvasLayer" unique_id=963114083 node_paths=PackedStringArray("yes", "no", "main")]
+visible = false
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_tipki")
+yes = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Yes")
+no = NodePath("MarginContainer/VBoxContainer/HBoxContainer/No")
+main = NodePath("../..")
+metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/CloseUp" unique_id=1706212629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CloseUp" unique_id=711783437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CloseUp/MarginContainer" unique_id=1100697860]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer" unique_id=105282231]
+layout_mode = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/MarginContainer" unique_id=778986083]
+layout_mode = 2
+texture = ExtResource("7_85g3d")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer" unique_id=716497162]
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "Are you sure you want to eat this one?"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer" unique_id=1556181635]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="No" type="Button" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1666993111]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("8_choun")
+metadata/_custom_type_script = "uid://dewgnvloq312d"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer/No" unique_id=795194657]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer/No" unique_id=2124619213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Nope"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="Button" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1082076307]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("8_choun")
+metadata/_custom_type_script = "uid://dewgnvloq312d"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer/Yes" unique_id=1263749158]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CloseUp/MarginContainer/VBoxContainer/HBoxContainer/Yes" unique_id=1205914421]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Yep"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
