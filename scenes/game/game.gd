@@ -158,6 +158,7 @@ func _hide_spotlight() -> void:
 	
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	var spotlight_corner := Vector2.ZERO
 	if is_right:
 		spotlight_corner = Vector2(

@@ -22,14 +22,18 @@ func _on_end_turn(id:int) -> void:
 	if id == 1 and TurnManager.state == TS.STEAK_ONE:
 		if game_1.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_TWO
+			#SOUND Ended turn for player 1
 		else:
 			#TODO Get butler to chide you for not eating
+			#SOUND Trying to end turn without eating food P2
 			pass
 	elif id == 2 and TurnManager.state == TS.STEAK_TWO:
 		if game_2.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_ONE
+			#SOUND Ended turn for player 1
 		else:
 			#TODO Get butler to chide you for not eating
+			#SOUND Trying to end turn without eating food P2
 			pass
 	else:
 		push_error(
