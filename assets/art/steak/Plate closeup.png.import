@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cahcjv8iu8rh0"
-path="res://.godot/imported/butler_notray.png-b92b7b82d7df88b5874b6fc795de58d0.ctex"
+uid="uid://d2vywh70q4c2f"
+path="res://.godot/imported/Plate closeup.png-6c217e4f7a069b9a3c275e083f2cbcdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/butler_notray.png"
-dest_files=["res://.godot/imported/butler_notray.png-b92b7b82d7df88b5874b6fc795de58d0.ctex"]
+source_file="res://assets/art/steak/Plate closeup.png"
+dest_files=["res://.godot/imported/Plate closeup.png-6c217e4f7a069b9a3c275e083f2cbcdd.ctex"]
 
 [params]
 

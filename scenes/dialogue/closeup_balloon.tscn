@@ -368,7 +368,6 @@ corner_radius_bottom_left = 10
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("1_5r34j")
-auto_start = true
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
 unique_name_in_owner = true

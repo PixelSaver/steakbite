@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2odg5iesorte"
-path="res://.godot/imported/icon_poison.PNG-4d2c1bb6dbb5bd0feac1eb01cda35ee8.ctex"
+uid="uid://dl5rgjay4qhb8"
+path="res://.godot/imported/BG_left.PNG-0fb945ff12da7667db50b36320a3e4e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/icons/icon_poison.PNG"
-dest_files=["res://.godot/imported/icon_poison.PNG-4d2c1bb6dbb5bd0feac1eb01cda35ee8.ctex"]
+source_file="res://assets/art/background/BG_left.PNG"
+dest_files=["res://.godot/imported/BG_left.PNG-0fb945ff12da7667db50b36320a3e4e1.ctex"]
 
 [params]
 

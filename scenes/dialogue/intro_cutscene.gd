@@ -1,12 +1,17 @@
-extends Control
+extends PixelMenu
 
 @export var butler_normal: Texture
 @export var butler_punch: Texture
 @export var butler_sprite: TextureRect
+@export var panel: Panel
 @export var balloon: CanvasLayer
 @export var controls_label: Control
+var t: Tween
 
 func _ready():
+	panel.modulate.a = 0.0
+	butler_sprite.offset_transform_enabled = true
+	butler_sprite.offset_transform_position_ratio.x = -0.75
 	SignalBus.game_start.connect(func():
 		print("Starting")
 		start_anim()
@@ -15,13 +20,24 @@ func _ready():
 
 func start_anim():
 	show()
-	balloon.start(balloon.dialogue_resource)
+	if t and t.is_running(): t.kill()
+	t = default_tween()
+	t.tween_property(butler_sprite, "offset_transform_position_ratio:x", 0.0, 0.7)
+	t.tween_property(panel, "modulate:a", 1.0, 0.7)
+	t.tween_callback(func():
+		balloon.start(balloon.dialogue_resource)
+	).set_delay(0.3)
 
 func _on_dialogue_end(_resource):
 	if not self.visible: return
 	end_anim()
 
 func end_anim():
+	if t and t.is_running(): t.kill()
+	t = default_tween()
+	t.tween_property(butler_sprite, "offset_transform_position_ratio:x", -0.75, 0.7)
+	t.tween_property(panel, "modulate:a", 0.0, 0.7)
+	await t.finished
 	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 	SignalBus.intro_cutscene_finished.emit()
 	self.hide()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2po1jak6yrtk"
-path="res://.godot/imported/icon_check.PNG-fd6d5a0dcafb900a1f05f0b3723420f7.ctex"
+uid="uid://cahcjv8iu8rh0"
+path="res://.godot/imported/butler_notray.png-3ad1109bac2aadb31ec2eae6a9a966c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/icons/icon_check.PNG"
-dest_files=["res://.godot/imported/icon_check.PNG-fd6d5a0dcafb900a1f05f0b3723420f7.ctex"]
+source_file="res://assets/art/butler/butler_notray.png"
+dest_files=["res://.godot/imported/butler_notray.png-3ad1109bac2aadb31ec2eae6a9a966c4.ctex"]
 
 [params]
 

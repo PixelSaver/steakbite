@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d08uerv0xhuuj" path="res://assets/art/butler/butler_punched.PNG" id="3_hn65t"]
 =======
 [ext_resource type="Texture2D" uid="uid://qjqspu0a762j" path="res://assets/art/IMG_2889.png" id="3_ipsb2"]
-[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/butler_tray.png" id="4_1patc"]
+[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/background/butler_tray.png" id="4_1patc"]
 >>>>>>> main
 [ext_resource type="PackedScene" uid="uid://dk3wfkubevpc5" path="res://scenes/dialogue/default_balloon.tscn" id="4_olcwa"]
 [ext_resource type="Script" uid="uid://dnhf1tser3p2o" path="res://scenes/dialogue/intro_baloon.gd" id="5_hn65t"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ryq6eu74rawb"
-path="res://.godot/imported/Butler areYouSure.png-dccc2ff19178db55acd9954f3fff5a3b.ctex"
+uid="uid://gkfdnl471420"
+path="res://.godot/imported/table_left.png-ff1a0d9223e4743de2a1de72f26bc964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Butler areYouSure.png"
-dest_files=["res://.godot/imported/Butler areYouSure.png-dccc2ff19178db55acd9954f3fff5a3b.ctex"]
+source_file="res://assets/art/background/table_left.png"
+dest_files=["res://.godot/imported/table_left.png-ff1a0d9223e4743de2a1de72f26bc964.ctex"]
 
 [params]
 

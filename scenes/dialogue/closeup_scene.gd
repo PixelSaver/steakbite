@@ -4,7 +4,7 @@ class_name CloseUpMenu
 @export var main: Main
 const CLOSEUP_BALLOON = preload("uid://cfrjwymq0mu44")
 @export var butler: TextureRect
-@export var balloon: CanvasLayer
+@export var balloon: CloseUpBalloon
 @export var panel: Panel
 @export var resource: DialogueResource
 @export var game1: GameContainer
@@ -31,6 +31,11 @@ func _ready() -> void:
 	#start_anim()
 	SignalBus.steak_selected.connect(_on_steak_selected)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
+	SignalBus.close_up_menu_closed.connect(func(confirmed: bool):
+		if confirmed: confirm()
+		else: deny()
+	)
+	if not main: start_anim()
 
 func _on_dialogue_end(_resource):
 	print("dialogue ended")
@@ -38,13 +43,14 @@ func _on_dialogue_end(_resource):
 
 func _on_steak_selected(_steak: SteakTile, pos: Vector2i, _id: int) -> void:
 	selected_steak_pos = pos
+	print("Steak selected")
 	start_anim()
 
 func confirm() -> void:
 	if selected_steak_pos < Vector2i(0,0):
 		push_warning("Vector position is invalid. Not initialized in CloseUpMenu?")
 		return
-	
+	balloon.hide()
 	steaks[0].show()
 	steaks[1].hide()
 	await get_tree().create_timer(0.5).timeout
@@ -56,15 +62,29 @@ func confirm() -> void:
 	#assert((player_id == 1 or player_id == 2), "Player id from TurnManager isn't 1 or 2 in CloseUp")
 	var game: GameContainer = main.game_1 if player_id == 1 else main.game_2
 	game.eat_steak(selected_steak_pos)
+	await get_tree().create_timer(0.5).timeout
+	end_anim()
 	
 func deny():
+	balloon.hide()
 	if selected_steak_pos < Vector2i(0,0):
 		push_warning("Vector position is invalid. Not initialized in CloseUpMenu?")
 		return
 
 func start_anim() -> void:
 	show()
-	DialogueManager.show_dialogue_balloon_scene(CLOSEUP_BALLOON, resource, "", [self])
+	if t and t.is_running(): t.kill()
+	t = create_tween().set_ease(Tween.EASE_OUT)
+	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
+	t.tween_property(butler, "offset_transform_position_ratio:x", 0.0, 0.6)
+	t.tween_property(panel, "modulate:a", 1.0, 0.6)
+	t.tween_property(_get_balloon_control(), "modulate:a", 1.0, 0.6)
+	t.tween_callback(func():
+		balloon.show()
+		balloon.start(resource)
+		#DialogueManager.show_dialogue_balloon_scene()
+	).set_delay(0.3)
+	
 
 func end_anim() -> void:
 	if t and t.is_running(): t.kill()

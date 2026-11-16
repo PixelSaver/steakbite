@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dnjyx1trtl6w3" path="res://scenes/game/game.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://hch2bpbfkl2d" path="res://scenes/main.gd" id="1_tefeu"]
-[ext_resource type="Texture2D" uid="uid://ex4o2373hagv" path="res://assets/art/player_left.PNG" id="2_sugp2"]
+[ext_resource type="Texture2D" uid="uid://ex4o2373hagv" path="res://assets/art/background/player_left.PNG" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cqo5fpk32trss" path="res://scenes/dialogue/introCutscene.tscn" id="3_85g3d"]
-[ext_resource type="Texture2D" uid="uid://ij11cfg4ehcl" path="res://assets/art/player_right.PNG" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://ij11cfg4ehcl" path="res://assets/art/background/player_right.PNG" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://crut4r5gwigu0" path="res://utilities/ui/menus/default_button.gd" id="4_85g3d"]
 [ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]

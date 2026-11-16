@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08uerv0xhuuj"
-path="res://.godot/imported/butler_punched.PNG-f9a1b69af1a614148d69ef825b159b5a.ctex"
+uid="uid://najadlau0cll"
+path="res://.godot/imported/table_right.png-9609871d25b227e8d9a49e2a60cace36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/butler_punched.PNG"
-dest_files=["res://.godot/imported/butler_punched.PNG-f9a1b69af1a614148d69ef825b159b5a.ctex"]
+source_file="res://assets/art/background/table_right.png"
+dest_files=["res://.godot/imported/table_right.png-9609871d25b227e8d9a49e2a60cace36.ctex"]
 
 [params]
 

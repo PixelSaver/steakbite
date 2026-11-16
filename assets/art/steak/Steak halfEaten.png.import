@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ih828tyvbg71"
-path="res://.godot/imported/BG_left.PNG-2e2bf9f92ebc2066e7d372bafd999228.ctex"
+uid="uid://dwrvvjx07tb0x"
+path="res://.godot/imported/Steak halfEaten.png-fd679ff6d1fc7c7adbfc21d6be16e97f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/BG_left.PNG"
-dest_files=["res://.godot/imported/BG_left.PNG-2e2bf9f92ebc2066e7d372bafd999228.ctex"]
+source_file="res://assets/art/steak/Steak halfEaten.png"
+dest_files=["res://.godot/imported/Steak halfEaten.png-fd679ff6d1fc7c7adbfc21d6be16e97f.ctex"]
 
 [params]
 
