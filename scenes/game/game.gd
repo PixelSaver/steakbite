@@ -64,7 +64,9 @@ func _ready() -> void:
 			return
 		grab_first_focus()
 	)
-	_on_game_start()
+	var end_turn = _get_end_turn()
+	end_turn.focus_entered.connect(_on_focus_changed.bind(end_turn))
+	#end_turn.focus_exited.connect(_on_focus_changed.bind(end_turn))
 
 func enable_focus(enable:bool) -> void:
 	subviewport.set_process_input(enable)
@@ -117,25 +119,29 @@ func _on_focus_changed(node: Control) -> void:
 	if Engine.is_editor_hint(): return
 	var end_turn = _get_end_turn()
 	var idx = visual_tiles.find(node)
-	if idx == -1: return
-	var length = visual_tiles.size()
-	# adding row length to move down a row
-	# if outside bounds, set to itself (ignoring other ui for now)
-	var bottom_neighbor_idx = idx + map_size.x 
-	if bottom_neighbor_idx < length:
-		var target = visual_tiles[bottom_neighbor_idx]
-		node.focus_neighbor_bottom = node.get_path_to(target)
-	else:
-		node.focus_neighbor_bottom = node.get_path_to(end_turn)
-		end_turn.focus_neighbor_top = end_turn.get_path_to(node)
-		
-	var top_neighbor_idx = idx - map_size.x 
-	if top_neighbor_idx >= 0:
-		var target = visual_tiles[top_neighbor_idx]
-		node.focus_neighbor_top = node.get_path_to(target)
+	if idx != -1: 
+		var length = visual_tiles.size()
+		# adding row length to move down a row
+		# if outside bounds, set to itself (ignoring other ui for now)
+		var bottom_neighbor_idx = idx + map_size.x 
+		if bottom_neighbor_idx < length:
+			var target = visual_tiles[bottom_neighbor_idx]
+			node.focus_neighbor_bottom = node.get_path_to(target)
+		else:
+			node.focus_neighbor_bottom = node.get_path_to(end_turn)
+			end_turn.focus_neighbor_top = end_turn.get_path_to(node)
+			
+		var top_neighbor_idx = idx - map_size.x 
+		if top_neighbor_idx >= 0:
+			var target = visual_tiles[top_neighbor_idx]
+			node.focus_neighbor_top = node.get_path_to(target)
+	elif node != end_turn:
+		return
 	
 	# highlight
-	var spotlight_target = node.global_position + node.size * 0.5
+	var spotlight_target: Vector2 = node.global_position + node.size * 0.5
+	if node == end_turn:
+		spotlight_target -= game_subviewport_container.global_position
 	if spotlight_tween and spotlight_tween.is_running(): spotlight_tween.kill()
 	spotlight_tween = create_tween().set_ease(Tween.EASE_OUT)
 	spotlight_tween.set_trans(Tween.TRANS_QUINT).set_parallel(true)
@@ -146,14 +152,14 @@ func _hide_spotlight() -> void:
 	if spotlight_tween and spotlight_tween.is_running(): spotlight_tween.kill()
 	spotlight_tween = create_tween().set_ease(Tween.EASE_OUT)
 	spotlight_tween.set_trans(Tween.TRANS_QUINT).set_parallel(true)
-	spotlight_tween.tween_property(self, "spotlight_target_pos", Vector2.ZERO, 0.7)
+	#spotlight_tween.tween_property(self, "spotlight_target_pos", Vector2.ZERO, 0.7)
 	spotlight_tween.tween_property(spotlight, "modulate:a", 0.0, 0.7)
 	
 
 func _process(_delta: float) -> void:
-	var spotlight_corner := Vector2i.ZERO
+	var spotlight_corner := Vector2.ZERO
 	if is_right:
-		spotlight_corner = Vector2i(
+		spotlight_corner = Vector2(
 			subviewport.size.x - spotlight_offset.x, 
 			spotlight_offset.y
 		)
@@ -245,17 +251,19 @@ func get_num_poisoned() -> int:
 	return count
 func get_random_position() -> Vector2i:
 	return Vector2i(
-		randi_range(0, map_size.x),
-		randi_range(0, map_size.y)
+		randi_range(0, map_size.x-1),
+		randi_range(0, map_size.y-1)
 	)
 
+## Sets the tile, updates clean_steaks, and updates visuals
 func set_tile(pos: Vector2i, tile: TileType) -> void:
 	pos = _clamp_pos(pos)
 	if tile == map[pos.y][pos.x]: return
-	if tile == TileType.STEAK_GOOD and \
-			clean_steaks.find(pos) == -1:
-		clean_steaks.append(tile)
-		clean_steaks.shuffle()
+	if tile == TileType.STEAK_GOOD:
+		if clean_steaks.has(pos):
+			clean_steaks.append(pos)
+	else:
+		clean_steaks.erase(pos)
 	map[pos.y][pos.x] = tile
 	update_visuals()
 
@@ -269,16 +277,16 @@ func flip_tile(pos: Vector2i) -> void:
 	var new_t = TileType.EMPTY
 	if t == TileType.STEAK_GOOD:
 		new_t = TileType.STEAK_BAD
-	elif t == TileType.STEAK_GOOD:
+	elif t == TileType.STEAK_BAD:
 		new_t = TileType.STEAK_GOOD
 	set_tile(pos, new_t)
-	update_visuals()
 
 ## Empties steak position and returns the position
 func eat_steak(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
 	var out = get_tile_type(pos)
 	set_tile(pos, TileType.EMPTY)
-	steaks_eaten_this_round += 1
+	if out != TileType.EMPTY:
+		steaks_eaten_this_round += 1
 	return out
 #endregion
