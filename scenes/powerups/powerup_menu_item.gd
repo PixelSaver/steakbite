@@ -35,6 +35,7 @@ func set_visuals(_resource: Powerup) -> void:
 	power_name.text = "[font_size=35]" + _resource.name
 	cost_label.text = "[font_size=35]Cost: " + str(_resource.cost)
 	description_label.text = "[font_size=20]" + _resource.description
+	self.focus_mode = Control.FOCUS_ALL
 
 func set_empty() -> void:
 	is_empty = true
@@ -42,6 +43,7 @@ func set_empty() -> void:
 	power_name.clear()
 	cost_label.clear()
 	description_label.clear()
+	self.focus_mode = Control.FOCUS_NONE
 
 func _set_focus(entered: bool) -> void:
 	if t and t.is_running(): t.kill()

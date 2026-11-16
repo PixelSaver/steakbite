@@ -2,20 +2,29 @@
 extends Button
 class_name DefaultButton
 
+@export var label: RichTextLabel
+@export_multiline var button_text: String = "Default Button":
+	set(value):
+		button_text = value
+		if is_instance_valid(label):
+			label.text = value
 var t : Tween
 
 func _enter_tree() -> void:
 	if not Engine.is_editor_hint():
 		return
 	call_deferred("_ensure_label")
+	self.add_theme_color_override("font_color", Color("#0000"))
+
 func _ensure_label():
+	if label: return
 	if self.custom_minimum_size == Vector2.ZERO:
 		self.custom_minimum_size = Vector2(150, 80) 
 	
 	for child in get_children():
 		if child is RichTextLabel:
 			return
-	var label = RichTextLabel.new()
+	label = RichTextLabel.new()
 	add_child(label)
 	label.owner = get_tree().edited_scene_root # required for editor persistence
 	label.fit_content = true
@@ -24,7 +33,7 @@ func _ensure_label():
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.shortcut_keys_enabled = false
 	label.clip_contents = false
-	label.text = "Default Button"
+	label.text = button_text
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.bbcode_enabled = true
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)

@@ -11,6 +11,7 @@ enum TileType {
 const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
 const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export_subgroup("Nodes")
+@export var input_blocker: Control
 @onready var control: Control = $Game/SubViewport/Control
 @export var left_visual: Control
 @export var right_visual: Control
@@ -42,6 +43,7 @@ var steaks_eaten_this_round := 0
 var main: Main
 
 func _ready() -> void:
+	enable_focus(false)
 	var scene_root = get_tree().current_scene
 	main = scene_root as Main
 	if not main and scene_root != self:
@@ -80,6 +82,7 @@ func enable_focus(enable:bool) -> void:
 	subviewport.set_process_input(enable)
 	self.focus_mode = Control.FOCUS_ALL if enable else Control.FOCUS_NONE
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
+	input_blocker.visible = !enable
 
 func _on_game_state_changed(new_state: TS) -> void:
 	steaks_eaten_this_round = 0
@@ -96,6 +99,15 @@ func _on_game_state_changed(new_state: TS) -> void:
 			pass
 
 func _on_steak_selected(steak: SteakTile) -> void:
+	if not (TurnManager.state == TS.STEAK_ONE or \
+		TurnManager.state == TS.STEAK_TWO):
+			# Not steak turn
+			push_warning("Steak tried to be selected when it isn't time to select steaks")
+			return
+	elif TurnManager.player_turn() != int(is_right)+1:
+		# Not right steak turn
+		push_warning("Steak is being selected on the wrong side")
+		return
 	var idx = visual_tiles.find(steak)
 	if idx == -1: 
 		push_warning("Steak selected, and yet wasn't found in GameContainer's visual_tiles array")

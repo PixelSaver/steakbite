@@ -27,7 +27,9 @@ func _ready():
 	mat = PERSPECTIVE_SHADER_MATERIAL.duplicate()
 	subviewport_cont.material = mat
 	flip_percentage = 0.
+	SignalBus.intro_cutscene_finished.connect(_on_game_state_changed.bind(TS.POWERUP_ONE))
 	await SignalBus.game_start
+	print("Game started, listening")
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	SignalBus.balance_changed.connect(update_balance)
 
@@ -44,6 +46,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 
 #region Flipping animation
 func start_anim() -> void:
+	print("Menu starting")
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
 	if t and t.is_running(): t.kill()
 	t = default_tween()
@@ -51,8 +54,9 @@ func start_anim() -> void:
 	#t.tween_property(subviewport_cont, "offset_transform_position_ratio:y", 0.0, 0.7)
 	_fill_visuals()
 	show() 
-	first_focus.grab_focus()
 	_assign_focus()
+	await t.finished
+	first_focus.grab_focus()
 func end_anim() -> void:
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
 	if t and t.is_running(): t.kill()

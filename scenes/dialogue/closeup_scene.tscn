@@ -35,6 +35,7 @@ grow_vertical = 2
 layer = 4
 script = ExtResource("4_fc34u")
 dialogue_resource = null
+will_block_other_input = false
 
 [node name="ButlerAreYouSure" type="TextureRect" parent="." unique_id=1398920530]
 z_index = 5
