@@ -21,6 +21,7 @@ Global="*uid://cw2cid6mippjr"
 SignalBus="*uid://76heinnvc1fe"
 SceneDatabase="*uid://b7w6r5xa8o86w"
 TurnManager="*uid://dhvsj7wsjxx45"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
@@ -30,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [file_customization]
 
