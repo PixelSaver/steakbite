@@ -1,6 +1,5 @@
 extends Node
 
-
 enum TurnState {
 	MENU,
 	POWERUP_ONE,
@@ -9,6 +8,7 @@ enum TurnState {
 	STEAK_TWO,
 	LOSS,
 }
+
 var state: TurnState = TurnState.MENU :
 	set(val):
 		if val == state: return 

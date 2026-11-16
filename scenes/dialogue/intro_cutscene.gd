@@ -22,6 +22,6 @@ func _process(_delta):
 		end_anim()
 		
 func end_anim():
-	SignalBus.game_state_changed.emit(TurnManager.TurnState.STEAK_ONE)
-	TurnManager.state = TurnManager.TurnState.STEAK_ONE
+	SignalBus.game_state_changed.emit(TurnManager.TurnState.POWERUP_ONE)
+	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 	self.queue_free()

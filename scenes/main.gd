@@ -11,6 +11,9 @@ const TS = TurnManager.TurnState
 @export var end_turn_2: DefaultButton
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
 
+var p1_balance: int = 100
+var p2_balance: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
