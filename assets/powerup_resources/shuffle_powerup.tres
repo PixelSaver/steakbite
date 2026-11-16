@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShufflePowerup" format=3 uid="uid://bjc0r54430fw5"]
+
+[ext_resource type="Script" uid="uid://1vs5fv6kc2pe" path="res://standalones/powerup/shuffle_powerup.gd" id="1_atfjg"]
+[ext_resource type="Texture2D" uid="uid://bqkbp7r8tp4bt" path="res://assets/art/powerups/icon_shuffle.PNG" id="2_c51v6"]
+
+[resource]
+script = ExtResource("1_atfjg")
+name = "Shuffle Steaks"
+description = "Shuffle all the steaks on your opponent's side."
+texture = ExtResource("2_c51v6")
+metadata/_custom_type_script = "uid://1vs5fv6kc2pe"

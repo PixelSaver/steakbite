@@ -380,6 +380,7 @@ point_count = 3
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("2_8m7h1")
+will_block_other_input = false
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
 unique_name_in_owner = true

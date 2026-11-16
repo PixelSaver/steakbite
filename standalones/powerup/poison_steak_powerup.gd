@@ -3,7 +3,6 @@ class_name PoisonSteakPowerup
 
 @export var steak_min: int = 1
 @export var steak_max: int = 2
-@export var dialogue: DialogueResource
 
 func apply(_is_player_one: bool, main: Main) -> bool:
 	if (!super(_is_player_one, main)): return false
@@ -14,5 +13,6 @@ func apply(_is_player_one: bool, main: Main) -> bool:
 		target_game.add_poison()
 	# TODO: set player names
 	var player_target = "Player 2" if _is_player_one else "Player 1"
-	DialogueManager.show_dialogue_balloon(dialogue, "", [{"num" = num_poison}, {"player_name" = player_target}])
+	var dialogue = str(num_poison) + " poisoned steaks have been added to " + player_target + "'s side."
+	DialogueManager.show_dialogue_balloon(BLANK, "", [{"dialogue" = dialogue}])
 	return true

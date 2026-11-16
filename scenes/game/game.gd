@@ -284,9 +284,30 @@ func set_tile(pos: Vector2i, tile: TileType) -> void:
 	map[pos.y][pos.x] = tile
 	update_visuals()
 
+func shuffle_steaks() -> void:
+	var poisoned = get_num_poisoned()
+	var clean = clean_steaks.size()
+	
+	var all_steaks: Array[TileType] = []
+	for i in poisoned:
+		all_steaks.append(TileType.STEAK_BAD)
+	for i in clean:
+		all_steaks.append(TileType.STEAK_GOOD)
+	all_steaks.shuffle()
+	
+	clean_steaks.clear()
+	for row in map.size():
+		for col in row:
+			if map[row][col] != TileType.EMPTY:
+				var curr: TileType = all_steaks.pop_front()
+				map[row][col] = curr
+				if curr == TileType.STEAK_GOOD:
+					# TODO: check my work, maybe row and col should be switched
+					clean_steaks.append(Vector2i(row, col))
+
 func add_poison() -> void:
 	var pos = clean_steaks.pop_front()
-	map[pos.y][pos.x] = TileType.STEAK_GOOD
+	map[pos.y][pos.x] = TileType.STEAK_BAD
 
 func get_tile_type(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
