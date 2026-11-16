@@ -198,7 +198,7 @@ func update_visuals() -> void:
 			var empty = Button.new()
 			empty.size_flags_horizontal = Control.SIZE_FILL
 			empty.size_flags_vertical = Control.SIZE_FILL
-			var scene: Control
+			var scene: Tile
 			if tile != TileType.EMPTY:
 				scene = STEAK_TILE.instantiate() as SteakTile
 				if not Engine.is_editor_hint(): 
@@ -206,9 +206,9 @@ func update_visuals() -> void:
 					scene.tree_exiting.connect(func():
 						scene.steak_pressed.disconnect(_on_steak_selected)
 					)
-				scene.set_right(is_right)
 			else: 
 				scene = EMPTY_TILE.instantiate()
+			scene.set_right(is_right)
 			grid_container.add_child(scene)
 			visual_tiles.append(scene)
 			queue_redraw()
