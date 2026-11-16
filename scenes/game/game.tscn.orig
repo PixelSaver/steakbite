@@ -1,14 +1,41 @@
 [gd_scene format=3 uid="uid://dnjyx1trtl6w3"]
 
 [ext_resource type="Script" uid="uid://dpom2om6wlfbw" path="res://scenes/game/game.gd" id="1_0sr1o"]
-[ext_resource type="Texture2D" uid="uid://ih828tyvbg71" path="res://assets/art/BG_left.PNG" id="4_kelw5"]
-[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="5_lfrn8"]
+[ext_resource type="Texture2D" uid="uid://dl5rgjay4qhb8" path="res://assets/art/background/BG_left.PNG" id="2_kelw5"]
+[ext_resource type="Texture2D" uid="uid://d28d54uw5wsi6" path="res://assets/art/background/BG_right.PNG" id="3_lfrn8"]
+[ext_resource type="Texture2D" uid="uid://bn0axtct8dklb" path="res://assets/art/spotlight.png" id="4_lfrn8"]
+[ext_resource type="Texture2D" uid="uid://covvvwnwnkhsy" path="res://assets/art/vignette.png" id="5_lfrn8"]
+[ext_resource type="Script" uid="uid://b24ck7oweew66" path="res://scenes/game/poison_effect.gd" id="6_5i0tg"]
 
-[sub_resource type="Curve" id="Curve_0sr1o"]
-_data = [Vector2(0, 1), 0.0, -0.90625, 0, 1, Vector2(1, 0.09375), -0.90625, 0.0, 1, 0]
-point_count = 2
+<<<<<<< HEAD
+[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("input_blocker", "left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
+=======
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfrn8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.04021844, 0.08125167, 0.2640606, 0.5803922)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
-[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i0tg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "poison_effect", "death_screen", "grid_container")]
+>>>>>>> main
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -17,14 +44,18 @@ offset_right = 576.0
 offset_bottom = 324.0
 grow_vertical = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 ratio = 0.8889
 stretch_mode = 1
 script = ExtResource("1_0sr1o")
+input_blocker = NodePath("InputBlocker")
 left_visual = NodePath("Game/SubViewport/Control/LeftVisual")
 right_visual = NodePath("Game/SubViewport/Control/RightVisual")
 subviewport = NodePath("Game/SubViewport")
 game_subviewport_container = NodePath("Game")
-spotlight = NodePath("Game/SubViewport/Control/SpotlightPrototype")
+spotlight = NodePath("Game/SubViewport/Control/Spotlight")
+poison_effect = NodePath("Game/SubViewport/Control/PoisonEffect")
+death_screen = NodePath("Game/SubViewport/Control/DeathScreen")
 grid_container = NodePath("Game/SubViewport/Control/MarginContainer/GridContainer")
 
 [node name="Game" type="SubViewportContainer" parent="." unique_id=645014815]
@@ -58,7 +89,7 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_kelw5")
+texture = ExtResource("2_kelw5")
 
 [node name="RightVisual" type="Control" parent="Game/SubViewport/Control" unique_id=946575414]
 visible = false
@@ -73,7 +104,7 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 1080.0
-texture = ExtResource("5_lfrn8")
+texture = ExtResource("3_lfrn8")
 
 [node name="MarginContainer" type="MarginContainer" parent="Game/SubViewport/Control" unique_id=1095964355]
 layout_mode = 1
@@ -91,23 +122,54 @@ layout_mode = 2
 theme_override_constants/v_separation = -20
 columns = 5
 
-[node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport/Control" unique_id=1692020946]
+[node name="Spotlight" type="TextureRect" parent="Game/SubViewport/Control" unique_id=1738429383]
 modulate = Color(1, 1, 1, 0)
-<<<<<<< HEAD
-z_index = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(-5, -0.95)
-offset_transform_pivot_ratio = Vector2(0, 0.5)
+offset_transform_position_ratio = Vector2(-0.5, -0.975)
+offset_transform_scale = Vector2(0.6, 0.7)
+offset_transform_pivot_ratio = Vector2(0.5, 1)
 texture = ExtResource("4_lfrn8")
+
+<<<<<<< HEAD
+[node name="InputBlocker" type="Control" parent="." unique_id=1777281362]
+layout_mode = 2
 =======
-rotation = 4310.277
-points = PackedVector2Array(0, 0, 0, -1300)
-width = 100.0
-width_curve = SubResource("Curve_0sr1o")
-default_color = Color(1, 0.82733333, 0.26, 0.5372549)
-begin_cap_mode = 2
-end_cap_mode = 2
+[node name="PoisonEffect" type="TextureRect" parent="Game/SubViewport/Control" unique_id=689408853]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_lfrn8")
+expand_mode = 1
+script = ExtResource("6_5i0tg")
+
+[node name="Panel" type="Panel" parent="Game/SubViewport/Control/PoisonEffect" unique_id=1481547526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lfrn8")
+
+[node name="DeathScreen" type="Panel" parent="Game/SubViewport/Control" unique_id=1950804184]
+visible = false
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i0tg")
 >>>>>>> main

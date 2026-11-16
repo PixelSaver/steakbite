@@ -18,6 +18,8 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
 @export var spotlight: TextureRect
+@export var poison_effect: Control
+@export var death_screen: Control
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -317,5 +319,27 @@ func eat_steak(pos: Vector2i) -> TileType:
 			main.p1_balance += 1
 		else:
 			main.p2_balance += 1
+		if out == TileType.STEAK_BAD:
+			print("bad steak eaten")
+			lose_life()
 	return out
+	
+func lose_life() -> void:
+	if is_right:
+		main.p2_lives -= 1
+		if main.p2_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+	else:
+		main.p1_lives -= 1
+		if main.p1_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+
 #endregion
