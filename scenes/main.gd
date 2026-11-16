@@ -9,6 +9,7 @@ const TS = TurnManager.TurnState
 @export var game_2: GameContainer
 @export var end_turn_1: DefaultButton
 @export var end_turn_2: DefaultButton
+@export var no_steak_panel: Panel
 @export var no_steak_balloon: CloseUpBalloon
 @export var no_steak_tweenable: Tweenable
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
@@ -23,6 +24,8 @@ var t: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	no_steak_tweenable.tween_value = 1.0
+	no_steak_panel.modulate.a = 0.0
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	#DEBUG
 	SignalBus.game_start.connect(start_game)
@@ -48,12 +51,21 @@ func _on_end_turn(id:int) -> void:
 
 func _no_steak_cutscene() -> void:
 	no_steak_tweenable.tween_value = 1.0
+	no_steak_panel.modulate.a = 0.0
 	no_steak_balloon.start(NO_STEAK)
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	t.tween_property(no_steak_tweenable, "tween_value", 0.0, 0.7)
+	t.tween_property(no_steak_panel, "modulate:a", 1.0, 0.7)
+	
 	await DialogueManager.dialogue_ended
+	
+	if t and t.is_running(): t.kill()
+	t = create_tween().set_ease(Tween.EASE_OUT)
+	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
+	t.tween_property(no_steak_tweenable, "tween_value", 1.0, 0.7)
+	t.tween_property(no_steak_panel, "modulate:a", 0.0, 0.7)
 	
 
 func start_game() -> void:

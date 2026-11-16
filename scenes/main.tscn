@@ -193,7 +193,7 @@ noise = SubResource("FastNoiseLite_pm3ni")
 _data = [Vector2(0, 0.40062112), 0.0, 0.0, 0, 0, Vector2(0.50101006, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.40062112), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_balloon", "no_steak_tweenable")]
+[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,6 +206,7 @@ game_1 = NodePath("HBoxContainer/Game")
 game_2 = NodePath("HBoxContainer/Game2")
 end_turn_1 = NodePath("CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1")
 end_turn_2 = NodePath("CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2")
+no_steak_panel = NodePath("CanvasLayer/NoSteak/Panel")
 no_steak_balloon = NodePath("CanvasLayer/NoSteak")
 no_steak_tweenable = NodePath("CanvasLayer/NoSteak/TextureRect/Tweenable")
 
@@ -381,13 +382,20 @@ game2 = NodePath("../../HBoxContainer/Game2")
 
 [node name="StartMenu" parent="CanvasLayer" unique_id=1921412290 instance=ExtResource("9_85g3d")]
 
-[node name="NoSteak" type="CanvasLayer" parent="CanvasLayer" unique_id=919116429]
+[node name="NoSteak" type="Control" parent="CanvasLayer" unique_id=191469007]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("11_gqmmt")
 metadata/_custom_type_script = "uid://cntquvi8o81gl"
 
 [node name="Balloon" type="Control" parent="CanvasLayer/NoSteak" unique_id=330845003]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -543,6 +551,7 @@ metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
 unique_name_in_owner = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NoSteak" unique_id=1605271801]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 offset_transform_enabled = true
@@ -560,6 +569,7 @@ metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
 
 [node name="Panel" type="Panel" parent="CanvasLayer/NoSteak" unique_id=1295948548]
 z_index = -1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
