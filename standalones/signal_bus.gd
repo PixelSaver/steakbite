@@ -16,7 +16,9 @@ signal steak_selected(steak: SteakTile, pos: Vector2i, id: int)
 ## Signal for when a steak is eaten
 signal steak_eaten(steak: SteakTile)
 @warning_ignore("unused_signal")
-signal close_up_menu_closed()
+signal close_up_menu_closed(confirm: bool)
+@warning_ignore("unused_signal")
+signal intro_cutscene_finished()
 
 
 func _ready() -> void:

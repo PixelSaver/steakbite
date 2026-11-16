@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dnjyx1trtl6w3"]
 
 [ext_resource type="Script" uid="uid://dpom2om6wlfbw" path="res://scenes/game/game.gd" id="1_0sr1o"]
-[ext_resource type="Texture2D" uid="uid://ih828tyvbg71" path="res://assets/art/BG_left.PNG" id="4_kelw5"]
-[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="5_lfrn8"]
+[ext_resource type="Texture2D" uid="uid://dl5rgjay4qhb8" path="res://assets/art/background/BG_left.PNG" id="2_kelw5"]
+[ext_resource type="Texture2D" uid="uid://d28d54uw5wsi6" path="res://assets/art/background/BG_right.PNG" id="3_lfrn8"]
+[ext_resource type="Texture2D" uid="uid://bn0axtct8dklb" path="res://assets/art/spotlight.png" id="4_lfrn8"]
 
 [sub_resource type="Curve" id="Curve_0sr1o"]
 _data = [Vector2(0, 1), 0.0, -0.90625, 0, 1, Vector2(1, 0.09375), -0.90625, 0.0, 1, 0]
@@ -24,7 +25,7 @@ left_visual = NodePath("Game/SubViewport/Control/LeftVisual")
 right_visual = NodePath("Game/SubViewport/Control/RightVisual")
 subviewport = NodePath("Game/SubViewport")
 game_subviewport_container = NodePath("Game")
-spotlight = NodePath("Game/SubViewport/Control/SpotlightPrototype")
+spotlight = NodePath("Game/SubViewport/Control/Spotlight")
 grid_container = NodePath("Game/SubViewport/Control/MarginContainer/GridContainer")
 
 [node name="Game" type="SubViewportContainer" parent="." unique_id=645014815]
@@ -58,7 +59,7 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_kelw5")
+texture = ExtResource("2_kelw5")
 
 [node name="RightVisual" type="Control" parent="Game/SubViewport/Control" unique_id=946575414]
 visible = false
@@ -73,7 +74,7 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 1080.0
-texture = ExtResource("5_lfrn8")
+texture = ExtResource("3_lfrn8")
 
 [node name="MarginContainer" type="MarginContainer" parent="Game/SubViewport/Control" unique_id=1095964355]
 layout_mode = 1
@@ -91,12 +92,13 @@ layout_mode = 2
 theme_override_constants/v_separation = -20
 columns = 5
 
-[node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport/Control" unique_id=1692020946]
+[node name="Spotlight" type="TextureRect" parent="Game/SubViewport/Control" unique_id=2029661926]
 modulate = Color(1, 1, 1, 0)
-rotation = 4310.277
-points = PackedVector2Array(0, 0, 0, -1300)
-width = 100.0
-width_curve = SubResource("Curve_0sr1o")
-default_color = Color(1, 0.82733333, 0.26, 0.5372549)
-begin_cap_mode = 2
-end_cap_mode = 2
+z_index = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-5, -0.95)
+offset_transform_pivot_ratio = Vector2(0, 0.5)
+texture = ExtResource("4_lfrn8")

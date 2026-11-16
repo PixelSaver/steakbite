@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3jjh8ogiqas3"
-path="res://.godot/imported/table_left.PNG-32279de1a9bca4e49dedff0a3748d981.ctex"
+uid="uid://clauagnn2rx40"
+path="res://.godot/imported/Plate small.png-9bcf469aa7a0d1558479eaa5e3cee2e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/table_left.PNG"
-dest_files=["res://.godot/imported/table_left.PNG-32279de1a9bca4e49dedff0a3748d981.ctex"]
+source_file="res://assets/art/steak/Plate small.png"
+dest_files=["res://.godot/imported/Plate small.png-9bcf469aa7a0d1558479eaa5e3cee2e9.ctex"]
 
 [params]
 

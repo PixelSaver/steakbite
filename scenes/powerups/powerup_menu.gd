@@ -27,6 +27,7 @@ func _ready():
 	mat = PERSPECTIVE_SHADER_MATERIAL.duplicate()
 	subviewport_cont.material = mat
 	flip_percentage = 0.
+	await SignalBus.game_start
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 
 func _on_game_state_changed(new_state: TS) -> void:

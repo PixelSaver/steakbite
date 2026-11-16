@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="2_p8l1l"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.tscn" id="2_ul5i8"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="3_p8l1l"]
-[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/butler_tray.png" id="5_p8l1l"]
+[ext_resource type="Texture2D" uid="uid://xd2orhitbgxs" path="res://assets/art/butler/butler_tray.png" id="5_p8l1l"]
 
 [sub_resource type="GDScript" id="GDScript_ul5i8"]
 script/source = "extends CanvasLayer
@@ -451,12 +451,14 @@ text = "Response example"
 unique_name_in_owner = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=307859664]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("5_p8l1l")
 
 [node name="Panel" type="Panel" parent="." unique_id=654263233]
+visible = false
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0

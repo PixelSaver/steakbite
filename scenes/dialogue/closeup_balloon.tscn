@@ -364,11 +364,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="ExampleBalloon" type="CanvasLayer" unique_id=38036521]
+[node name="CloseupBalloon" type="CanvasLayer" unique_id=38036521]
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("1_5r34j")
-auto_start = true
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
 unique_name_in_owner = true
@@ -386,7 +385,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 388.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 600
+theme_override_constants/margin_left = 800
 theme_override_constants/margin_top = 69
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 30

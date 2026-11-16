@@ -41,6 +41,7 @@ func _on_end_turn(id:int) -> void:
 		)
 
 func start_game() -> void:
+	SignalBus.game_start.emit()
 	TurnManager.state = TurnManager.TurnState.MENU
 
 func _on_game_state_changed(new_state: TS) -> void:
