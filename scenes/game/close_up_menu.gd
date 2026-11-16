@@ -36,9 +36,11 @@ func _on_button_pressed(confirm:bool) -> void:
 		self.end_anim()
 
 func start_anim() -> void:
+	#SOUND Close up is initiated (I will add a zoom in on the big steak)
 	show()
 	yes.grab_focus()
 
 func end_anim() -> void:
+	#SOUND Close up finishes (will add zoom out on steak)
 	SignalBus.close_up_menu_closed.emit()
 	hide()

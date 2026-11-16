@@ -7,39 +7,68 @@ extends Node
 # BTW, if you right click on an asset, you can then click copy path :D
 enum Audio {
 	TEST,
+	MAIN_THEME,
 }
 const SOUNDS: Dictionary[Audio, String] = {
-	Audio.TEST: "res://assets/sounds/test.wav"
+	Audio.TEST: "res://assets/sounds/test.wav",
+	Audio.MAIN_THEME: "res://assets/music/main_theme.ogg",
 }
+# Music tracks use the dedicated music player.
+const MUSIC_TRACKS: Array[Audio] = [
+	Audio.MAIN_THEME,
+]
 
-#region AudioManager code
+#region AudioManager
 var sounds: Dictionary[Audio, AudioStream] = {}
 var players: Array[AudioStreamPlayer] = []
+var music_player: AudioStreamPlayer
 
-func play(sound: Audio) -> void:
+func _ready() -> void:
+	music_player = AudioStreamPlayer.new()
+	music_player.bus = "Music"
+	add_child(music_player)
+
+func play(
+	sound: Audio,
+	volume: float = 0.0,
+	bus: String = "SFX",
+	loop: bool = false,
+) -> void:
 	if not sounds.has(sound):
 		var path := SOUNDS[sound]
-		var stream := load(path) as AudioStream
-		
-		if stream == null:
+		var _stream := load(path) as AudioStream
+		if _stream == null:
 			push_error("Failed to load audio: " + path)
 			return
-			
-		sounds[sound] = stream
-		
-	var player := _get_available_player()
-	player.stream = sounds[sound]
+		sounds[sound] = _stream
+	
+	var stream := sounds[sound]
+	if stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD if loop else AudioStreamWAV.LOOP_DISABLED
+	elif stream is AudioStreamOggVorbis:
+		stream.loop = loop
+	elif stream is AudioStreamMP3:
+		stream.loop = true
+
+	var player: AudioStreamPlayer
+	if sound in MUSIC_TRACKS:
+		player = music_player
+	else:
+		player = _get_available_player()
+	player.stream = stream
+	player.bus = bus
+	player.volume_db = volume
 	player.play()
 
+func stop_music() -> void:
+	music_player.stop()
 
 func _get_available_player() -> AudioStreamPlayer:
 	for player in players:
 		if not player.playing:
 			return player
-			
 	var player := AudioStreamPlayer.new()
 	add_child(player)
 	players.append(player)
-	
 	return player
 #endregion
