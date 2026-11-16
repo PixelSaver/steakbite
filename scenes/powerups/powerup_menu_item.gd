@@ -28,7 +28,7 @@ func set_visuals(_resource: Powerup) -> void:
 	self.resource = _resource
 	power_icon.texture = _resource.texture
 	power_name.text = "[font_size=35]" + _resource.name
-	cost_label.text = "[font_size=35]" + str(_resource.cost)
+	cost_label.text = "[font_size=35]Cost: " + str(_resource.cost)
 	description_label.text = "[font_size=20]" + _resource.description
 
 func set_empty() -> void:
