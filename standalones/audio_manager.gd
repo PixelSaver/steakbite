@@ -30,11 +30,11 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.MAIN_THEME: "res://assets/music/main_theme.ogg",
 	Audio.TITLE: "res://assets/sounds/Somber Orchestra.mp3",
 	Audio.AltMain_THEME: "res://assets/sounds/Horror_Ambience_Steakbite.mp3",
-	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate",
-	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff",
-	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak",
-	Audio.getPoisoned: "res://assets/sounds/GetPoisoned",
-	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu",
+	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate.mp3",
+	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff.wav",
+	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak.wav",
+	Audio.getPoisoned: "res://assets/sounds/GetPoisoned.wav",
+	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu.mp3",
 	
 
 	
