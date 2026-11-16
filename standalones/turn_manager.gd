@@ -31,7 +31,6 @@ func _on_turn_finished(is_player_one:bool) -> void:
 
 ## Returns 1 if 1, 2 if 2, and 0 if none.
 func player_turn() -> int:
-	print("Turnn state is %s" % TurnState.keys()[state])
 	if state == TurnState.POWERUP_ONE or state == TurnState.STEAK_ONE:
 		return 1
 	elif state == TurnState.POWERUP_TWO or state == TurnState.STEAK_TWO:

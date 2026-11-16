@@ -18,7 +18,7 @@ var p2_balance: int = 0
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	#DEBUG
-	start_game()
+	SignalBus.game_start.connect(start_game)
 	end_turn_1.pressed.connect(_on_end_turn.bind(1))
 	end_turn_2.pressed.connect(_on_end_turn.bind(2))
 
@@ -27,25 +27,27 @@ func _on_end_turn(id:int) -> void:
 		if game_1.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_TWO
 		else:
-			DialogueManager.show_dialogue_balloon(NO_STEAK)
+			_no_steak_cutscene()
 	elif id == 2 and TurnManager.state == TS.STEAK_TWO:
 		if game_2.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_ONE
 		else:
-			DialogueManager.show_dialogue_balloon(NO_STEAK)
-			pass
+			_no_steak_cutscene()
 	else:
 		push_error(
 			"Impossible end turn request: TurnManager state=%s, id of end_turn=%s" % 
 			[TS.keys()[TurnManager.state], id]
 		)
 
+func _no_steak_cutscene() -> void:
+	DialogueManager.show_dialogue_balloon(NO_STEAK)
+	#TODO Add butler
+
 func start_game() -> void:
-	SignalBus.game_start.emit()
-	TurnManager.state = TurnManager.TurnState.MENU
+	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 
 func _on_game_state_changed(new_state: TS) -> void:
-	#print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
+	print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	match new_state:
 		TS.MENU:
 			pass
