@@ -6,8 +6,8 @@
 % Butler: Oh? You actually want this?
 % Butler: May I take that as your final decision?
 - Yes
-	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit(true)]
-	% Butler: Very well. I shall pretend not to be concerned. [$> SignalBus.close_up_menu_closed.emit(true)]
+	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit("yes")]
+	% Butler: Very well. I shall pretend not to be concerned. [$> SignalBus.close_up_menu_closed.emit("yes")]
 - No
-	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit(false)]
-	% Butler: Tis a shame. [$> SignalBus.close_up_menu_closed.emit(false)]
+	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit("no")]
+	% Butler: Tis a shame. [$> SignalBus.close_up_menu_closed.emit("no")]

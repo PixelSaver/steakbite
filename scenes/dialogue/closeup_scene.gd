@@ -22,8 +22,6 @@ func _get_balloon_control() -> Control:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	steaks[0].show()
-	steaks[1].hide()
 	butler.offset_transform_enabled = true
 	butler.offset_transform_position_ratio.x = -.75
 	panel.modulate.a = 0.0
@@ -31,8 +29,8 @@ func _ready() -> void:
 	#start_anim()
 	SignalBus.steak_selected.connect(_on_steak_selected)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
-	SignalBus.close_up_menu_closed.connect(func(confirmed: bool):
-		if confirmed: confirm()
+	SignalBus.close_up_menu_closed.connect(func(confirmed: String):
+		if confirmed == "yes": confirm()
 		else: deny()
 	)
 	if not main: start_anim()
@@ -66,13 +64,16 @@ func confirm() -> void:
 	end_anim()
 	
 func deny():
-	balloon.hide()
+	await get_tree().create_timer(0.5).timeout
+	end_anim()
 	if selected_steak_pos < Vector2i(0,0):
 		push_warning("Vector position is invalid. Not initialized in CloseUpMenu?")
 		return
 
 func start_anim() -> void:
 	show()
+	steaks[0].show()
+	steaks[1].hide()
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
@@ -87,6 +88,7 @@ func start_anim() -> void:
 	
 
 func end_anim() -> void:
+	balloon.hide()
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)

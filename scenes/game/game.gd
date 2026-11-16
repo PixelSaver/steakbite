@@ -52,7 +52,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
-	SignalBus.close_up_menu_closed.connect(func():
+	SignalBus.close_up_menu_closed.connect(func(_c:String):
 		if TurnManager.player_turn() == (int(is_right) + 1):
 			await get_tree().process_frame
 			grab_first_focus()
