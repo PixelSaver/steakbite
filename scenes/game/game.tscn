@@ -93,7 +93,7 @@ columns = 5
 
 [node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport/Control" unique_id=1692020946]
 modulate = Color(1, 1, 1, 0)
-rotation = 45593.063
+rotation = 56235.07
 points = PackedVector2Array(0, 0, 0, -1300)
 width = 100.0
 width_curve = SubResource("Curve_0sr1o")

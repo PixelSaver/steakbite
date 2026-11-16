@@ -109,9 +109,13 @@ func grab_first_focus(skip_empty_tiles: bool=true) -> void:
 				continue
 		tile.grab_focus()
 		return
+	_get_end_turn().grab_focus()
+
+func _get_end_turn() -> Button:
+	return main.end_turn_2 if is_right else main.end_turn_1
 func _on_focus_changed(node: Control) -> void:
 	if Engine.is_editor_hint(): return
-	var end_turn = main.end_turn_2 if is_right else main.end_turn_1
+	var end_turn = _get_end_turn()
 	var idx = visual_tiles.find(node)
 	if idx == -1: return
 	var length = visual_tiles.size()
@@ -222,7 +226,7 @@ func _get_grid_position(idx: int) -> Vector2i:
 		push_error("Idx for grid position in GameContainer was not found, returning 0")
 		return Vector2i.ZERO
 	var x : int = idx % map_size.x
-	var y : int = map_size.y - 1 - roundi(float(idx) / float(map_size.x))
+	var y : int = map_size.y - 1 - floori(float(idx) / float(map_size.x))
 	return Vector2i(x, y)
 func _clamp_pos(v:Vector2i) -> Vector2i:
 	v.x = clampi(v.x, 0, map_size.x-1)
