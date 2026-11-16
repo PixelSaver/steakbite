@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://duf028te6deh6"]
 
 [ext_resource type="Script" uid="uid://d5om0tmqjsly" path="res://scenes/powerups/powerup_menu.gd" id="1_2s6hi"]
+[ext_resource type="Material" uid="uid://d1w7deekyjocy" path="res://assets/perspective_shader_material.tres" id="1_p1oto"]
 [ext_resource type="PackedScene" uid="uid://bx8cu1fkd3ud6" path="res://scenes/powerups/powerup_menu_item.tscn" id="1_ytud3"]
 [ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_2s6hi"]
 [ext_resource type="Texture2D" uid="uid://df02ldtj04gsx" path="res://assets/art/Menu.png" id="2_l4062"]
@@ -44,7 +45,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("player_name_label", "player_balance", "first_focus", "left_side", "right_side", "continue_button")]
+[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("player_name_label", "player_balance", "first_focus", "left_side", "right_side", "subviewport_cont", "continue_button")]
+material = ExtResource("1_p1oto")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,17 +55,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2s6hi")
-player_name_label = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/Player Name")
-player_balance = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Balance")
-first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
-left_side = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer")
-right_side = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
-continue_button = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button")
+player_name_label = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/Player Name")
+player_balance = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Balance")
 powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a")])
+first_focus = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/PowerupMenuItem")
+left_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide")
+right_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide")
+subviewport_cont = NodePath("SubViewportContainer")
+continue_button = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button")
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1834804925]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1540394527]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=861227478]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Background" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1834804925]
+material = ExtResource("1_p1oto")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,33 +89,36 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.53, 0.53)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
 texture = ExtResource("2_l4062")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=266400849]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport" unique_id=266400849]
+material = ExtResource("1_p1oto")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_pivot_ratio = Vector2(0.5, 1)
 theme_override_constants/margin_left = 290
 theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 290
 theme_override_constants/margin_bottom = 80
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=222520164]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer" unique_id=222520164]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=2003184387]
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer" unique_id=2003184387]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7pncx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=1273595009]
+[node name="LeftSide" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel" unique_id=1273595009]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Player Name" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=2130179915]
+[node name="Player Name" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=2002184844]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_1ypni")
 bbcode_enabled = true
@@ -114,33 +135,32 @@ text = "[font_size=50]Player 1: Select a Powerup"
 fit_content = true
 scroll_active = false
 
-[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=726296963 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=861183747 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=861183747 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=72329359 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=72329359 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=1869064438 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1869064438 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem5" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=881111203 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem5" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=881111203 instance=ExtResource("1_ytud3")]
-layout_mode = 2
-is_empty = false
-
-[node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=928331506]
+[node name="Panel2" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer" unique_id=928331506]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l4062")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel2" unique_id=326314080]
+[node name="RightSide" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2" unique_id=326314080]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,7 +169,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Balance" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1150570165]
+[node name="Balance" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=857178799]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_1ypni")
 bbcode_enabled = true
@@ -158,28 +178,27 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 2
 
-[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1577279010 instance=ExtResource("1_ytud3")]
+layout_mode = 2
+
+[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1624719131 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem2" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1624719131 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=624455387 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem3" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=624455387 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=290449159 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem4" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=290449159 instance=ExtResource("1_ytud3")]
-layout_mode = 2
-is_empty = false
-
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1911362908]
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1911362908]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_3fqmn")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel" unique_id=1469310678]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel" unique_id=1469310678]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,12 +208,12 @@ grow_vertical = 2
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer" unique_id=678374294]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer" unique_id=678374294]
 layout_mode = 2
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="Next Button" type="Button" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
+[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
 layout_mode = 2
 size_flags_vertical = 3
 icon = ExtResource("2_2s6hi")
@@ -203,7 +222,7 @@ expand_icon = true
 script = ExtResource("4_3fqmn")
 outline = NodePath("../Highlight")
 
-[node name="Highlight" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
+[node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")

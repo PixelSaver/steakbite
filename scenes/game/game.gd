@@ -1,6 +1,8 @@
+@tool
 extends AspectRatioContainer
 class_name GameContainer
 
+const TS = TurnManager.TurnState
 enum TileType {
 	EMPTY,
 	STEAK_GOOD,
@@ -8,17 +10,26 @@ enum TileType {
 }
 const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
 const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
+@export_subgroup("Nodes")
+@onready var control: Control = $Game/SubViewport/Control
+@export var left_visual: Control
+@export var right_visual: Control
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
 @export var spotlight: Node2D
 ## x, y size
 @export var grid_container : GridContainer
+@export_category("Tweaks")
 @export var map_size := Vector2i(5, 4)
 @export var margin_bottom : int = 100
 @export var margin_sides : int = 100
 @export var num_poisoned := 8
 @export var spotlight_offset := Vector2i(0,0)
-@export var is_right := false
+@export var is_right := false :
+	set(val):
+		is_right = val
+		_update_leftright()
+@export_tool_button("Place") var place_steaks = _on_game_start
 var spotlight_target_pos := Vector2.ZERO
 var spotlight_tween: Tween
 var map : Array[Array] 
@@ -28,18 +39,55 @@ var visual_tiles: Array[Control] = []
 
 func _ready() -> void:
 	spotlight.modulate.a = 0.0
+	_update_leftright()
+	_on_game_start()
+	# ignoring rest if it's the editor, globals don't exist there
+	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
+	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
 		if node != game_subviewport_container and node != self: 
 			_hide_spotlight()
 			return
-		_grab_first_focus()
+		grab_first_focus()
 	)
 	_on_game_start()
 
+func enable_focus(enable:bool) -> void:
+	subviewport.set_process_input(enable)
+	self.focus_mode = Control.FOCUS_ALL if enable else Control.FOCUS_NONE
+	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
+
+func _on_game_state_changed(new_state: TS) -> void:
+	match new_state:
+		TS.MENU:
+			pass
+		TS.POWERUP_ONE or TS.STEAK_ONE:
+			enable_focus(not is_right)
+		TS.POWERUP_TWO or TS.STEAK_TWO:
+			enable_focus(is_right)
+		TS.LOSS:
+			pass
+
+func _on_steak_selected(steak: SteakTile) -> void:
+	var idx = visual_tiles.find(steak)
+	if idx == -1: 
+		push_warning("Steak selected, and yet wasn't found in GameContainer's visual_tiles array")
+		return
+	var pos = _get_grid_position(idx)
+	SignalBus.steak_selected.emit(steak, pos, TurnManager.player_turn())
+
+func _update_leftright() -> void:
+	if is_right:
+		left_visual.hide()
+		right_visual.show()
+	else:
+		left_visual.show()
+		right_visual.hide()
+
 #region Focus stuff
-func _grab_first_focus(skip_empty_tiles: bool=true) -> void:
+func grab_first_focus(skip_empty_tiles: bool=true) -> void:
 	for tile in visual_tiles:
 		if skip_empty_tiles:
 			var idx = visual_tiles.find(tile)
@@ -49,6 +97,7 @@ func _grab_first_focus(skip_empty_tiles: bool=true) -> void:
 		tile.grab_focus()
 		return
 func _on_focus_changed(node: Control) -> void:
+	if Engine.is_editor_hint(): return
 	var idx = visual_tiles.find(node)
 	if idx == -1: return
 	var length = visual_tiles.size()
@@ -133,15 +182,28 @@ func update_visuals() -> void:
 			var empty = Button.new()
 			empty.size_flags_horizontal = Control.SIZE_FILL
 			empty.size_flags_vertical = Control.SIZE_FILL
-			var scene = STEAK_TILE.instantiate() if tile != TileType.EMPTY else EMPTY_TILE.instantiate()
+			var scene: Control
+			if tile != TileType.EMPTY:
+				scene = STEAK_TILE.instantiate() as SteakTile
+				scene.steak_pressed.connect(_on_steak_selected)
+				scene.tree_exiting.connect(func():
+					scene.steak_pressed.disconnect(_on_steak_selected)
+				)
+				scene.set_right(is_right)
+			else: 
+				scene = EMPTY_TILE.instantiate()
 			grid_container.add_child(scene)
 			visual_tiles.append(scene)
+			queue_redraw()
 	#var len = tiles.size()
 	#for i in range(len):
 		#var y = roundi(float(i) / map_size.y)
 		#var x = i % map_size.y
 		#var 
 func _get_grid_position(idx: int) -> Vector2i:
+	if idx == -1:
+		push_error("Idx for grid position in GameContainer was not found, returning 0")
+		return Vector2i.ZERO
 	var x : int = idx % map_size.x
 	var y : int = map_size.y - 1 - roundi(float(idx) / float(map_size.x))
 	return Vector2i(x, y)
@@ -198,8 +260,3 @@ func eat_steak(pos: Vector2i) -> TileType:
 	set_tile(pos, TileType.EMPTY)
 	return out
 #endregion
-
-func _input(event: InputEvent) -> void:
-	if OS.is_debug_build() and event.is_action_pressed("1"):
-		#var p = get_random_position()
-		eat_steak(Vector2i(0,4))

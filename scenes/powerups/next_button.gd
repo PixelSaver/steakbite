@@ -7,6 +7,12 @@ var t: Tween
 func _ready() -> void:
 	self.focus_entered.connect(_set_focus.bind(true))
 	self.focus_exited.connect(_set_focus.bind(false))
+	self.pressed.connect(func():
+		if TurnManager.state == TurnManager.TurnState.POWERUP_ONE:
+			TurnManager.state = TurnManager.TurnState.STEAK_ONE
+		elif TurnManager.state == TurnManager.TurnState.POWERUP_TWO:
+			TurnManager.state = TurnManager.TurnState.STEAK_TWO
+	)
 	self.pivot_offset_ratio = Vector2(0.5, 0.5)
 	self.pressed.connect(_use)
 
