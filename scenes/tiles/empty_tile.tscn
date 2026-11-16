@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://b5ovmwgeirh2r"]
 
-[node name="EmptyTile" type="Button" unique_id=665903558]
+[ext_resource type="Script" uid="uid://cg1ya07yq4fyx" path="res://scenes/tiles/empty_tile.gd" id="1_da7po"]
+[ext_resource type="Texture2D" uid="uid://3jjh8ogiqas3" path="res://assets/art/table_left.PNG" id="2_bf7kr"]
+[ext_resource type="Texture2D" uid="uid://4xe1unwit1q0" path="res://assets/art/table_right.PNG" id="3_e4k5f"]
+
+[node name="EmptyTile" type="Button" unique_id=665903558 node_paths=PackedStringArray("right", "left")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -8,3 +12,28 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_da7po")
+right = NodePath("Center/Control/Right")
+left = NodePath("Center/Control/Left")
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1454307048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Center" unique_id=1855998371]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Left" type="Sprite2D" parent="Center/Control" unique_id=898795130]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_bf7kr")
+offset = Vector2(-307, -115)
+
+[node name="Right" type="Sprite2D" parent="Center/Control" unique_id=555261773]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_e4k5f")
+offset = Vector2(418, -116)

@@ -36,8 +36,15 @@ var map : Array[Array]
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
 var visual_tiles: Array[Control] = []
+var steaks_eaten_this_round := 0
+var main: Main
 
 func _ready() -> void:
+	var scene_root = get_tree().current_scene
+	main = scene_root as Main
+	if not main and scene_root != self:
+		push_warning("Main isn't scene root for Game")
+	#assert((main and get_tree().current_scene != self), "Main isn't scene for Game")
 	spotlight.modulate.a = 0.0
 	_update_leftright()
 	_on_game_start()
@@ -45,6 +52,11 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
+	SignalBus.close_up_menu_closed.connect(func():
+		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
+			grab_first_focus()
+	)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
 		if node != game_subviewport_container and node != self: 
@@ -60,6 +72,7 @@ func enable_focus(enable:bool) -> void:
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	steaks_eaten_this_round = 0
 	match new_state:
 		TS.MENU:
 			pass
@@ -98,6 +111,7 @@ func grab_first_focus(skip_empty_tiles: bool=true) -> void:
 		return
 func _on_focus_changed(node: Control) -> void:
 	if Engine.is_editor_hint(): return
+	var end_turn = main.end_turn_2 if is_right else main.end_turn_1
 	var idx = visual_tiles.find(node)
 	if idx == -1: return
 	var length = visual_tiles.size()
@@ -108,7 +122,9 @@ func _on_focus_changed(node: Control) -> void:
 		var target = visual_tiles[bottom_neighbor_idx]
 		node.focus_neighbor_bottom = node.get_path_to(target)
 	else:
-		node.focus_neighbor_bottom = "."
+		node.focus_neighbor_bottom = node.get_path_to(end_turn)
+		end_turn.focus_neighbor_top = end_turn.get_path_to(node)
+		
 	var top_neighbor_idx = idx - map_size.x 
 	if top_neighbor_idx >= 0:
 		var target = visual_tiles[top_neighbor_idx]
@@ -182,16 +198,17 @@ func update_visuals() -> void:
 			var empty = Button.new()
 			empty.size_flags_horizontal = Control.SIZE_FILL
 			empty.size_flags_vertical = Control.SIZE_FILL
-			var scene: Control
+			var scene: Tile
 			if tile != TileType.EMPTY:
 				scene = STEAK_TILE.instantiate() as SteakTile
-				scene.steak_pressed.connect(_on_steak_selected)
-				scene.tree_exiting.connect(func():
-					scene.steak_pressed.disconnect(_on_steak_selected)
-				)
-				scene.set_right(is_right)
+				if not Engine.is_editor_hint(): 
+					scene.steak_pressed.connect(_on_steak_selected)
+					scene.tree_exiting.connect(func():
+						scene.steak_pressed.disconnect(_on_steak_selected)
+					)
 			else: 
 				scene = EMPTY_TILE.instantiate()
+			scene.set_right(is_right)
 			grid_container.add_child(scene)
 			visual_tiles.append(scene)
 			queue_redraw()
@@ -258,5 +275,6 @@ func eat_steak(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
 	var out = get_tile_type(pos)
 	set_tile(pos, TileType.EMPTY)
+	steaks_eaten_this_round += 1
 	return out
 #endregion
