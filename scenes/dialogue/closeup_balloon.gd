@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 class_name CloseUpBalloon
 ## A basic dialogue balloon for use with Dialogue Manager.
 
@@ -13,7 +13,7 @@ class_name CloseUpBalloon
 @export var auto_start: bool = false
 
 ## If all other input is blocked as long as dialogue is shown.
-@export var will_block_other_input: bool = true
+@export var will_block_other_input: bool = false
 
 ## The action to use for advancing the dialogue
 @export var next_action: StringName = &"ui_accept"
