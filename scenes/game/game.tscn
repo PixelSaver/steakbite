@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dnjyx1trtl6w3"]
 
 [ext_resource type="Script" uid="uid://dpom2om6wlfbw" path="res://scenes/game/game.gd" id="1_0sr1o"]
-[ext_resource type="Texture2D" uid="uid://ih828tyvbg71" path="res://assets/art/BG_left.PNG" id="4_kelw5"]
-[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="5_lfrn8"]
+[ext_resource type="Texture2D" path="res://assets/art/BG_left.PNG" id="4_kelw5"]
+[ext_resource type="Texture2D" path="res://assets/art/BG_right.PNG" id="5_lfrn8"]
 
 [sub_resource type="Curve" id="Curve_0sr1o"]
 _data = [Vector2(0, 1), 0.0, -0.90625, 0, 1, Vector2(1, 0.09375), -0.90625, 0.0, 1, 0]
@@ -93,7 +93,7 @@ columns = 5
 
 [node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport/Control" unique_id=1692020946]
 modulate = Color(1, 1, 1, 0)
-rotation = 4310.277
+rotation = 0.0119606815
 points = PackedVector2Array(0, 0, 0, -1300)
 width = 100.0
 width_curve = SubResource("Curve_0sr1o")
