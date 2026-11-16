@@ -168,6 +168,7 @@ func _process(_delta: float) -> void:
 	spotlight.position = spotlight_target_pos
 	spotlight.look_at(spotlight_corner)
 	spotlight.rotate(PI/2)
+	spotlight.rotation = fmod(spotlight.rotation, 2*PI)
 #endregion
 
 #region Internal functions
