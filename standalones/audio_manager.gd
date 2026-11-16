@@ -11,6 +11,19 @@ enum Audio {
 	TITLE,
 	AltMain_THEME,
 	EatConfirmPlate,
+	SpotlightOff,
+	buttonHover,
+	getPoisoned,
+	steakZoomIn,
+	steakPass,
+	emptyTable,
+	steakSelected,
+	powerMenuFlipDown,
+	powerUpHover,
+	powerUpBought,
+	powerMenuFlipUp,
+	InvalidOption,
+	EndTurn,
 }
 const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
@@ -18,13 +31,19 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TITLE: "res://assets/sounds/Somber Orchestra.mp3",
 	Audio.AltMain_THEME: "res://assets/sounds/Horror_Ambience_Steakbite.mp3",
 	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate",
+	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff",
+	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak",
+	Audio.getPoisoned: "res://assets/sounds/GetPoisoned",
+	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu",
+	
+
 	
 }
 # Music tracks use the dedicated music player.
 const MUSIC_TRACKS: Array[Audio] = [
 	Audio.MAIN_THEME,
 	Audio.TITLE,
-	Audio.AltMain_THEME
+	Audio.AltMain_THEME,
 ]
 
 #region AudioManager

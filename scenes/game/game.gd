@@ -150,6 +150,7 @@ func _on_focus_changed(node: Control) -> void:
 
 func _hide_spotlight() -> void:
 	#SOUND Spotlight turns off
+	AudioManager.play(AudioManager.Audio.SpotlightOff)
 	if spotlight_tween and spotlight_tween.is_running(): spotlight_tween.kill()
 	spotlight_tween = create_tween().set_ease(Tween.EASE_OUT)
 	spotlight_tween.set_trans(Tween.TRANS_QUINT).set_parallel(true)
