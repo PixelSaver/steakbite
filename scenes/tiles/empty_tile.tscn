@@ -67,3 +67,6 @@ layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(1, -1)
 texture = ExtResource("3_e4k5f")
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer" unique_id=2084555979]
+layout_mode = 2
