@@ -62,7 +62,7 @@ grow_vertical = 2
 script = ExtResource("1_tefeu")
 game_1 = NodePath("HBoxContainer/Game")
 game_2 = NodePath("HBoxContainer/Game2")
-end_turn_1 = NodePath("CanvasLayer/HBoxContainer/Left/VBoxContainer/HBoxContainer/MarginContainer/EndTurn1")
+end_turn_1 = NodePath("CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1")
 end_turn_2 = NodePath("CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=703350261]
@@ -102,7 +102,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("2_sugp2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Left" unique_id=1426678359]
+[node name="EndTurnCont" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Left" unique_id=1426678359]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,23 +112,23 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Left/VBoxContainer" unique_id=633557912]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont" unique_id=633557912]
 layout_mode = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Left/VBoxContainer/HBoxContainer" unique_id=2146669708]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer" unique_id=2146669708]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="EndTurn1" type="Button" parent="CanvasLayer/HBoxContainer/Left/VBoxContainer/HBoxContainer/MarginContainer" unique_id=2058379326]
+[node name="EndTurn1" type="Button" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer" unique_id=2058379326]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("4_85g3d")
 metadata/_custom_type_script = "uid://crut4r5gwigu0"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/HBoxContainer/Left/VBoxContainer/HBoxContainer/MarginContainer/EndTurn1" unique_id=1235199988]
+[node name="Panel" type="Panel" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=1235199988]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,7 +138,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Left/VBoxContainer/HBoxContainer/MarginContainer/EndTurn1" unique_id=462166776]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=462166776]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 16.0

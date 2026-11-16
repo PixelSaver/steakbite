@@ -36,6 +36,7 @@ var map : Array[Array]
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
 var visual_tiles: Array[Control] = []
+var steaks_eaten_this_round := 0
 var main: Main
 
 func _ready() -> void:
@@ -51,6 +52,11 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
+	SignalBus.close_up_menu_closed.connect(func():
+		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
+			grab_first_focus()
+	)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
 		if node != game_subviewport_container and node != self: 
@@ -66,6 +72,7 @@ func enable_focus(enable:bool) -> void:
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	steaks_eaten_this_round = 0
 	match new_state:
 		TS.MENU:
 			pass
@@ -103,8 +110,8 @@ func grab_first_focus(skip_empty_tiles: bool=true) -> void:
 		tile.grab_focus()
 		return
 func _on_focus_changed(node: Control) -> void:
-	var end_turn = main.end_turn_2 if is_right else main.end_turn_1
 	if Engine.is_editor_hint(): return
+	var end_turn = main.end_turn_2 if is_right else main.end_turn_1
 	var idx = visual_tiles.find(node)
 	if idx == -1: return
 	var length = visual_tiles.size()
@@ -268,5 +275,6 @@ func eat_steak(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
 	var out = get_tile_type(pos)
 	set_tile(pos, TileType.EMPTY)
+	steaks_eaten_this_round += 1
 	return out
 #endregion
