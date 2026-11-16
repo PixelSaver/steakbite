@@ -76,7 +76,7 @@ func play(
 	elif stream is AudioStreamOggVorbis:
 		stream.loop = loop
 	elif stream is AudioStreamMP3:
-		stream.loop = true
+		stream.loop = loop
 
 	var player: AudioStreamPlayer
 	if sound in MUSIC_TRACKS:

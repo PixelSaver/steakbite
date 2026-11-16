@@ -24,6 +24,10 @@ TurnManager="*uid://dhvsj7wsjxx45"
 DialogueManager="*uid://c3rodes2l3gxb"
 AudioManager="*uid://dqsyoe8q8be13"
 
+[dialogue_manager]
+
+runtime/balloon_path="uid://blvj4ysunwq0y"
+
 [display]
 
 window/size/viewport_width=1920
