@@ -2,6 +2,9 @@ extends PixelMenu
 class_name PowerupMenu
 
 const TS = TurnManager.TurnState
+@export var player_name_label: RichTextLabel
+@export var player_balance: RichTextLabel
+@export var powerup_resources: Array[Powerup] = []
 @export var first_focus: Control
 @export var left_side: Control
 @export var right_side: Control
@@ -14,7 +17,6 @@ var flip_percentage := 0.0 :
 		flip_percentage = val
 		_set_flip_percentage(val)
 var mat: ShaderMaterial
-@export var powerup_resources: Array[Powerup] = []
 
 var t: Tween
 

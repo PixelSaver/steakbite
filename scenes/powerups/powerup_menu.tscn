@@ -55,18 +55,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2s6hi")
-first_focus = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
-left_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer")
-right_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
-subviewport_cont = NodePath("SubViewportContainer")
-continue_button = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button")
 player_name_label = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/Player Name")
 player_balance = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Balance")
-first_focus = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/PowerupMenuItem")
-left_side = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer")
-right_side = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3")
-continue_button = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button")
 powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a")])
+first_focus = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/PowerupMenuItem")
+left_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide")
+right_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide")
+subviewport_cont = NodePath("SubViewportContainer")
+continue_button = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button")
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1540394527]
@@ -122,7 +118,7 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7pncx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel" unique_id=1273595009]
+[node name="LeftSide" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel" unique_id=1273595009]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,32 +127,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
-[node name="Player Name" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=2130179915]
+[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=726296963 instance=ExtResource("1_ytud3")]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_1ypni")
-bbcode_enabled = true
-text = "[font_size=50]Player 1: Select a Powerup"
-fit_content = true
-scroll_active = false
 
-[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=726296963 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=861183747 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=861183747 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=72329359 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=72329359 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=1869064438 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1869064438 instance=ExtResource("1_ytud3")]
-layout_mode = 2
-is_empty = false
-
-[node name="PowerupMenuItem5" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=881111203 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem5" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=881111203 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
@@ -166,7 +152,7 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l4062")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2" unique_id=326314080]
+[node name="RightSide" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2" unique_id=326314080]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,38 +161,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
-[node name="Balance" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1150570165]
+[node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1577279010 instance=ExtResource("1_ytud3")]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_1ypni")
-bbcode_enabled = true
-text = "[font_size=50]Balance: 0"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 2
 
-[node name="PowerupMenuItem" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1577279010 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1624719131 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem2" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1624719131 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=624455387 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem3" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=624455387 instance=ExtResource("1_ytud3")]
+[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=290449159 instance=ExtResource("1_ytud3")]
 layout_mode = 2
 is_empty = false
 
-[node name="PowerupMenuItem4" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=290449159 instance=ExtResource("1_ytud3")]
-layout_mode = 2
-is_empty = false
-
-[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3" unique_id=1911362908]
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide" unique_id=1911362908]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_3fqmn")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel" unique_id=1469310678]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel" unique_id=1469310678]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,12 +191,12 @@ grow_vertical = 2
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer" unique_id=678374294]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer" unique_id=678374294]
 layout_mode = 2
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
+[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
 layout_mode = 2
 size_flags_vertical = 3
 icon = ExtResource("2_2s6hi")
@@ -230,7 +205,34 @@ expand_icon = true
 script = ExtResource("4_3fqmn")
 outline = NodePath("../Highlight")
 
-[node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
+[node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
+
+[node name="MarginContainer_HBoxContainer_Panel_VBoxContainer#Player Name" type="RichTextLabel" parent="." unique_id=2130179915]
+layout_mode = 0
+theme_override_fonts/normal_font = ExtResource("6_1ypni")
+bbcode_enabled = true
+text = "[font_size=50]Player 1: Select a Powerup"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer_HBoxContainer_Panel_VBoxContainer#PowerupMenuItem" parent="." unique_id=1863396681 instance=ExtResource("1_ytud3")]
+layout_mode = 0
+anchors_preset = 0
+is_empty = false
+
+[node name="MarginContainer_HBoxContainer_Panel2_VBoxContainer3#Balance" type="RichTextLabel" parent="." unique_id=1150570165]
+layout_mode = 0
+theme_override_fonts/normal_font = ExtResource("6_1ypni")
+bbcode_enabled = true
+text = "[font_size=50]Balance: 0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="MarginContainer_HBoxContainer_Panel2_VBoxContainer3#PowerupMenuItem" parent="." unique_id=1215366230 instance=ExtResource("1_ytud3")]
+layout_mode = 0
+anchors_preset = 0
+is_empty = false
