@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b5ovmwgeirh2r"]
 
 [ext_resource type="Script" uid="uid://cg1ya07yq4fyx" path="res://scenes/tiles/empty_tile.gd" id="1_da7po"]
-[ext_resource type="Texture2D" uid="uid://3jjh8ogiqas3" path="res://assets/art/table_left.PNG" id="2_bf7kr"]
-[ext_resource type="Texture2D" uid="uid://4xe1unwit1q0" path="res://assets/art/table_right.PNG" id="3_e4k5f"]
+[ext_resource type="Texture2D" uid="uid://clauagnn2rx40" path="res://assets/art/steak/Plate small.png" id="2_8rxii"]
+[ext_resource type="Texture2D" uid="uid://gkfdnl471420" path="res://assets/art/background/table_left.png" id="2_bf7kr"]
+[ext_resource type="Texture2D" uid="uid://b73lljkmeeec4" path="res://assets/art/steak/Steak only (small).png" id="3_bvxkn"]
+[ext_resource type="Texture2D" uid="uid://najadlau0cll" path="res://assets/art/background/table_right.png" id="3_e4k5f"]
 
 [node name="EmptyTile" type="Button" unique_id=665903558 node_paths=PackedStringArray("right", "left")]
 anchors_preset = 15
@@ -13,27 +15,55 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_da7po")
-right = NodePath("Center/Control/Right")
-left = NodePath("Center/Control/Left")
+right = NodePath("CenterContainer/VBoxContainer/CenterContainer/RightTable")
+left = NodePath("CenterContainer/VBoxContainer/CenterContainer/LeftTable")
 
-[node name="Center" type="CenterContainer" parent="." unique_id=1454307048]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=192258566]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1240864261]
+layout_mode = 2
+theme_override_constants/separation = -78
+alignment = 2
+
+[node name="Plate" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=1362492205]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_8rxii")
+
+[node name="Steak" type="TextureRect" parent="CenterContainer/VBoxContainer/Plate" unique_id=397053762]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("3_bvxkn")
 
-[node name="Control" type="Control" parent="Center" unique_id=1855998371]
-custom_minimum_size = Vector2(100, 100)
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" unique_id=1735656184]
 layout_mode = 2
 
-[node name="Left" type="Sprite2D" parent="Center/Control" unique_id=898795130]
-scale = Vector2(0.9, 0.9)
+[node name="LeftTable" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer" unique_id=1617278998]
+layout_mode = 2
 texture = ExtResource("2_bf7kr")
-offset = Vector2(-307, -115)
 
-[node name="Right" type="Sprite2D" parent="Center/Control" unique_id=555261773]
-scale = Vector2(0.9, 0.9)
+[node name="RightTable" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer" unique_id=1483040885]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, -1)
 texture = ExtResource("3_e4k5f")
-offset = Vector2(418, -116)

@@ -57,6 +57,12 @@ func _ready() -> void:
 			await get_tree().process_frame
 			grab_first_focus()
 	)
+	SignalBus.intro_cutscene_finished.connect(func():
+		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
+			await get_tree().process_frame
+			grab_first_focus()
+	)
 	subviewport.gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().gui_focus_changed.connect(func(node: Control): 
 		if node != game_subviewport_container and node != self: 
@@ -168,7 +174,7 @@ func _process(_delta: float) -> void:
 		spotlight_corner = spotlight_offset
 	spotlight.global_position = spotlight_target_pos
 	var direction = spotlight_corner - spotlight.global_position
-	var length = direction.length()
+	#var length = direction.length()
 	#spotlight.offset_transform_scale.y = length / spotlight.size.y 
 	spotlight.rotation = direction.angle()
 	spotlight.rotation += PI/2

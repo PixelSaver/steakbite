@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b847q645xem1x" path="res://scenes/dialogue/intro_cutscene.gd" id="1_1patc"]
 [ext_resource type="Resource" uid="uid://bmrnv63opdfw6" path="res://scenes/dialogue/intro.dialogue" id="2_hjd8h"]
-[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="3_lhndu"]
-[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/butler_tray.png" id="4_1patc"]
+[ext_resource type="Texture2D" uid="uid://xd2orhitbgxs" path="res://assets/art/butler/butler_tray.png" id="2_kxqh7"]
+[ext_resource type="Texture2D" uid="uid://d08uerv0xhuuj" path="res://assets/art/butler/butler_punched.PNG" id="3_hn65t"]
 [ext_resource type="PackedScene" uid="uid://dk3wfkubevpc5" path="res://scenes/dialogue/default_balloon.tscn" id="4_olcwa"]
+[ext_resource type="Script" uid="uid://dnhf1tser3p2o" path="res://scenes/dialogue/intro_baloon.gd" id="5_hn65t"]
+[ext_resource type="Texture2D" uid="uid://cahcjv8iu8rh0" path="res://assets/art/butler/butler_notray.png" id="6_hn65t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1patc"]
 bg_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
@@ -26,10 +28,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1patc")
-butler_normal = ExtResource("4_1patc")
-butler_punch = ExtResource("3_lhndu")
+butler_normal = ExtResource("2_kxqh7")
+butler_punch = ExtResource("3_hn65t")
 butler_sprite = NodePath("ButlerSprite")
-balloon = NodePath("ExampleBalloon")
+balloon = NodePath("IntroBalloon")
 controls_label = NodePath("MarginContainer")
 
 [node name="Panel" type="Panel" parent="." unique_id=517425155]
@@ -40,15 +42,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("4_olcwa")]
+[node name="IntroBalloon" parent="." unique_id=38036521 instance=ExtResource("4_olcwa")]
+script = ExtResource("5_hn65t")
 dialogue_resource = ExtResource("2_hjd8h")
 auto_start = true
+will_block_other_input = false
 
 [node name="ButlerSprite" type="TextureRect" parent="." unique_id=1033985693]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("4_1patc")
+texture = ExtResource("6_hn65t")
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1946502714]
