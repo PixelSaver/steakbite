@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TestPowerup" format=3 uid="uid://cfbl2wrx6wg6g"]
+
+[ext_resource type="Script" uid="uid://cvew6leeafapl" path="res://standalones/powerup/test_powerup.gd" id="1_pxfyq"]
+[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="2_3cxsg"]
+
+[resource]
+script = ExtResource("1_pxfyq")
+name = "Powerup 1"
+description = "This is the description for powerup 1. Using it should print hi."
+texture = ExtResource("2_3cxsg")
+metadata/_custom_type_script = "uid://cvew6leeafapl"

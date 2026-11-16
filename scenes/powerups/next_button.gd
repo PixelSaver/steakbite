@@ -14,6 +14,12 @@ func _ready() -> void:
 			TurnManager.state = TurnManager.TurnState.STEAK_TWO
 	)
 	self.pivot_offset_ratio = Vector2(0.5, 0.5)
+	self.pressed.connect(_use)
+
+func _use() -> void:
+	# TODO: hook up continue button
+	print("continue pressed")
+	pass
 
 func _set_focus(entered: bool) -> void:
 	if t and t.is_running(): t.kill()

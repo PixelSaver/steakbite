@@ -1,5 +1,5 @@
 extends Powerup
 class_name TestPowerup
 
-func apply(_target_player_id: int) -> void:
-	print("Bruh")
+func apply(_is_player_one: bool) -> void:
+	print("Hi")
