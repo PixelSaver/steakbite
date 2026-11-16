@@ -6,6 +6,8 @@ extends PixelMenu
 @export var panel: Panel
 @export var balloon: CanvasLayer
 @export var controls_label: Control
+@export var game: GameContainer
+
 var t: Tween
 
 func _ready():
@@ -25,7 +27,8 @@ func start_anim():
 	t.tween_property(butler_sprite, "offset_transform_position_ratio:x", 0.0, 0.7)
 	t.tween_property(panel, "modulate:a", 1.0, 0.7)
 	t.tween_callback(func():
-		balloon.start(balloon.dialogue_resource)
+		print(str(game.map_size.x * game.map_size.y))
+		balloon.start(balloon.dialogue_resource, "", [{ "num_poison" = game.num_poisoned }, { "total" = (game.map_size.x * game.map_size.y) }])
 	).set_delay(0.3)
 
 func _on_dialogue_end(_resource):

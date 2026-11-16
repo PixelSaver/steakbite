@@ -69,8 +69,9 @@ is_right = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1014993860]
 
-[node name="IntroCutscene" parent="CanvasLayer" unique_id=1984434612 instance=ExtResource("3_85g3d")]
+[node name="IntroCutscene" parent="CanvasLayer" unique_id=1984434612 node_paths=PackedStringArray("game") instance=ExtResource("3_85g3d")]
 z_index = 4
+game = NodePath("../../HBoxContainer/Game")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=361896595]
 anchors_preset = 15
