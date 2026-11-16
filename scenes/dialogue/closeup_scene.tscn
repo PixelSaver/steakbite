@@ -23,10 +23,6 @@ panel = NodePath("Panel")
 resource = ExtResource("2_0fmhw")
 steaks = [NodePath("ButlerAreYouSure/Control/FullSteak"), NodePath("ButlerAreYouSure/Control/HalfSteak")]
 
-[node name="CloseupBalloon" parent="." unique_id=38036521 instance=ExtResource("1_cb615")]
-script = ExtResource("4_fc34u")
-dialogue_resource = null
-
 [node name="Panel" type="Panel" parent="." unique_id=476430919]
 layout_mode = 1
 anchors_preset = 15
@@ -35,7 +31,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CloseupBalloon" parent="." unique_id=38036521 instance=ExtResource("1_cb615")]
+layer = 4
+script = ExtResource("4_fc34u")
+dialogue_resource = null
+
 [node name="ButlerAreYouSure" type="TextureRect" parent="." unique_id=1398920530]
+z_index = 5
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0

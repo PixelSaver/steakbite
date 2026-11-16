@@ -9,18 +9,21 @@ extends Node
 @export var use_local_transform := false
 @export var direction: Vector2 = Vector2.ZERO
 @export var distance: float = 100.0
+@export var parent: Control
 @export_tool_button("Randomize distance") var randomize_action = _randomize_distance
 @export var randomized_range := Vector2(0, 100)
-var parent: Control
-
+var _parent: Control
 
 func _randomize_distance():
 	distance = randf_range(randomized_range.x, randomized_range.y)
 
 
 func _ready() -> void: 
-	parent = get_parent() as Control
-	if not parent:
+	if parent:
+		_parent = parent
+	else:
+		parent = get_parent() as Control
+	if not parent or parent == null:
 		push_warning("Tweenable <%s> could not find it's parent, queue_free()ing" % self)
 		queue_free()
 	parent.offset_transform_enabled = true
@@ -28,6 +31,8 @@ func _ready() -> void:
 
 
 func apply(t: float) -> void:
+	if parent == null: return
+	
 	var offset = direction.normalized() * distance * t
 	if use_local_transform:
 		offset *= parent.get_transform()
