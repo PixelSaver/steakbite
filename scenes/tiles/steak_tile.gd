@@ -1,5 +1,5 @@
 @tool
-extends Button
+extends Tile
 class_name SteakTile
 
 @export var left: Sprite2D

@@ -39,4 +39,5 @@ func start_anim() -> void:
 	yes.grab_focus()
 
 func end_anim() -> void:
+	SignalBus.close_up_menu_closed.emit()
 	hide()
