@@ -212,6 +212,8 @@ vertical_alignment = 1
 [node name="PowerupMenu" parent="CanvasLayer" unique_id=1713500523 instance=ExtResource("5_o6xl0")]
 visible = false
 
-[node name="CloseupScene" parent="CanvasLayer" unique_id=1157262694 node_paths=PackedStringArray("main") instance=ExtResource("7_o6xl0")]
+[node name="CloseupScene" parent="CanvasLayer" unique_id=1157262694 node_paths=PackedStringArray("main", "game1", "game2") instance=ExtResource("7_o6xl0")]
 visible = false
 main = NodePath("../..")
+game1 = NodePath("../../HBoxContainer/Game")
+game2 = NodePath("../../HBoxContainer/Game2")

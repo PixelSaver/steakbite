@@ -74,14 +74,17 @@ func enable_focus(enable:bool) -> void:
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	#print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	steaks_eaten_this_round = 0
 	match new_state:
 		TS.MENU:
 			pass
-		TS.POWERUP_ONE or TS.STEAK_ONE:
+		TS.STEAK_ONE:
 			enable_focus(not is_right)
-		TS.POWERUP_TWO or TS.STEAK_TWO:
+		TS.STEAK_TWO:
 			enable_focus(is_right)
+		TS.POWERUP_ONE, TS.POWERUP_TWO:
+			enable_focus(false)
 		TS.LOSS:
 			pass
 

@@ -4,6 +4,8 @@ class_name CloseUpMenu
 @export var main: Main
 const CLOSEUP_BALLOON = preload("uid://cfrjwymq0mu44")
 @export var resource: DialogueResource
+@export var game1: GameContainer
+@export var game2: GameContainer
 
 var selected_steak_pos: Vector2i = Vector2i.MIN
 
@@ -14,7 +16,6 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 
 func _on_dialogue_end(_resource):
-	print("dialogue ended")
 	end_anim()
 
 func _on_steak_selected(_steak: SteakTile, pos: Vector2i, _id: int) -> void:
@@ -41,4 +42,8 @@ func start_anim() -> void:
 	DialogueManager.show_dialogue_balloon_scene(CLOSEUP_BALLOON, resource, "", [self])
 
 func end_anim() -> void:
+	if TurnManager.state == TurnManager.TurnState.STEAK_ONE:
+		game1.grab_first_focus()
+	else:
+		game2.grab_first_focus()
 	hide()
