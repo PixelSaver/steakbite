@@ -10,6 +10,7 @@ const TS = TurnManager.TurnState
 @export var end_turn_1: DefaultButton
 @export var end_turn_2: DefaultButton
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
+const LOSS = preload("uid://dgvrmatmr6fv6")
 
 var p1_balance: int = 0
 var p2_balance: int = 0
@@ -69,4 +70,23 @@ func _on_game_state_changed(new_state: TS) -> void:
 			end_turn_2.show()
 			game_2.grab_first_focus()
 		TS.LOSS:
+			end_turn_1.hide()
+			end_turn_2.hide()
+			await get_tree().create_timer(1.0).timeout
+			DialogueManager.show_dialogue_balloon(LOSS, "", [self])
 			pass
+
+func get_winning_player() -> String:
+	if p1_lives > 0:
+		return "Player 1"
+	elif p2_lives > 0:
+		return "Player 2"
+	else:
+		return "no one"
+		
+func play_again():
+	get_tree().reload_current_scene()
+
+func exit_to_menu():
+	# TODO
+	pass

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dgvrmatmr6fv6"
+path="res://.godot/imported/loss.dialogue-277d06d885d26228230d11d197edd842.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/loss.dialogue"
+dest_files=["res://.godot/imported/loss.dialogue-277d06d885d26228230d11d197edd842.tres"]
+
+[params]
+
+defaults=true
