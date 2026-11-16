@@ -7,6 +7,8 @@ const TS = TurnManager.TurnState
 @export var game_1: GameContainer
 ## Game for player 2; right
 @export var game_2: GameContainer
+@export var end_turn_1: DefaultButton
+@export var end_turn_2: DefaultButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

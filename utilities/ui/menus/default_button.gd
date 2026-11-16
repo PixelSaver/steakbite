@@ -40,9 +40,9 @@ func _notification(what: int) -> void:
 		NOTIFICATION_MOUSE_EXIT:
 			_unhover()
 		NOTIFICATION_FOCUS_ENTER:
-			pass
+			_hover()
 		NOTIFICATION_FOCUS_EXIT:
-			pass
+			_unhover()
 
 func _on_pressed() -> void:
 	if t and t.is_running(): t.kill()
@@ -61,5 +61,5 @@ func _hover() -> void:
 func _unhover() -> void:
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
-	t.set_trans(Tween.TRANS_ELASTIC).set_parallel(true)
+	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	t.tween_property(self, "scale", Vector2.ONE, 0.7)

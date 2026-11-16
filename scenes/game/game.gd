@@ -36,8 +36,14 @@ var map : Array[Array]
 ## Randomized queue of clean steaks
 var clean_steaks : Array[Vector2i]
 var visual_tiles: Array[Control] = []
+var main: Main
 
 func _ready() -> void:
+	var scene_root = get_tree().current_scene
+	main = scene_root as Main
+	if not main and scene_root != self:
+		push_warning("Main isn't scene root for Game")
+	#assert((main and get_tree().current_scene != self), "Main isn't scene for Game")
 	spotlight.modulate.a = 0.0
 	_update_leftright()
 	_on_game_start()
@@ -97,6 +103,7 @@ func grab_first_focus(skip_empty_tiles: bool=true) -> void:
 		tile.grab_focus()
 		return
 func _on_focus_changed(node: Control) -> void:
+	var end_turn = main.end_turn_2 if is_right else main.end_turn_1
 	if Engine.is_editor_hint(): return
 	var idx = visual_tiles.find(node)
 	if idx == -1: return
@@ -108,7 +115,9 @@ func _on_focus_changed(node: Control) -> void:
 		var target = visual_tiles[bottom_neighbor_idx]
 		node.focus_neighbor_bottom = node.get_path_to(target)
 	else:
-		node.focus_neighbor_bottom = "."
+		node.focus_neighbor_bottom = node.get_path_to(end_turn)
+		end_turn.focus_neighbor_top = end_turn.get_path_to(node)
+		
 	var top_neighbor_idx = idx - map_size.x 
 	if top_neighbor_idx >= 0:
 		var target = visual_tiles[top_neighbor_idx]
@@ -185,10 +194,11 @@ func update_visuals() -> void:
 			var scene: Control
 			if tile != TileType.EMPTY:
 				scene = STEAK_TILE.instantiate() as SteakTile
-				scene.steak_pressed.connect(_on_steak_selected)
-				scene.tree_exiting.connect(func():
-					scene.steak_pressed.disconnect(_on_steak_selected)
-				)
+				if not Engine.is_editor_hint(): 
+					scene.steak_pressed.connect(_on_steak_selected)
+					scene.tree_exiting.connect(func():
+						scene.steak_pressed.disconnect(_on_steak_selected)
+					)
 				scene.set_right(is_right)
 			else: 
 				scene = EMPTY_TILE.instantiate()
