@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d08uerv0xhuuj"
-path="res://.godot/imported/butler_punched.PNG-6ceae5f875b03a8090df666272ca570b.ctex"
+path="res://.godot/imported/butler_punched.PNG-f9a1b69af1a614148d69ef825b159b5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/butler/butler_punched.PNG"
-dest_files=["res://.godot/imported/butler_punched.PNG-6ceae5f875b03a8090df666272ca570b.ctex"]
+source_file="res://assets/art/butler_punched.PNG"
+dest_files=["res://.godot/imported/butler_punched.PNG-f9a1b69af1a614148d69ef825b159b5a.ctex"]
 
 [params]
 
