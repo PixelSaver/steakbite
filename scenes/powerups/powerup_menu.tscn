@@ -45,7 +45,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("first_focus", "left_side", "right_side", "subviewport_cont", "continue_button")]
+[node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("player_name_label", "first_focus", "left_side", "right_side", "subviewport_cont", "continue_button")]
 material = ExtResource("1_p1oto")
 layout_mode = 3
 anchors_preset = 15
@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2s6hi")
-player_name_label = NodePath("MarginContainer/HBoxContainer/Panel/VBoxContainer/Player Name")
+player_name_label = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/Player Name")
 player_balance = NodePath("MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Balance")
 powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a")])
 first_focus = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/PowerupMenuItem")
@@ -126,6 +126,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
+
+[node name="Player Name" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=2002184844]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_1ypni")
+bbcode_enabled = true
+text = "[font_size=50]Player 1: Select a Powerup"
+fit_content = true
+scroll_active = false
 
 [node name="PowerupMenuItem" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide" unique_id=726296963 instance=ExtResource("1_ytud3")]
 layout_mode = 2
@@ -221,6 +229,12 @@ scroll_active = false
 [node name="MarginContainer_HBoxContainer_Panel_VBoxContainer#PowerupMenuItem" parent="." unique_id=1863396681 instance=ExtResource("1_ytud3")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 1
+grow_vertical = 1
 is_empty = false
 
 [node name="MarginContainer_HBoxContainer_Panel2_VBoxContainer3#Balance" type="RichTextLabel" parent="." unique_id=1150570165]
@@ -235,4 +249,10 @@ horizontal_alignment = 2
 [node name="MarginContainer_HBoxContainer_Panel2_VBoxContainer3#PowerupMenuItem" parent="." unique_id=1215366230 instance=ExtResource("1_ytud3")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 1
+grow_vertical = 1
 is_empty = false
