@@ -84,10 +84,12 @@ func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
 		TS.MENU:
 			pass
-		TS.POWERUP_ONE or TS.STEAK_ONE:
+		TS.STEAK_ONE:
 			enable_focus(not is_right)
-		TS.POWERUP_TWO or TS.STEAK_TWO:
+		TS.STEAK_TWO:
 			enable_focus(is_right)
+		TS.POWERUP_ONE, TS.POWERUP_TWO:
+			enable_focus(false)
 		TS.LOSS:
 			pass
 

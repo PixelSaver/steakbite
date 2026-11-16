@@ -9,6 +9,10 @@ const TS = TurnManager.TurnState
 @export var game_2: GameContainer
 @export var end_turn_1: DefaultButton
 @export var end_turn_2: DefaultButton
+const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
+
+var p1_balance: int = 100
+var p2_balance: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,13 +27,12 @@ func _on_end_turn(id:int) -> void:
 		if game_1.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_TWO
 		else:
-			#TODO Get butler to chide you for not eating
-			pass
+			DialogueManager.show_dialogue_balloon(NO_STEAK)
 	elif id == 2 and TurnManager.state == TS.STEAK_TWO:
 		if game_2.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_ONE
 		else:
-			#TODO Get butler to chide you for not eating
+			DialogueManager.show_dialogue_balloon(NO_STEAK)
 			pass
 	else:
 		push_error(
@@ -38,10 +41,10 @@ func _on_end_turn(id:int) -> void:
 		)
 
 func start_game() -> void:
-	TurnManager.state = TurnManager.TurnState.STEAK_ONE
+	TurnManager.state = TurnManager.TurnState.MENU
 
 func _on_game_state_changed(new_state: TS) -> void:
-	print("game state changing to: " + str(new_state))
+	#print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	match new_state:
 		TS.MENU:
 			pass

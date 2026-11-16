@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bvwdwfqkkrpbv"
+path="res://.godot/imported/no_steak.dialogue-790fd45db41a2b3263008f06a8f81d25.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/no_steak.dialogue"
+dest_files=["res://.godot/imported/no_steak.dialogue-790fd45db41a2b3263008f06a8f81d25.tres"]
+
+[params]
+
+defaults=true

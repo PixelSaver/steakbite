@@ -6,6 +6,7 @@ const TS = TurnManager.TurnState
 @export var player_balance: RichTextLabel
 @export var powerup_resources: Array[Powerup] = []
 @export var first_focus: Control
+@export var main: Main
 @export var left_side: Control
 @export var right_side: Control
 ## Container with all the buttons in it
@@ -70,8 +71,7 @@ func _fill_visuals() -> void:
 	var player_name = "Player 1" if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else "Player 2"
 	player_name_label.text = "[font_size=50]" + player_name + ": Select a Powerup"
 	
-	# TODO: hook up player balance
-	var balance: int = 0
+	var balance: int = main.p1_balance if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else main.p2_balance
 	player_balance.text = "[font_size=50]Balance: " + str(balance)
 	
 	var left_side_children = left_side.get_children()
@@ -81,7 +81,6 @@ func _fill_visuals() -> void:
 	
 	var combined = left_side_children
 	combined.append_array(right_side_children)
-	first_focus = combined.front()
 	
 	for i in combined.size():
 		if (i < powerup_resources.size()):

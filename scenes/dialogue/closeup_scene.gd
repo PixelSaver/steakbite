@@ -7,6 +7,8 @@ const CLOSEUP_BALLOON = preload("uid://cfrjwymq0mu44")
 @export var balloon: CanvasLayer
 @export var panel: Panel
 @export var resource: DialogueResource
+@export var game1: GameContainer
+@export var game2: GameContainer
 @export var steaks: Array[TextureRect]
 var t: Tween
 var selected_steak_pos: Vector2i = Vector2i.MIN
@@ -62,14 +64,6 @@ func deny():
 
 func start_anim() -> void:
 	show()
-	if t and t.is_running(): t.kill()
-	t = create_tween().set_ease(Tween.EASE_OUT)
-	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
-	t.tween_property(butler, "offset_transform_position_ratio:x", 0.0, 0.6)
-	t.tween_property(panel, "modulate:a", 1.0, 1.0)
-	t.tween_property(_get_balloon_control(), "modulate:a", 1.0, 0.6)
-	await t.finished
-	#balloon.play(balloon.dialogue_resource)
 	DialogueManager.show_dialogue_balloon_scene(CLOSEUP_BALLOON, resource, "", [self])
 
 func end_anim() -> void:
@@ -80,4 +74,8 @@ func end_anim() -> void:
 	t.tween_property(panel, "modulate:a", 0.0, 0.6)
 	t.tween_property(_get_balloon_control(), "modulate:a", 0.0, 0.6)
 	await t.finished
+	if TurnManager.state == TurnManager.TurnState.STEAK_ONE:
+		game1.grab_first_focus()
+	else:
+		game2.grab_first_focus()
 	hide()

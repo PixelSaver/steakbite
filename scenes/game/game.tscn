@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://d28d54uw5wsi6" path="res://assets/art/background/BG_right.PNG" id="3_lfrn8"]
 [ext_resource type="Texture2D" uid="uid://bn0axtct8dklb" path="res://assets/art/spotlight.png" id="4_lfrn8"]
 
+[sub_resource type="Curve" id="Curve_0sr1o"]
+_data = [Vector2(0, 1), 0.0, -0.90625, 0, 1, Vector2(1, 0.09375), -0.90625, 0.0, 1, 0]
+point_count = 2
+
 [node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
 anchors_preset = 4
 anchor_top = 0.5

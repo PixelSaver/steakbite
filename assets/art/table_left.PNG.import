@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbpn45yqoocrs"
-path="res://.godot/imported/Steak closeup_full.png-453035b1794109a83a1c51b1b89fad05.ctex"
+uid="uid://3jjh8ogiqas3"
+path="res://.godot/imported/table_left.PNG-32279de1a9bca4e49dedff0a3748d981.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/steak/Steak closeup_full.png"
-dest_files=["res://.godot/imported/Steak closeup_full.png-453035b1794109a83a1c51b1b89fad05.ctex"]
+source_file="res://assets/art/table_left.PNG"
+dest_files=["res://.godot/imported/table_left.PNG-32279de1a9bca4e49dedff0a3748d981.ctex"]
 
 [params]
 

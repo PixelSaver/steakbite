@@ -24,6 +24,7 @@ steaks = [NodePath("ButlerAreYouSure/Control/FullSteak"), NodePath("ButlerAreYou
 
 [node name="CloseupBalloon" parent="." unique_id=38036521 instance=ExtResource("1_cb615")]
 auto_start = false
+will_block_other_input = false
 
 [node name="Panel" type="Panel" parent="." unique_id=476430919]
 layout_mode = 1

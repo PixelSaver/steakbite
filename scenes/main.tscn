@@ -72,7 +72,7 @@ is_right = true
 [node name="IntroCutscene" parent="CanvasLayer" unique_id=1984434612 instance=ExtResource("3_85g3d")]
 z_index = 4
 
-[node name="PlayerBottom" type="HBoxContainer" parent="CanvasLayer" unique_id=361896595]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=361896595]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,19 +80,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Left" type="Control" parent="CanvasLayer/PlayerBottom" unique_id=1298066236]
+[node name="Left" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1298066236]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="LeftPlayer" type="TextureRect" parent="CanvasLayer/PlayerBottom/Left" unique_id=692757117]
+[node name="LeftPlayer" type="TextureRect" parent="CanvasLayer/HBoxContainer/Left" unique_id=692757117]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("2_sugp2")
 
-[node name="EndTurnCont" type="VBoxContainer" parent="CanvasLayer/PlayerBottom/Left" unique_id=1426678359]
+[node name="EndTurnCont" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Left" unique_id=1426678359]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,23 +102,23 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerBottom/Left/EndTurnCont" unique_id=633557912]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont" unique_id=633557912]
 layout_mode = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerBottom/Left/EndTurnCont/HBoxContainer" unique_id=2146669708]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer" unique_id=2146669708]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="EndTurn1" type="Button" parent="CanvasLayer/PlayerBottom/Left/EndTurnCont/HBoxContainer/MarginContainer" unique_id=2058379326]
+[node name="EndTurn1" type="Button" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer" unique_id=2058379326]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("4_85g3d")
 metadata/_custom_type_script = "uid://crut4r5gwigu0"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PlayerBottom/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=1235199988]
+[node name="Panel" type="Panel" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=1235199988]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +128,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PlayerBottom/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=462166776]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1" unique_id=462166776]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 16.0
@@ -145,19 +145,19 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Right" type="Control" parent="CanvasLayer/PlayerBottom" unique_id=1836573595]
+[node name="Right" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1836573595]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="RightPlayer" type="TextureRect" parent="CanvasLayer/PlayerBottom/Right" unique_id=255700694]
+[node name="RightPlayer" type="TextureRect" parent="CanvasLayer/HBoxContainer/Right" unique_id=255700694]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("3_jyhfs")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerBottom/Right" unique_id=706535188]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Right" unique_id=706535188]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -167,22 +167,22 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerBottom/Right/VBoxContainer" unique_id=1571838350]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Right/VBoxContainer" unique_id=1571838350]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerBottom/Right/VBoxContainer/HBoxContainer" unique_id=1445477680]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer" unique_id=1445477680]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="EndTurn2" type="Button" parent="CanvasLayer/PlayerBottom/Right/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1094051349]
+[node name="EndTurn2" type="Button" parent="CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1094051349]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("4_85g3d")
 metadata/_custom_type_script = "uid://crut4r5gwigu0"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PlayerBottom/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2" unique_id=855055641]
+[node name="Panel" type="Panel" parent="CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2" unique_id=855055641]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,7 +192,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PlayerBottom/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2" unique_id=1840570171]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2" unique_id=1840570171]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 16.0
@@ -210,6 +210,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PowerupMenu" parent="CanvasLayer" unique_id=1713500523 instance=ExtResource("5_o6xl0")]
+visible = false
 
 [node name="CloseupScene" parent="CanvasLayer" unique_id=1157262694 node_paths=PackedStringArray("main") instance=ExtResource("7_o6xl0")]
 visible = false
