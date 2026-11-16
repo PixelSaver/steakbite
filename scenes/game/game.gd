@@ -16,7 +16,7 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var right_visual: Control
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
-@export var spotlight: TextureRect
+@export var spotlight: Node2D
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -160,7 +160,6 @@ func _hide_spotlight() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint(): return
 	var spotlight_corner := Vector2.ZERO
 	if is_right:
 		spotlight_corner = Vector2(
@@ -169,12 +168,9 @@ func _process(_delta: float) -> void:
 		)
 	else:
 		spotlight_corner = spotlight_offset
-	spotlight.global_position = spotlight_target_pos
-	var direction = spotlight_corner - spotlight.global_position
-	var length = direction.length()
-	#spotlight.offset_transform_scale.y = length / spotlight.size.y 
-	spotlight.rotation = direction.angle()
-	spotlight.rotation += PI/2
+	spotlight.position = spotlight_target_pos
+	spotlight.look_at(spotlight_corner)
+	spotlight.rotate(PI/2)
 	spotlight.rotation = fmod(spotlight.rotation, 2*PI)
 #endregion
 
