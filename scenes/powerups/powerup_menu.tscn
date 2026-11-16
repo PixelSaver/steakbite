@@ -27,6 +27,13 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ypni"]
+bg_color = Color(0.16359773, 0.09207339, 0.041874863, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4062"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -48,13 +55,6 @@ expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u25pn"]
-bg_color = Color(0.19907588, 0.15064031, 0.140428, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="PowerupMenu" type="Control" unique_id=1713500523 node_paths=PackedStringArray("player_name_label", "player_balance", "first_focus", "left_side", "right_side", "subviewport_cont", "continue_button")]
 material = ExtResource("1_p1oto")
@@ -226,25 +226,30 @@ ratio = 2.4967
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
+[node name="Next Button" type="Button" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Continue?"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_3fqmn")
-outline = NodePath("Highlight")
 
-[node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
-visible = false
-layout_mode = 0
-offset_right = 194.74261
-offset_bottom = 78.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
-
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=794420557]
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=1883338244]
 show_behind_parent = true
-layout_mode = 0
-offset_right = 194.74261
-offset_bottom = 78.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_u25pn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ypni")
+
+[node name="Highlight" type="Panel" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=1783826205]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
