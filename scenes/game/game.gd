@@ -16,8 +16,9 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var right_visual: Control
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
-@export var spotlight: Node2D
-
+@export var spotlight: TextureRect
+@export var poison_effect: Control
+@export var death_screen: Control
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -53,8 +54,14 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
-	SignalBus.close_up_menu_closed.connect(func():
+	SignalBus.close_up_menu_closed.connect(func(_c:String):
 		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
+			grab_first_focus()
+	)
+	SignalBus.intro_cutscene_finished.connect(func():
+		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
 			await get_tree().process_frame
 			grab_first_focus()
 	)
@@ -75,7 +82,6 @@ func enable_focus(enable:bool) -> void:
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
 
 func _on_game_state_changed(new_state: TS) -> void:
-	#print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	steaks_eaten_this_round = 0
 	match new_state:
 		TS.MENU:
@@ -161,6 +167,7 @@ func _hide_spotlight() -> void:
 	
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	var spotlight_corner := Vector2.ZERO
 	if is_right:
 		spotlight_corner = Vector2(
@@ -169,9 +176,12 @@ func _process(_delta: float) -> void:
 		)
 	else:
 		spotlight_corner = spotlight_offset
-	spotlight.position = spotlight_target_pos
-	spotlight.look_at(spotlight_corner)
-	spotlight.rotate(PI/2)
+	spotlight.global_position = spotlight_target_pos
+	var direction = spotlight_corner - spotlight.global_position
+	#var length = direction.length()
+	#spotlight.offset_transform_scale.y = length / spotlight.size.y 
+	spotlight.rotation = direction.angle()
+	spotlight.rotation += PI/2
 	spotlight.rotation = fmod(spotlight.rotation, 2*PI)
 #endregion
 
@@ -297,5 +307,27 @@ func eat_steak(pos: Vector2i) -> TileType:
 			main.p1_balance += 1
 		else:
 			main.p2_balance += 1
+		if out == TileType.STEAK_BAD:
+			print("bad steak eaten")
+			lose_life()
 	return out
+	
+func lose_life() -> void:
+	if is_right:
+		main.p2_lives -= 1
+		if main.p2_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+	else:
+		main.p1_lives -= 1
+		if main.p1_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+
 #endregion

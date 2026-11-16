@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TestPowerup" format=3 uid="uid://cfbl2wrx6wg6g"]
 
 [ext_resource type="Script" uid="uid://cvew6leeafapl" path="res://standalones/powerup/test_powerup.gd" id="1_pxfyq"]
-[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="2_3cxsg"]
+[ext_resource type="Texture2D" uid="uid://clauagnn2rx40" path="res://assets/art/steak/Plate small.png" id="2_3cxsg"]
 
 [resource]
 script = ExtResource("1_pxfyq")

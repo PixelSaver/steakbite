@@ -1,5 +1,13 @@
-Butler: Are you sure you want to eat this?
+% Butler: Are you sure you want to eat this?
+% Butler: Would you care for this, sir?
+% Butler: Are you quite certain this is to your liking?
+% Butler: You do know what you're getting yourself into, yes?
+% Butler: Your wish is my command. Are you quite sure?
+% Butler: Oh? You actually want this?
+% Butler: May I take that as your final decision?
 - Yes
-	Butler: Very well. [$> confirm()]
+	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit("yes")]
+	% Butler: Very well. I shall pretend not to be concerned. [$> SignalBus.close_up_menu_closed.emit("yes")]
 - No
-	Butler: Very well. [$> deny()]
+	%5 Butler: Very well. [$> SignalBus.close_up_menu_closed.emit("no")]
+	% Butler: Tis a shame. [$> SignalBus.close_up_menu_closed.emit("no")]

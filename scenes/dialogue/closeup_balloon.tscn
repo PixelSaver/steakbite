@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="4_j36k0"]
 [ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="5_8ap3r"]
 [ext_resource type="StyleBox" uid="uid://4llo4rxb5n0x" path="res://scenes/dialogue/new_style_box_flat.tres" id="6_nqgug"]
+[ext_resource type="Script" uid="uid://b8avu2lu1ghb3" path="res://scenes/dialogue/response_example.gd" id="7_bcs1n"]
+[ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="8_7j3pw"]
 
 [sub_resource type="GDScript" id="GDScript_ul5i8"]
 script/source = "extends CanvasLayer
@@ -364,11 +366,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="ExampleBalloon" type="CanvasLayer" unique_id=38036521]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7j3pw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bcs1n"]
+noise = SubResource("FastNoiseLite_7j3pw")
+
+[sub_resource type="Curve" id="Curve_gkedh"]
+_data = [Vector2(0, 0.40062112), 0.0, 0.0, 0, 0, Vector2(0.50101006, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.40062112), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="CloseupBalloon" type="CanvasLayer" unique_id=38036521]
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("1_5r34j")
-auto_start = true
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
 unique_name_in_owner = true
@@ -386,7 +396,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 388.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 600
+theme_override_constants/margin_left = 800
 theme_override_constants/margin_top = 69
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 30
@@ -465,7 +475,7 @@ script = ExtResource("4_j36k0")
 response_template = NodePath("ResponseExample")
 auto_focus_first_item = false
 
-[node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1446810977]
+[node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1446810977 node_paths=PackedStringArray("tweenable")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
@@ -479,6 +489,50 @@ theme_override_styles/hover = ExtResource("6_nqgug")
 theme_override_styles/disabled = ExtResource("6_nqgug")
 theme_override_styles/focus = SubResource("StyleBoxFlat_nqgug")
 text = "Response example"
+script = ExtResource("7_bcs1n")
+tweenable = NodePath("CenterContainer/Tweenable")
+noise = SubResource("NoiseTexture2D_bcs1n")
+
+[node name="CenterContainer" type="CenterContainer" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample" unique_id=106742961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-1920, 0)
+offset_transform_position_ratio = Vector2(-0.6, 0)
+
+[node name="Control" type="Control" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1639925381]
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="Line2D2" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=2043596667]
+points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
+width = 30.0
+width_curve = SubResource("Curve_gkedh")
+default_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=2008430407]
+points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
+width = 20.0
+width_curve = SubResource("Curve_gkedh")
+default_color = Color(0.6117647, 0.13333334, 0.03529412, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Tweenable" type="Node" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1178666247 node_paths=PackedStringArray("parent")]
+script = ExtResource("8_7j3pw")
+tween_value = 1.0
+direction = Vector2(-1, 0)
+distance = 1920.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162558754]
 unique_name_in_owner = true

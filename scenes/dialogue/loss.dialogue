@@ -1,0 +1,6 @@
+Butler: Congratulations {{ get_winning_player() }}. You are the victor.
+Butler: Would you like to play again?
+- Yes
+	Butler: Very well. [$> play_again() ]
+- No
+	Butler: Very well. [$> exit_to_menu() ]

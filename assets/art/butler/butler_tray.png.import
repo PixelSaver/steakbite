@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4xe1unwit1q0"
-path="res://.godot/imported/table_right.PNG-b2d17bba56b2793f3082bd5619682d7d.ctex"
+uid="uid://xd2orhitbgxs"
+path="res://.godot/imported/butler_tray.png-8afd2bb92d134c2a7469c4104d8003d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/table_right.PNG"
-dest_files=["res://.godot/imported/table_right.PNG-b2d17bba56b2793f3082bd5619682d7d.ctex"]
+source_file="res://assets/art/butler/butler_tray.png"
+dest_files=["res://.godot/imported/butler_tray.png-8afd2bb92d134c2a7469c4104d8003d7.ctex"]
 
 [params]
 

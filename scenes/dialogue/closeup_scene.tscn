@@ -3,10 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cfrjwymq0mu44" path="res://scenes/dialogue/closeup_balloon.tscn" id="1_cb615"]
 [ext_resource type="Script" uid="uid://cuq1qr548sk0l" path="res://scenes/dialogue/closeup_scene.gd" id="1_wsdlg"]
 [ext_resource type="Resource" uid="uid://bg30yrfftnx8m" path="res://scenes/dialogue/eating.dialogue" id="2_0fmhw"]
-[ext_resource type="Texture2D" uid="uid://b4thwjrb3c4ty" path="res://assets/art/Steak closeup_full.png" id="4_0ld0x"]
-[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/butler_tray.png" id="4_1bekq"]
+[ext_resource type="Script" uid="uid://cntquvi8o81gl" path="res://scenes/dialogue/closeup_balloon.gd" id="4_fc34u"]
+[ext_resource type="Texture2D" uid="uid://ryq6eu74rawb" path="res://assets/art/butler/Butler areYouSure.png" id="4_fofiu"]
+[ext_resource type="Texture2D" uid="uid://d2vywh70q4c2f" path="res://assets/art/steak/Plate closeup.png" id="5_mnujy"]
+[ext_resource type="Texture2D" uid="uid://b68xffgof0rw0" path="res://assets/art/steak/Steak only (closeup).png" id="6_fc34u"]
+[ext_resource type="Texture2D" uid="uid://dwrvvjx07tb0x" path="res://assets/art/steak/Steak halfEaten.png" id="7_mnujy"]
 
-[node name="CloseupScene" type="Control" unique_id=1157262694]
+[node name="CloseupScene" type="Control" unique_id=1157262694 node_paths=PackedStringArray("butler", "balloon", "panel", "steaks")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,11 +17,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wsdlg")
+butler = NodePath("ButlerAreYouSure")
+balloon = NodePath("CloseupBalloon")
+panel = NodePath("Panel")
 resource = ExtResource("2_0fmhw")
-
-[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("1_cb615")]
-auto_start = false
-will_block_other_input = false
+steaks = [NodePath("ButlerAreYouSure/Control/FullSteak"), NodePath("ButlerAreYouSure/Control/HalfSteak")]
 
 [node name="Panel" type="Panel" parent="." unique_id=476430919]
 layout_mode = 1
@@ -28,18 +31,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1034250796]
-layout_mode = 0
-offset_left = -227.0
-offset_top = 22.0
-offset_right = 2942.7778
-offset_bottom = 1805.0
-texture = ExtResource("4_1bekq")
+[node name="CloseupBalloon" parent="." unique_id=38036521 instance=ExtResource("1_cb615")]
+layer = 4
+script = ExtResource("4_fc34u")
+dialogue_resource = null
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1347092139]
+[node name="ButlerAreYouSure" type="TextureRect" parent="." unique_id=1398920530]
+z_index = 5
 layout_mode = 0
-offset_left = 540.0
-offset_top = 127.0
-offset_right = 1564.0
-offset_bottom = 1151.0
-texture = ExtResource("4_0ld0x")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_fofiu")
+
+[node name="Control" type="CenterContainer" parent="ButlerAreYouSure" unique_id=1820687785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+
+[node name="Plate" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=1951612827]
+layout_mode = 2
+texture = ExtResource("5_mnujy")
+
+[node name="FullSteak" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=137294715]
+layout_mode = 2
+texture = ExtResource("6_fc34u")
+
+[node name="HalfSteak" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=100419921]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_mnujy")
+stretch_mode = 3
