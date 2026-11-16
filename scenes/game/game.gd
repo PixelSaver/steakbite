@@ -100,7 +100,9 @@ func _on_game_state_changed(new_state: TS) -> void:
 
 func _on_steak_selected(steak: SteakTile) -> void:
 	if not (TurnManager.state == TS.STEAK_ONE or \
-		TurnManager.state == TS.STEAK_TWO):
+		TurnManager.state == TS.STEAK_TWO or \
+		TurnManager.state == TS.CHOOSE_ONE or \
+		TurnManager.state == TS.CHOOSE_TWO):
 			# Not steak turn
 			push_warning("Steak tried to be selected when it isn't time to select steaks")
 			return

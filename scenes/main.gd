@@ -63,6 +63,10 @@ func _on_game_state_changed(new_state: TS) -> void:
 			end_turn_1.show()
 			end_turn_2.hide()
 			game_1.grab_first_focus()
+		TS.CHOOSE_ONE:
+			end_turn_1.hide()
+			end_turn_2.hide()
+			game_1.grab_first_focus()
 		TS.POWERUP_TWO:
 			end_turn_1.hide()
 			end_turn_2.hide()
@@ -70,6 +74,10 @@ func _on_game_state_changed(new_state: TS) -> void:
 		TS.STEAK_TWO:
 			end_turn_1.hide()
 			end_turn_2.show()
+			game_2.grab_first_focus()
+		TS.CHOOSE_TWO:
+			end_turn_1.hide()
+			end_turn_2.hide()
 			game_2.grab_first_focus()
 		TS.LOSS:
 			end_turn_1.hide()
@@ -91,4 +99,4 @@ func play_again():
 
 func exit_to_menu():
 	# TODO
-	pass
+	get_tree().reload_current_scene()
