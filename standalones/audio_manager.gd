@@ -8,14 +8,23 @@ extends Node
 enum Audio {
 	TEST,
 	MAIN_THEME,
+	TITLE,
+	AltMain_THEME,
+	EatConfirmPlate,
 }
 const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
 	Audio.MAIN_THEME: "res://assets/music/main_theme.ogg",
+	Audio.TITLE: "res://assets/sounds/Somber Orchestra.mp3",
+	Audio.AltMain_THEME: "res://assets/sounds/Horror_Ambience_Steakbite.mp3",
+	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate",
+	
 }
 # Music tracks use the dedicated music player.
 const MUSIC_TRACKS: Array[Audio] = [
 	Audio.MAIN_THEME,
+	Audio.TITLE,
+	Audio.AltMain_THEME
 ]
 
 #region AudioManager
