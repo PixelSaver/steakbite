@@ -81,6 +81,7 @@ func _fill_visuals() -> void:
 	
 	var combined = left_side_children
 	combined.append_array(right_side_children)
+	first_focus = combined.front()
 	
 	for i in combined.size():
 		if (i < powerup_resources.size()):

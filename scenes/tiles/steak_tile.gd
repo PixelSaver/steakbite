@@ -2,8 +2,9 @@
 extends Tile
 class_name SteakTile
 
-@export var left: Sprite2D
-@export var right: Sprite2D
+@export var left: TextureRect
+@export var right: TextureRect
+@export var plate: TextureRect
 @export var steak: TextureRect
 ## Holder variable to access the current tween, so that
 ## stopping current tween is super easy.
