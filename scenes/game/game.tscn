@@ -1,22 +1,14 @@
 [gd_scene format=3 uid="uid://dnjyx1trtl6w3"]
 
 [ext_resource type="Script" uid="uid://dpom2om6wlfbw" path="res://scenes/game/game.gd" id="1_0sr1o"]
-[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="1_7h61r"]
-[ext_resource type="PackedScene" uid="uid://bihaevdpdwn35" path="res://scenes/tiles/steak_tile.tscn" id="2_0sr1o"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_62g8b"]
-resource_name = "Tiles"
-scenes/1/scene = ExtResource("2_0sr1o")
-
-[sub_resource type="TileSet" id="TileSet_gkedh"]
-tile_size = Vector2i(192, 150)
-sources/1 = SubResource("TileSetScenesCollectionSource_62g8b")
+[ext_resource type="Texture2D" uid="uid://ih828tyvbg71" path="res://assets/art/BG_left.PNG" id="4_kelw5"]
+[ext_resource type="Texture2D" uid="uid://bydn43k4ctlmd" path="res://assets/art/BG_right.PNG" id="5_lfrn8"]
 
 [sub_resource type="Curve" id="Curve_0sr1o"]
 _data = [Vector2(0, 1), 0.0, -0.90625, 0, 1, Vector2(1, 0.09375), -0.90625, 0.0, 1, 0]
 point_count = 2
 
-[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("subviewport", "game_subviewport_container", "spotlight", "grid_container")]
+[node name="GameCont" type="AspectRatioContainer" unique_id=676852240 node_paths=PackedStringArray("left_visual", "right_visual", "subviewport", "game_subviewport_container", "spotlight", "grid_container")]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -28,12 +20,12 @@ size_flags_horizontal = 3
 ratio = 0.8889
 stretch_mode = 1
 script = ExtResource("1_0sr1o")
+left_visual = NodePath("Game/SubViewport/Control/LeftVisual")
+right_visual = NodePath("Game/SubViewport/Control/RightVisual")
 subviewport = NodePath("Game/SubViewport")
 game_subviewport_container = NodePath("Game")
-spotlight = NodePath("Game/SubViewport/SpotlightPrototype")
-grid_container = NodePath("Game/SubViewport/MarginContainer/GridContainer")
-spotlight_offset = null
-is_right = null
+spotlight = NodePath("Game/SubViewport/Control/SpotlightPrototype")
+grid_container = NodePath("Game/SubViewport/Control/MarginContainer/GridContainer")
 
 [node name="Game" type="SubViewportContainer" parent="." unique_id=645014815]
 layout_mode = 2
@@ -46,7 +38,7 @@ handle_input_locally = false
 size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
-[node name="Control" type="Control" parent="Game/SubViewport" unique_id=729047851]
+[node name="Control" type="Control" parent="Game/SubViewport" unique_id=334409989]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,29 +46,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Game/SubViewport" unique_id=1018670993]
-visible = false
-position = Vector2(339.0036, 323)
-scale = Vector2(8.023466, 6.2421875)
-texture = ExtResource("1_7h61r")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="Game/SubViewport" unique_id=1539185403]
-position = Vector2(0, 1080)
-tile_set = SubResource("TileSet_gkedh")
-navigation_enabled = false
-
-[node name="MarginContainer" type="MarginContainer" parent="Game/SubViewport" unique_id=1095964355]
-anchors_preset = -1
-anchor_top = 0.568
+[node name="LeftVisual" type="Control" parent="Game/SubViewport/Control" unique_id=729047851]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Game/SubViewport/MarginContainer" unique_id=2056467342]
-layout_mode = 2
+[node name="LeftBG" type="TextureRect" parent="Game/SubViewport/Control/LeftVisual" unique_id=1602262306]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_kelw5")
 
-[node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport" unique_id=1692020946]
+[node name="RightVisual" type="Control" parent="Game/SubViewport/Control" unique_id=946575414]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightBG" type="TextureRect" parent="Game/SubViewport/Control/RightVisual" unique_id=399113344]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 1080.0
+texture = ExtResource("5_lfrn8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Game/SubViewport/Control" unique_id=1095964355]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="GridContainer" type="GridContainer" parent="Game/SubViewport/Control/MarginContainer" unique_id=2056467342]
+layout_mode = 2
+theme_override_constants/v_separation = -20
+columns = 5
+
+[node name="SpotlightPrototype" type="Line2D" parent="Game/SubViewport/Control" unique_id=1692020946]
+modulate = Color(1, 1, 1, 0)
+rotation = 12768.817
 points = PackedVector2Array(0, 0, 0, -1300)
 width = 100.0
 width_curve = SubResource("Curve_0sr1o")
