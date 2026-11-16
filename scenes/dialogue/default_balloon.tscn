@@ -451,14 +451,12 @@ text = "Response example"
 unique_name_in_owner = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=307859664]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("5_p8l1l")
 
 [node name="Panel" type="Panel" parent="." unique_id=654263233]
-visible = false
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
