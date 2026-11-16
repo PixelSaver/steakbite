@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://djxds56cenfds"]
 
 [ext_resource type="FontFile" uid="uid://dvuonm3c2y5p5" path="res://assets/Fonts/just-serif.extra-bold.otf" id="1_81pgw"]
+[ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="1_cs2sx"]
 [ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="1_qew4h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkedh"]
@@ -15,6 +16,8 @@
 
 [resource]
 default_font_size = 40
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_cs2sx")
 Button/styles/disabled = SubResource("StyleBoxEmpty_gkedh")
 Button/styles/focus = SubResource("StyleBoxEmpty_plx5h")
 Button/styles/hover = SubResource("StyleBoxEmpty_c7qcy")

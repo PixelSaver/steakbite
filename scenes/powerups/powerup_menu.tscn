@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d5om0tmqjsly" path="res://scenes/powerups/powerup_menu.gd" id="1_2s6hi"]
 [ext_resource type="PackedScene" uid="uid://bx8cu1fkd3ud6" path="res://scenes/powerups/powerup_menu_item.tscn" id="1_ytud3"]
-[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="2_2s6hi"]
 [ext_resource type="Texture2D" uid="uid://df02ldtj04gsx" path="res://assets/art/Menu.png" id="2_l4062"]
 [ext_resource type="Script" uid="uid://b1k6jju8wwgf1" path="res://standalones/powerup/powerup.gd" id="2_u25pn"]
 [ext_resource type="Script" uid="uid://by4cmd2o8bbwx" path="res://scenes/powerups/next_button.gd" id="4_3fqmn"]
@@ -39,6 +38,18 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.85882354, 0.6117647, 0.18039216, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u25pn"]
+bg_color = Color(0.19907588, 0.15064031, 0.140428, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -83,12 +94,12 @@ grow_vertical = 2
 theme_override_constants/margin_left = 290
 theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 290
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_bottom = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=222520164]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 150
+theme_override_constants/separation = 160
 alignment = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=2003184387]
@@ -186,24 +197,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer" unique_id=678374294]
 layout_mode = 2
+ratio = 2.4967
 stretch_mode = 1
 alignment_horizontal = 2
 
 [node name="Next Button" type="Button" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=665904079 node_paths=PackedStringArray("outline")]
 layout_mode = 2
 size_flags_vertical = 3
-icon = ExtResource("2_2s6hi")
+text = "Continue?"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_3fqmn")
-outline = NodePath("../Highlight")
+outline = NodePath("Highlight")
 
-[node name="Highlight" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer" unique_id=1783826205]
+[node name="Highlight" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=1783826205]
 visible = false
-layout_mode = 2
+layout_mode = 0
+offset_right = 194.74261
+offset_bottom = 78.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4062")
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Panel2/VBoxContainer3/Panel/MarginContainer/AspectRatioContainer/Next Button" unique_id=794420557]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 194.74261
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u25pn")
