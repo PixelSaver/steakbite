@@ -1,0 +1,5 @@
+Butler: Are you sure you want to eat that?
+- Yes
+	Butler: Very well. [$> confirm()]
+- No
+	Butler: Very well. [$> deny()]

@@ -38,9 +38,10 @@ func _on_end_turn(id:int) -> void:
 		)
 
 func start_game() -> void:
-	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
+	TurnManager.state = TurnManager.TurnState.STEAK_ONE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	print("game state changing to: " + str(new_state))
 	match new_state:
 		TS.MENU:
 			pass
