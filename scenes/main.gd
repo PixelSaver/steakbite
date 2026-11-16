@@ -15,7 +15,7 @@ func _ready() -> void:
 	start_game()
 
 func start_game() -> void:
-	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
+	TurnManager.state = TurnManager.TurnState.STEAK_ONE
 
 func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:

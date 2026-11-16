@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cqo5fpk32trss"]
+
+[ext_resource type="Script" uid="uid://b847q645xem1x" path="res://scenes/dialogue/intro_cutscene.gd" id="1_1patc"]
+[ext_resource type="PackedScene" uid="uid://dt1u1dr86gnr" path="res://scenes/dialogue/balloon.tscn" id="1_vluhc"]
+[ext_resource type="Resource" uid="uid://bmrnv63opdfw6" path="res://scenes/dialogue/intro.dialogue" id="2_hjd8h"]
+[ext_resource type="Texture2D" uid="uid://b2oese3sm7bus" path="res://assets/icon.svg" id="3_lhndu"]
+[ext_resource type="Texture2D" uid="uid://b48gj0dc771iu" path="res://assets/art/butler_tray.png" id="4_1patc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1patc"]
+bg_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="IntroCutscene" type="Control" unique_id=1984434612 node_paths=PackedStringArray("butler_sprite", "balloon", "controls_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1patc")
+butler_normal = ExtResource("4_1patc")
+butler_punch = ExtResource("3_lhndu")
+butler_sprite = NodePath("ButlerSprite")
+balloon = NodePath("ExampleBalloon")
+controls_label = NodePath("MarginContainer")
+
+[node name="Panel" type="Panel" parent="." unique_id=517425155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("1_vluhc")]
+dialogue_resource = ExtResource("2_hjd8h")
+auto_start = true
+will_block_other_input = false
+
+[node name="ButlerSprite" type="TextureRect" parent="." unique_id=1033985693]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_1patc")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1946502714]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=47974114]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1patc")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1167508312]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=610606212]
+layout_mode = 2
+text = "Skip Tutorial: Space"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

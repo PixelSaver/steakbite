@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bg30yrfftnx8m"
+path="res://.godot/imported/eating.dialogue-d6edb4834622d66032dcef9f051f491a.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/eating.dialogue"
+dest_files=["res://.godot/imported/eating.dialogue-d6edb4834622d66032dcef9f051f491a.tres"]
+
+[params]
+
+defaults=true
