@@ -11,7 +11,7 @@ const TS = TurnManager.TurnState
 @export var end_turn_2: DefaultButton
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
 
-var p1_balance: int = 100
+var p1_balance: int = 0
 var p2_balance: int = 0
 
 # Called when the node enters the scene tree for the first time.

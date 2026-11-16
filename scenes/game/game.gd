@@ -17,6 +17,7 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
 @export var spotlight: Node2D
+
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -292,5 +293,9 @@ func eat_steak(pos: Vector2i) -> TileType:
 	set_tile(pos, TileType.EMPTY)
 	if out != TileType.EMPTY:
 		steaks_eaten_this_round += 1
+		if (TurnManager.state == TurnManager.TurnState.STEAK_ONE):
+			main.p1_balance += 1
+		else:
+			main.p2_balance += 1
 	return out
 #endregion
