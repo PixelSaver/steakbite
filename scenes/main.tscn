@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b1x7xs2y1diab" path="res://scenes/start_menu/start_menu.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cfrjwymq0mu44" path="res://scenes/dialogue/closeup_balloon.tscn" id="10_eb6dy"]
-[ext_resource type="Script" uid="uid://bwcj8s5oq131f" path="res://scenes/death_screen.gd" id="12_a8y0u"]
-[ext_resource type="Texture2D" uid="uid://7oksju58yv5r" path="res://assets/art/background/red_survived_end.png" id="13_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://dq4nqree48ln7" path="res://assets/art/background/yellow_survived_end.png" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://iutrot8irjta" path="res://scenes/game/death_screen.tscn" id="12_trceg"]
 [ext_resource type="Texture2D" uid="uid://cahcjv8iu8rh0" path="res://assets/art/butler/butler_notray.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="18_vxglm"]
 
@@ -46,7 +44,7 @@ shadow_color = Color(0.30980393, 0.2, 0.043137256, 0.6)
 shadow_size = 3
 shadow_offset = Vector2(5, 5)
 
-[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable", "death_screen")]
+[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +60,6 @@ end_turn_2 = NodePath("CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContain
 no_steak_panel = NodePath("CanvasLayer/NoSteak/Panel")
 no_steak_balloon = NodePath("CanvasLayer/NoSteak")
 no_steak_tweenable = NodePath("CanvasLayer/NoSteak/TextureRect/Tweenable")
-death_screen = NodePath("CanvasLayer/DeathScreen")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=703350261]
 layout_mode = 1
@@ -270,54 +267,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=67509505 node_paths=PackedStringArray("texture_rect", "table", "balloon")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_a8y0u")
-texture_rect = NodePath("TextureRect")
-left_survived_texture = ExtResource("13_jbj1t")
-right_survived_texture = ExtResource("13_jkv2x")
-table = NodePath("TextureRect2/Tweenable")
-balloon = NodePath("CloseupBalloon")
-metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DeathScreen" unique_id=1978127441]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("13_jkv2x")
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/DeathScreen" unique_id=1782054153]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-offset_transform_enabled = true
-texture = ExtResource("18_dp3eg")
-
-[node name="Tweenable" type="Node" parent="CanvasLayer/DeathScreen/TextureRect2" unique_id=1588510584 node_paths=PackedStringArray("parent")]
-script = ExtResource("18_vxglm")
-direction = Vector2(-1, 0)
-distance = 1440.0
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
-
-[node name="CloseupBalloon" parent="CanvasLayer/DeathScreen" unique_id=1759614214 instance=ExtResource("10_eb6dy")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Butler" type="TextureRect" parent="CanvasLayer/DeathScreen" unique_id=1088095049]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("18_dp3eg")
+[node name="DeathScreen" parent="CanvasLayer" unique_id=249694727 instance=ExtResource("12_trceg")]
 
 [node name="StartMenu" parent="CanvasLayer" unique_id=1921412290 instance=ExtResource("9_85g3d")]
 visible = false
