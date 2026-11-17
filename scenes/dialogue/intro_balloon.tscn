@@ -351,7 +351,6 @@ _data = {
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("1_urpmj")
-auto_start = true
 will_block_other_input = false
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
@@ -362,6 +361,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = SubResource("Theme_qq3yp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Balloon" unique_id=1302081376]
@@ -415,6 +415,7 @@ text = "Dialogue..."
 custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 1
 
 [node name="Progress" type="Polygon2D" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=2091292889]
 unique_name_in_owner = true
@@ -445,6 +446,7 @@ auto_focus_first_item = false
 
 [node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1446810977]
 layout_mode = 2
+mouse_filter = 1
 text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162558754]
@@ -454,7 +456,6 @@ unique_name_in_owner = true
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource("5_s1kp3")
 
 [node name="Panel" type="Panel" parent="." unique_id=654263233]
@@ -465,7 +466,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/CenterContainer/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
