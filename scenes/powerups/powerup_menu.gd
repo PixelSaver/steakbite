@@ -35,13 +35,9 @@ func _ready():
 
 func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
-		TS.POWERUP_ONE:
+		TS.POWERUP_ONE, TS.POWERUP_TWO:
 			start_anim()
-		TS.STEAK_ONE:
-			end_anim()
-		TS.POWERUP_TWO:
-			start_anim()
-		TS.STEAK_TWO:
+		TS.STEAK_ONE, TS.CHOOSE_ONE, TS.STEAK_TWO, TS.CHOOSE_TWO:
 			end_anim()
 
 #region Flipping animation

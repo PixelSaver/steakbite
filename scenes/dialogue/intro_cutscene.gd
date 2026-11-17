@@ -31,6 +31,7 @@ func start_anim():
 	).set_delay(0.3)
 
 func _on_dialogue_end(_resource):
+	print("dialogue end called from intro_cutscene")
 	if not self.visible: return
 	end_anim()
 
