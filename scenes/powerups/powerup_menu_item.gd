@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func _use() -> void:
 	#SOUND Powerup is bought / used
-	AudioManager.play(AudioManager.Audio.powerUpBought)
 	var is_player_one = true if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else false
 	var scene_root = get_tree().current_scene
 	var main = scene_root as Main

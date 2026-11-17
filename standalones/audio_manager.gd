@@ -34,10 +34,10 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate.mp3",
 	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff.wav",
 	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak.wav",
-	Audio.buttonSoft: "res://assets/sounds/SoftClick",
+	Audio.buttonSoft: "res://assets/sounds/SoftClick.wav",
 	Audio.getPoisoned: "res://assets/sounds/GetPoisoned.wav",
 	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu.mp3",
-	Audio.powerUpBought: "res://assets/sounds/cashRegister"
+	Audio.powerUpBought: "res://assets/sounds/cashRegister.wav"
 	
 	
 
