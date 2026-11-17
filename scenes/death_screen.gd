@@ -58,4 +58,4 @@ func end_anim() -> void:
 		return
 	print("Ending")
 	hide()
-	TurnManager.state = TurnManager.TurnState.MENU
+	get_tree().reload_current_scene()
