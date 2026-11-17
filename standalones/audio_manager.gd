@@ -9,7 +9,7 @@ enum Audio {
 	TEST,
 	MAIN_THEME,
 	TITLE,
-	AltMain_THEME,
+	altMainTheme,
 	EatConfirmPlate,
 	SpotlightOff,
 	buttonHover,
@@ -32,7 +32,7 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
 	Audio.MAIN_THEME: "res://assets/music/main_theme.ogg",
 	Audio.TITLE: "res://assets/sounds/Somber Orchestra.mp3",
-	Audio.AltMain_THEME: "res://assets/sounds/Horror_Ambience_Steakbite.mp3",
+	Audio.altMainTheme: "res://assets/sounds/Horror_Ambience_Steakbite.mp3",
 	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate.mp3",
 	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff.wav",
 	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak.wav",
@@ -51,7 +51,7 @@ const SOUNDS: Dictionary[Audio, String] = {
 const MUSIC_TRACKS: Array[Audio] = [
 	Audio.MAIN_THEME,
 	Audio.TITLE,
-	Audio.AltMain_THEME,
+	Audio.altMainTheme,
 ]
 
 #region AudioManager

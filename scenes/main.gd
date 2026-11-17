@@ -24,6 +24,8 @@ var t: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#SOUND Title screen?
+	
 	no_steak_tweenable.tween_value = 1.0
 	no_steak_panel.modulate.a = 0.0
 	SignalBus.game_state_changed.connect(_on_game_state_changed)

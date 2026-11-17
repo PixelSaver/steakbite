@@ -11,12 +11,16 @@ func _ready() -> void:
 	for but in buttons:
 		but.pressed.connect(_on_button_pressed.bind(but.name))
 	start_anim()
+	AudioManager.play(AudioManager.Audio.TITLE, -5, "MUSIC", true)
+
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 
 func _on_button_pressed(_name:String) -> void:
 	match _name.to_lower():
 		"play":
 			SignalBus.game_start.emit()
+			AudioManager.stop_music()
+			AudioManager.play(AudioManager.Audio.altMainTheme, -7, "MUSIC", true)
 			#TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 		"settings":
 			pass
