@@ -49,12 +49,6 @@ Amazing steak art, poisoned visual effect, and art direction
 
 ### Special Thanks
 
-Abdurrahman Syed
-
-Andrew Le
-
-Both above for playtesting
-
 #### Everyone who played
 
 ### Music & Sounds
