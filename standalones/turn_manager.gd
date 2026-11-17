@@ -23,7 +23,7 @@ func _ready() -> void:
 	SignalBus.turn_finished.connect(_on_turn_finished)
 
 func _on_game_start() -> void:
-	state = TurnState.POWERUP_ONE
+	state = TurnState.STEAK_ONE
 
 func _on_powerup_finished(is_player_one:bool) -> void:
 	state = TurnState.STEAK_TWO if is_player_one else TurnState.STEAK_ONE
