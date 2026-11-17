@@ -40,7 +40,6 @@ game_subviewport_container = NodePath("Game")
 spotlight = NodePath("Game/SubViewport/Control/Spotlight")
 poison_effect = NodePath("Game/SubViewport/Control/PoisonEffect")
 grid_container = NodePath("Game/SubViewport/Control/MarginContainer/GridContainer")
-num_poisoned = 20
 
 [node name="Game" type="SubViewportContainer" parent="." unique_id=645014815]
 layout_mode = 2
