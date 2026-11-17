@@ -55,7 +55,9 @@ func start_anim() -> void:
 	_fill_visuals()
 	show() 
 	_assign_focus()
+	#SOUND Menu / Powerup menu starts flipping up
 	await t.finished
+	#SOUND Menu / Powerup menu finishes flipping up
 	first_focus.grab_focus()
 func end_anim() -> void:
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
@@ -64,6 +66,10 @@ func end_anim() -> void:
 	t.tween_property(self, "flip_percentage", 0., 0.7)
 	#t.tween_property(subviewport_cont, "offset_transform_position_ratio:y", 0.5, 0.7)
 	
+	#SOUND Menu / Powerup menu starts flipping down
+	AudioManager.play(AudioManager.Audio.powerMenuFlipDown)
+	await t.finished
+	#SOUND Menu / Powerup menu finishes flipping down
 ## From [0,1] to set the flip visual, 0 is down, 1 is up
 func _set_flip_percentage(ratio: float) -> void:
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")

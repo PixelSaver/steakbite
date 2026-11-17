@@ -36,7 +36,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_7pncx")
-is_empty = null
 outline = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/Highlight")
 icon_container = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer")
 power_icon = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/TextureRect")

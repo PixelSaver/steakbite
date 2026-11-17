@@ -54,6 +54,7 @@ func _notification(what: int) -> void:
 			_unhover()
 
 func _on_pressed() -> void:
+	#SOUND end turn button pressed (becomes other guys turn)
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT)
@@ -62,6 +63,7 @@ func _on_pressed() -> void:
 	
 
 func _hover() -> void:
+	#SOUND end turn button hovered
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
