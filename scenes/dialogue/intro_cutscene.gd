@@ -7,6 +7,7 @@ extends PixelMenu
 @export var balloon: CanvasLayer
 @export var controls_label: Control
 @export var game: GameContainer
+@export var turn_change: TurnChangeBanner
 
 var t: Tween
 
@@ -43,6 +44,7 @@ func end_anim():
 	await t.finished
 	TurnManager.state = TurnManager.TurnState.STEAK_ONE
 	SignalBus.intro_cutscene_finished.emit()
+	turn_change.start_anim()
 	self.hide()
 	self.queue_free()
 

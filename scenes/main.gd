@@ -13,7 +13,7 @@ const TS = TurnManager.TurnState
 @export var no_steak_panel: Panel
 @export var no_steak_balloon: CloseUpBalloon
 @export var no_steak_tweenable: Tweenable
-@export var death_screen: DeathScreen
+#@export var death_screen: DeathScreen
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
 
 var p1_balance: int = 0
