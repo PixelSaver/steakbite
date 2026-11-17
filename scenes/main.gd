@@ -37,12 +37,15 @@ func _on_end_turn(id:int) -> void:
 		if game_1.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_TWO
 			#SOUND Ended turn for player 1
+			
+			
 		else:
 			_no_steak_cutscene()
 	elif id == 2 and TurnManager.state == TS.STEAK_TWO:
 		if game_2.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_ONE
 			#SOUND Ended turn for player 1
+			
 		else:
 			_no_steak_cutscene()
 	else:

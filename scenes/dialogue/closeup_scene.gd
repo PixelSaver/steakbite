@@ -66,7 +66,8 @@ func confirm() -> void:
 	game.eat_steak(selected_steak_pos)
 	await get_tree().create_timer(eat_delay).timeout
 	end_anim()
-	
+	#SOUND steak eating animation sound
+	AudioManager.play(AudioManager.Audio.EatConfirmPlate, -1, "SFX")
 func deny():
 	await get_tree().create_timer(0.5).timeout
 	end_anim()

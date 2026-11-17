@@ -13,6 +13,7 @@ enum Audio {
 	EatConfirmPlate,
 	SpotlightOff,
 	buttonHover,
+	buttonSoft,
 	getPoisoned,
 	steakZoomIn,
 	steakPass,
@@ -23,7 +24,7 @@ enum Audio {
 	powerUpBought,
 	powerMenuFlipUp,
 	InvalidOption,
-	EndTurn,
+	endTurn,
 }
 const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
@@ -33,8 +34,12 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.EatConfirmPlate: "res://assets/sounds/EatConfirmPlate.mp3",
 	Audio.SpotlightOff: "res://assets/sounds/SpotlightOff.wav",
 	Audio.buttonHover: "res://assets/sounds/ButtonHoverSteak.wav",
+	Audio.buttonSoft: "res://assets/sounds/SoftClick.wav",
 	Audio.getPoisoned: "res://assets/sounds/GetPoisoned.wav",
 	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu.mp3",
+	Audio.powerUpBought: "res://assets/sounds/cashRegister.wav",
+	Audio.endTurn: "res://assets/sounds/SpotlightON.wav",
+	
 	
 
 	

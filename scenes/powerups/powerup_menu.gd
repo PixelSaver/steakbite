@@ -60,6 +60,7 @@ func start_anim() -> void:
 	show() 
 	_assign_focus()
 	#SOUND Menu / Powerup menu starts flipping up
+	AudioManager.play(AudioManager.Audio.powerMenuFlipDown)
 	await t.finished
 	#SOUND Menu / Powerup menu finishes flipping up
 	first_focus.grab_focus()

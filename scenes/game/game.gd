@@ -357,6 +357,8 @@ func eat_steak(pos: Vector2i) -> TileType:
 	return out
 	
 func lose_life() -> void:
+	#SOUND Ate a bad steak
+	AudioManager.play(AudioManager.Audio.getPoisoned, -8, "SFX")
 	if is_right:
 		main.p2_lives -= 1
 		if main.p2_lives > 0:
