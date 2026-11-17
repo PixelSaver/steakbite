@@ -47,7 +47,7 @@ func end_anim():
 	self.queue_free()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s"):
+	if TurnManager.state != TurnManager.TurnState.MENU and (Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s")):
 		butler_sprite.show()
 		balloon.hide()
 		controls_label.hide()
