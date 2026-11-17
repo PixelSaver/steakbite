@@ -73,12 +73,21 @@ func _no_steak_cutscene() -> void:
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	t.tween_property(no_steak_tweenable, "tween_value", 1.0, 0.7)
 	t.tween_property(no_steak_panel, "modulate:a", 0.0, 0.7)
-	
+	get_current_game().grab_first_focus()
 
+func get_current_game() -> GameContainer:
+	return game_2 if TurnManager.player_turn() == 2 else game_1
+	
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if event.is_action_pressed("1"):
+			SignalBus.player_died.emit(false)
+			TurnManager.state = TurnManager.TurnState.LOSS
 func start_game() -> void:
-	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
+	TurnManager.state = TurnManager.TurnState.STEAK_ONE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	print("on game state change called in main")
 	print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	match new_state:
 		TS.MENU:

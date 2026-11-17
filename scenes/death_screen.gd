@@ -13,6 +13,7 @@ func _ready() -> void:
 	hide()
 	SignalBus.player_died.connect(_on_player_died)
 
+
 func _on_player_died(is_right: bool) -> void:
 	if is_right: 
 		texture_rect.texture = left_survived_texture
@@ -29,7 +30,9 @@ func start_anim() -> void:
 	t.tween_property(table, "tween_value", 1.0, 0.7)
 	#t.tween_property(no_steak_panel, "modulate:a", 0.0, 0.7)
 	balloon.start(LOSS)
-	balloon.grab_focus()
+	balloon.balloon.grab_focus()
+	await get_tree().process_frame
+	balloon.balloon.grab_focus()
 	await balloon.dialogue_finished
 	
 	end_anim()
