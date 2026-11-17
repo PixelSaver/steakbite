@@ -30,6 +30,7 @@ func _ready() -> void:
 	SignalBus.steak_selected.connect(_on_steak_selected)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 	SignalBus.close_up_menu_closed.connect(func(confirmed: String):
+		
 		if confirmed == "yes": confirm()
 		else: deny()
 	)
@@ -48,6 +49,7 @@ func confirm() -> void:
 	if selected_steak_pos < Vector2i(0,0):
 		push_warning("Vector position is invalid. Not initialized in CloseUpMenu?")
 		return
+	#SOUND steak eating animation sound
 	balloon.hide()
 	steaks[0].show()
 	steaks[1].hide()
@@ -62,7 +64,7 @@ func confirm() -> void:
 	game.eat_steak(selected_steak_pos)
 	await get_tree().create_timer(0.5).timeout
 	end_anim()
-	
+	AudioManager.play(AudioManager.Audio.EatConfirmPlate, -1, "SFX")
 func deny():
 	await get_tree().create_timer(0.5).timeout
 	end_anim()
