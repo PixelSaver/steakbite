@@ -31,7 +31,7 @@ func set_right(is_right: bool) -> void:
 		right.hide()
 func _on_focus(entered:bool) -> void:
 	#SOUND Spotlight points to steak / steak is highlighted
-	
+	AudioManager.play(AudioManager.Audio.buttonSoft, -3)
 	# stops the previous tween where it last was
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
