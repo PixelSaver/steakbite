@@ -84,4 +84,3 @@ stretch_mode = 5
 
 [node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("5_ipsb2")]
 dialogue_resource = ExtResource("2_hjd8h")
-auto_start = false

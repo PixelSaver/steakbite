@@ -12,8 +12,8 @@ const TS = TurnManager.TurnState
 @export var no_steak_panel: Panel
 @export var no_steak_balloon: CloseUpBalloon
 @export var no_steak_tweenable: Tweenable
+@export var death_screen: DeathScreen
 const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
-const LOSS = preload("uid://dgvrmatmr6fv6")
 
 var p1_balance: int = 0
 var p2_balance: int = 0
@@ -97,8 +97,9 @@ func _on_game_state_changed(new_state: TS) -> void:
 		TS.LOSS:
 			end_turn_1.hide()
 			end_turn_2.hide()
-			await get_tree().create_timer(1.0).timeout
-			DialogueManager.show_dialogue_balloon(LOSS, "", [self])
+			#await get_tree().create_timer(1.0).timeout
+			#death_screen.start_anim()
+			#DialogueManager.show_dialogue_balloon(LOSS, "", [self])
 			pass
 
 func get_winning_player() -> String:
