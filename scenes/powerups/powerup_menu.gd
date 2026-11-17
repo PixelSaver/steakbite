@@ -27,7 +27,7 @@ func _ready():
 	mat = PERSPECTIVE_SHADER_MATERIAL.duplicate()
 	subviewport_cont.material = mat
 	flip_percentage = 0.
-	SignalBus.intro_cutscene_finished.connect(_on_game_state_changed.bind(TS.POWERUP_ONE))
+	#SignalBus.intro_cutscene_finished.connect(_on_game_state_changed.bind(TS.POWERUP_ONE))
 	await SignalBus.game_start
 	print("Game started, listening")
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
