@@ -9,6 +9,7 @@ const TS = TurnManager.TurnState
 @export var game_2: GameContainer
 @export var end_turn_1: DefaultButton
 @export var end_turn_2: DefaultButton
+@export var turn_change: TurnChangeBanner
 @export var no_steak_panel: Panel
 @export var no_steak_balloon: CloseUpBalloon
 @export var no_steak_tweenable: Tweenable
@@ -93,6 +94,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 		TS.MENU:
 			pass
 		TS.POWERUP_ONE:
+			turn_change.start_anim()
 			end_turn_1.hide()
 			end_turn_2.hide()
 			pass
@@ -105,6 +107,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 			end_turn_2.hide()
 			game_1.grab_first_focus()
 		TS.POWERUP_TWO:
+			turn_change.start_anim()
 			end_turn_1.hide()
 			end_turn_2.hide()
 			pass
