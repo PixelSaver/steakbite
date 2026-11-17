@@ -25,6 +25,8 @@ enum Audio {
 	powerMenuFlipUp,
 	InvalidOption,
 	endTurn,
+	BUTLER_PUNCH,
+	BUTLER_TALK,
 }
 const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
@@ -39,7 +41,8 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.powerMenuFlipDown: "res://assets/sounds/LowerMenu.mp3",
 	Audio.powerUpBought: "res://assets/sounds/cashRegister.wav",
 	Audio.endTurn: "res://assets/sounds/SpotlightON.wav",
-	
+	Audio.BUTLER_TALK: "res://assets/sounds/ButlerTalk.wav",
+	Audio.BUTLER_PUNCH: "res://assets/sounds/punch.wav",
 	
 
 	

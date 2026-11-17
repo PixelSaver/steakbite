@@ -52,5 +52,6 @@ func _process(_delta):
 		balloon.hide()
 		controls_label.hide()
 		butler_sprite.texture = butler_punch
+		AudioManager.play(AudioManager.Audio.BUTLER_PUNCH)
 		await get_tree().create_timer(0.5).timeout
 		end_anim()
