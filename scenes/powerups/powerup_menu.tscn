@@ -11,6 +11,15 @@
 [ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="6_1ypni"]
 [ext_resource type="Resource" uid="uid://clrtxat6slvqp" path="res://assets/powerup_resources/check_powerup.tres" id="6_b1m4a"]
 [ext_resource type="Resource" uid="uid://vua4s3khykwc" path="res://assets/powerup_resources/flip_steak_powerup.tres" id="7_wp3pm"]
+[ext_resource type="Shader" uid="uid://gkshhi5ufm1b" path="res://shaders/perspective.gdshader" id="8_pwq54"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_leki7"]
+shader = ExtResource("8_pwq54")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pncx"]
 
@@ -79,12 +88,14 @@ continue_button = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBo
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1540394527]
+material = SubResource("ShaderMaterial_leki7")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=861227478]
 disable_3d = true

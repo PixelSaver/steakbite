@@ -2,6 +2,7 @@ extends PixelMenu
 class_name StartMenu
 
 @export var buttons: Array[DefaultButton]
+@export var credits: Credits
 @export var table: Tweenable
 var all_t : Array[Tweenable] = []
 var t: Tween 
@@ -12,8 +13,11 @@ func _ready() -> void:
 		but.pressed.connect(_on_button_pressed.bind(but.name))
 	start_anim()
 	AudioManager.play(AudioManager.Audio.TITLE, -15, "MUSIC", true)
-
+	credits.end_animationing.connect(_on_credits_end)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
+
+func _on_credits_end() -> void:
+	buttons.front().grab_focus()
 
 func _on_button_pressed(_name:String) -> void:
 	match _name.to_lower():
@@ -25,7 +29,7 @@ func _on_button_pressed(_name:String) -> void:
 		"settings":
 			pass
 		"credits":
-			pass
+			credits.start_anim()
 		"quit":
 			pass
 			#TODO If we have time, do a butler being angry thing

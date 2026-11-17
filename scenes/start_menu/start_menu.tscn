@@ -4,8 +4,28 @@
 [ext_resource type="Texture2D" uid="uid://dhv3mhsql1yts" path="res://assets/art/background/steakbite_titlescreen.png" id="2_ujype"]
 [ext_resource type="PackedScene" uid="uid://bk1srw633oqx8" path="res://utilities/ui/menus/default_button.tscn" id="3_ujype"]
 [ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="4_ifyap"]
+[ext_resource type="Script" uid="uid://c11r5nussg4cc" path="res://scenes/start_menu/credits.gd" id="5_4v5wy"]
+[ext_resource type="Shader" uid="uid://gkshhi5ufm1b" path="res://shaders/perspective.gdshader" id="6_eum3g"]
+[ext_resource type="Texture2D" uid="uid://df02ldtj04gsx" path="res://assets/art/Menu.png" id="7_eum3g"]
+[ext_resource type="Script" uid="uid://dk25427rjoa7w" path="res://scenes/start_menu/flip_up_component.gd" id="7_rudpn"]
 
-[node name="StartMenu" type="Control" unique_id=1921412290 node_paths=PackedStringArray("buttons", "table")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gu1vn"]
+shader = ExtResource("6_eum3g")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eum3g"]
+shader = ExtResource("6_eum3g")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="StartMenu" type="Control" unique_id=1921412290 node_paths=PackedStringArray("buttons", "credits", "table")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +37,7 @@ offset_transform_visual_only = false
 mouse_filter = 1
 script = ExtResource("1_ces3l")
 buttons = [NodePath("Margin/VBoxContainer/Play"), NodePath("Margin/VBoxContainer/Settings"), NodePath("Margin/VBoxContainer/Credits"), NodePath("Margin/VBoxContainer/Quit")]
+credits = NodePath("Credits")
 table = NodePath("Tweenable")
 metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
 
@@ -91,3 +112,149 @@ direction = Vector2(0, -1)
 distance = 1080.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
+
+[node name="Credits" type="Control" parent="." unique_id=2780511 node_paths=PackedStringArray("flip_comp", "exit_credits")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_4v5wy")
+flip_comp = NodePath("SubViewportContainer/FlipUpComponent")
+exit_credits = NodePath("SubViewportContainer/SubViewport/Control/MarginContainer/MarginContainer2/Control/Exit")
+metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Credits" unique_id=2020634192]
+material = SubResource("ShaderMaterial_gu1vn")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+offset_transform_enabled = true
+
+[node name="SubViewport" type="SubViewport" parent="Credits/SubViewportContainer" unique_id=909904089]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="Credits/SubViewportContainer/SubViewport" unique_id=828042227]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits/SubViewportContainer/SubViewport/Control" unique_id=633974772]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="TextureRect" parent="Credits/SubViewportContainer/SubViewport/Control/CenterContainer" unique_id=6174062]
+material = SubResource("ShaderMaterial_eum3g")
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("7_eum3g")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits/SubViewportContainer/SubViewport/Control" unique_id=164836452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 320
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer" unique_id=1991138445]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/HBoxContainer" unique_id=766746382]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/HBoxContainer/MarginContainer" unique_id=263296040]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center][font_size=35][font bt=5][outline_color=#781717][color=#000][font_size=50][b][outline_size=10]CREDITS[/outline_size][/b][/font_size][/color]
+[color=#000s][font_size=30]Made for [b][color=#781717]SteakBite[/color][/b][/font_size][/color]
+
+[font_size=35][b][color=#000]DEVELOPMENT[/color][/b][/font_size]
+[font_size=30][color=#000][b]Game Design[/b][/color][/font_size]
+[color=#781717]PixelSaver[/color]
+[color=#781717]MajesticWater[/color]
+[color=#000][b]Programming[/b][/color]
+[color=#781717]PixelSaver[/color]
+[color=#781717]Bree Tassinari[/color]
+[color=#000][b]Art Team[/b][/color]
+[color=#781717]E. Montgomery[/color]
+[font_size=22]Background art, title screen, creepy character art, spotlight, powerup icon art, turn change banner, art direction, and punching the butler[/font_size]
+[color=#781717]Noah Teng[/color]
+[font_size=22]Amazing steak art, poisoned visual effect, and art direction[/font_size]"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/HBoxContainer" unique_id=423089990]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1514142784]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center][font_size=35][font bt=5][outline_color=#781717][color=#000][font_size=50][b][outline_size=10][/outline_size][/b][/font_size][/color]
+[color=#000s][font_size=30]Made for [b][color=#781717]SteakBite[/color][/b][/font_size][/color]
+
+[font_size=35][b][color=#000]ACKNOWLEDGEMENTS[/color][/b][/font_size]
+[font_size=30][color=#000][b]Special Thanks[/b][/color][/font_size]
+[color=#781717]Abdurrahman Syed[/color]
+[color=#781717]Andrew Le[/color]
+[font_size=20]Both above for playtesting[/font_size]
+Everyone who played!
+[color=#000][b]Music & Sounds[/b][/color]
+[url href=\"https://joegallagher.itch.io/free-orchestral-music-pack \"]Lost Kingdom (Menu Theme)[/url]
+[url href=\"https://juanjosound.itch.io/dreamcore-music \"]6 - Dreamcore: Purgatory[/url]
+
+[font_size=20s][color=#000]Made with [url href=\"https://godotengine.org\"]Godot Engine[/url][/color][/font_size]"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer" unique_id=1335089126]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/MarginContainer2" unique_id=1532667033]
+layout_mode = 2
+
+[node name="Exit" parent="Credits/SubViewportContainer/SubViewport/Control/MarginContainer/MarginContainer2/Control" unique_id=1704737930 instance=ExtResource("3_ujype")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "->"
+button_text = "[font_size=60]==>"
+
+[node name="FlipUpComponent" type="Node" parent="Credits/SubViewportContainer" unique_id=960140934 node_paths=PackedStringArray("parent")]
+script = ExtResource("7_rudpn")
+flip = 1.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://dk25427rjoa7w"
