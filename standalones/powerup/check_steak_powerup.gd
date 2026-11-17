@@ -4,11 +4,9 @@ class_name CheckSteakPowerup
 func apply(_is_player_one: bool, main: Main) -> bool:
 	if (!super(_is_player_one, main)): return false
 	
-	print("did apply work???")
 	SignalBus.steak_selected.connect(_on_steak_selected.bind(_is_player_one, main))
 	
 	TurnManager.state = TurnManager.TurnState.CHOOSE_ONE if _is_player_one else TurnManager.TurnState.CHOOSE_TWO
-	SignalBus.game_state_changed.emit(TurnManager.state)
 	
 	return true
 

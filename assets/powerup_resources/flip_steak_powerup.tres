@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FlipSteakPowerup" format=3 uid="uid://vua4s3khykwc"]
+
+[ext_resource type="Script" uid="uid://bg6b6ydqu8m8b" path="res://standalones/powerup/flip_steak_powerup.gd" id="1_kcggl"]
+[ext_resource type="Texture2D" uid="uid://bu30m8mj5cbu3" path="res://assets/art/powerups/icon_flip.PNG" id="2_h8csq"]
+
+[resource]
+script = ExtResource("1_kcggl")
+name = "Flip Steak"
+description = "Choose a steak on your side to flip. If it is clean, it will become poisoned. If it is poisoned, it will become clean."
+texture = ExtResource("2_h8csq")
+metadata/_custom_type_script = "uid://bg6b6ydqu8m8b"
