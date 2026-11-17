@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d2vywh70q4c2f" path="res://assets/art/steak/Plate closeup.png" id="5_mnujy"]
 [ext_resource type="Texture2D" uid="uid://b68xffgof0rw0" path="res://assets/art/steak/Steak only (closeup).png" id="6_fc34u"]
 [ext_resource type="Texture2D" uid="uid://dwrvvjx07tb0x" path="res://assets/art/steak/Steak halfEaten.png" id="7_mnujy"]
+[ext_resource type="Texture2D" uid="uid://bttkh44ewn0fk" path="res://assets/art/steak/Steak crumbs only.png" id="8_fc34u"]
 
 [node name="CloseupScene" type="Control" unique_id=1157262694 node_paths=PackedStringArray("butler", "balloon", "panel", "steaks")]
 layout_mode = 3
@@ -39,7 +40,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="ButlerAreYouSure" type="TextureRect" parent="." unique_id=1398920530]
 z_index = 5
@@ -61,6 +61,10 @@ offset_transform_scale = Vector2(0.8, 0.8)
 [node name="Plate" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=1951612827]
 layout_mode = 2
 texture = ExtResource("5_mnujy")
+
+[node name="CrumbsSteak" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=778990826]
+layout_mode = 2
+texture = ExtResource("8_fc34u")
 
 [node name="FullSteak" type="TextureRect" parent="ButlerAreYouSure/Control" unique_id=137294715]
 layout_mode = 2
