@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b1x7xs2y1diab" path="res://scenes/start_menu/start_menu.tscn" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://b558mfubswyu" path="res://scenes/turn_change.gd" id="9_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cfrjwymq0mu44" path="res://scenes/dialogue/closeup_balloon.tscn" id="10_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://4fjtdy1quyie" path="res://assets/art/background/turn banner left.PNG" id="10_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dgieije4wig77" path="res://assets/art/background/turn banner right.PNG" id="11_muem4"]
 [ext_resource type="PackedScene" uid="uid://bmkbeolthhcj3" path="res://scenes/game/death_screen.tscn" id="12_trceg"]
 [ext_resource type="Texture2D" uid="uid://cahcjv8iu8rh0" path="res://assets/art/butler/butler_notray.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="18_vxglm"]
@@ -44,7 +47,7 @@ shadow_color = Color(0.30980393, 0.2, 0.043137256, 0.6)
 shadow_size = 3
 shadow_offset = Vector2(5, 5)
 
-[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable")]
+[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "turn_change", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +60,7 @@ game_1 = NodePath("HBoxContainer/Game")
 game_2 = NodePath("HBoxContainer/Game2")
 end_turn_1 = NodePath("CanvasLayer/HBoxContainer/Left/EndTurnCont/HBoxContainer/MarginContainer/EndTurn1")
 end_turn_2 = NodePath("CanvasLayer/HBoxContainer/Right/VBoxContainer/HBoxContainer/MarginContainer/EndTurn2")
+turn_change = NodePath("CanvasLayer/TurnChange")
 no_steak_panel = NodePath("CanvasLayer/NoSteak/Panel")
 no_steak_balloon = NodePath("CanvasLayer/NoSteak")
 no_steak_tweenable = NodePath("CanvasLayer/NoSteak/TextureRect/Tweenable")
@@ -232,6 +236,41 @@ main = NodePath("../..")
 game1 = NodePath("../../HBoxContainer/Game")
 game2 = NodePath("../../HBoxContainer/Game2")
 
+[node name="TurnChange" type="Control" parent="CanvasLayer" unique_id=1057461911 node_paths=PackedStringArray("table", "main", "rect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_a8y0u")
+table = NodePath("TextureRect/Tweenable")
+main = NodePath("../..")
+rect = NodePath("TextureRect")
+left_turn = ExtResource("10_jbj1t")
+right_turn = ExtResource("11_muem4")
+metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TurnChange" unique_id=1732770467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -1080)
+texture = ExtResource("11_muem4")
+stretch_mode = 3
+
+[node name="Tweenable" type="Node" parent="CanvasLayer/TurnChange/TextureRect" unique_id=66984351 node_paths=PackedStringArray("parent")]
+script = ExtResource("18_vxglm")
+tween_value = 1.0
+direction = Vector2(0, 1)
+distance = -1080.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
+
 [node name="NoSteak" parent="CanvasLayer" unique_id=200645836 instance=ExtResource("10_eb6dy")]
 visible = false
 anchors_preset = 15
@@ -268,6 +307,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="DeathScreen" parent="CanvasLayer" unique_id=249694727 instance=ExtResource("12_trceg")]
+visible = false
 
 [node name="StartMenu" parent="CanvasLayer" unique_id=1921412290 instance=ExtResource("9_85g3d")]
 visible = false
