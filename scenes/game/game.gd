@@ -79,6 +79,7 @@ func _ready() -> void:
 	#end_turn.focus_exited.connect(_on_focus_changed.bind(end_turn))
 
 func enable_focus(enable:bool) -> void:
+	print("right side? " + str(is_right) + " enabling? " + str(enable))
 	subviewport.set_process_input(enable)
 	self.focus_mode = Control.FOCUS_ALL if enable else Control.FOCUS_NONE
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
@@ -89,9 +90,9 @@ func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
 		TS.MENU:
 			pass
-		TS.STEAK_ONE:
+		TS.STEAK_ONE, TS.CHOOSE_ONE:
 			enable_focus(not is_right)
-		TS.STEAK_TWO:
+		TS.STEAK_TWO, TS.CHOOSE_TWO:
 			enable_focus(is_right)
 		TS.POWERUP_ONE, TS.POWERUP_TWO:
 			enable_focus(false)
@@ -99,8 +100,11 @@ func _on_game_state_changed(new_state: TS) -> void:
 			pass
 
 func _on_steak_selected(steak: SteakTile) -> void:
+	print("steak selected????")
 	if not (TurnManager.state == TS.STEAK_ONE or \
-		TurnManager.state == TS.STEAK_TWO):
+		TurnManager.state == TS.STEAK_TWO or \
+		TurnManager.state == TS.CHOOSE_ONE or \
+		TurnManager.state == TS.CHOOSE_TWO):
 			# Not steak turn
 			push_warning("Steak tried to be selected when it isn't time to select steaks")
 			return

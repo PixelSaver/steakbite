@@ -30,19 +30,23 @@ func _ready() -> void:
 	SignalBus.steak_selected.connect(_on_steak_selected)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 	SignalBus.close_up_menu_closed.connect(func(confirmed: String):
+		
 		if confirmed == "yes": confirm()
 		else: deny()
 	)
 	if not main: start_anim()
 
 func _on_dialogue_end(_resource):
-	print("dialogue ended")
-	end_anim()
+	if (_resource == CLOSEUP_BALLOON):
+		end_anim()
+	else:
+		print("dialogue end called from closeup_scene incorrectly")
 
 func _on_steak_selected(_steak: SteakTile, pos: Vector2i, _id: int) -> void:
-	selected_steak_pos = pos
-	print("Steak selected")
-	start_anim()
+	if TurnManager.state == TurnManager.TurnState.STEAK_ONE or \
+	TurnManager.state == TurnManager.TurnState.STEAK_TWO:
+		selected_steak_pos = pos
+		start_anim()
 
 func confirm() -> void:
 	if selected_steak_pos < Vector2i(0,0):
