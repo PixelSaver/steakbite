@@ -27,6 +27,7 @@ func _set_focus(entered: bool) -> void:
 	t = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	if (entered):
 		#SOUND Powerup Menu Continue button hover
+		AudioManager.play(AudioManager.Audio.buttonSoft)
 		outline.visible = true
 		t.tween_property(self, "scale", Vector2.ONE * 1.08, 0.3)
 	else:
