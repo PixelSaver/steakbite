@@ -14,6 +14,7 @@ enum TurnState {
 var state: TurnState = TurnState.MENU :
 	set(val):
 		if val == state: return 
+		SignalBus.game_state_changed_with_last.emit(val, state)
 		state = val
 		SignalBus.game_state_changed.emit(val)
 

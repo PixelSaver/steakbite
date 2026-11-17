@@ -1,6 +1,7 @@
 extends PixelMenu
 class_name TurnChangeBanner
 
+const TS = TurnManager.TurnState
 signal banner_finished
 @export var table: Tweenable
 @export var main: Main
@@ -12,6 +13,15 @@ var t: Tween
 func _ready() -> void:
 	hide()
 	table.tween_value = 1.0
+	SignalBus.game_state_changed_with_last.connect(_on_gs_changed)
+
+func _on_gs_changed(new_state: TS, old_state: TS) -> void:
+	if new_state == TS.POWERUP_ONE and old_state != TS.CHOOSE_ONE:
+		await get_tree().process_frame
+		start_anim()
+	if new_state == TS.POWERUP_TWO and old_state != TS.CHOOSE_TWO:
+		await get_tree().process_frame
+		start_anim()
 
 func _update_leftright() -> void:
 	if TurnManager.player_turn() == 0: 
@@ -20,8 +30,8 @@ func _update_leftright() -> void:
 	
 
 func start_anim() -> void: 
-	_update_leftright()
 	show()
+	_update_leftright()
 	if t and t.is_running(): t.kill()
 	t = default_tween()
 	t.set_parallel(false)

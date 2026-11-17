@@ -94,7 +94,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 		TS.MENU:
 			pass
 		TS.POWERUP_ONE:
-			turn_change.start_anim()
+			#turn_change.start_anim()
 			end_turn_1.hide()
 			end_turn_2.hide()
 			pass
@@ -107,7 +107,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 			end_turn_2.hide()
 			game_1.grab_first_focus()
 		TS.POWERUP_TWO:
-			turn_change.start_anim()
+			#turn_change.start_anim()
 			end_turn_1.hide()
 			end_turn_2.hide()
 			pass
