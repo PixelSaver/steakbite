@@ -72,7 +72,11 @@ func _no_steak_cutscene() -> void:
 	t.tween_property(no_steak_tweenable, "tween_value", 1.0, 0.7)
 	t.tween_property(no_steak_panel, "modulate:a", 0.0, 0.7)
 	
-
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if event.is_action_pressed("1"):
+			SignalBus.player_died.emit(false)
+			TurnManager.state = TurnManager.TurnState.LOSS
 func start_game() -> void:
 	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 
