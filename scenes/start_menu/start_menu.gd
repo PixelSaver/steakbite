@@ -11,7 +11,7 @@ func _ready() -> void:
 	for but in buttons:
 		but.pressed.connect(_on_button_pressed.bind(but.name))
 	start_anim()
-	AudioManager.play(AudioManager.Audio.TITLE, -5, "MUSIC", true)
+	AudioManager.play(AudioManager.Audio.TITLE, -15, "MUSIC", true)
 
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 
