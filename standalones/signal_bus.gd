@@ -16,8 +16,11 @@ signal steak_selected(steak: SteakTile, pos: Vector2i, id: int)
 ## Signal for when a steak is eaten
 signal steak_eaten(steak: SteakTile)
 @warning_ignore("unused_signal")
-signal close_up_menu_closed()
-
+signal close_up_menu_closed(confirm: String)
+@warning_ignore("unused_signal")
+signal intro_cutscene_finished()
+@warning_ignore("unused_signal")
+signal balance_changed()
 
 func _ready() -> void:
 	SignalBus.game_start.connect(_test)

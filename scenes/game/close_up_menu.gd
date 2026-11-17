@@ -1,5 +1,4 @@
 extends PixelMenu
-class_name CloseUpMenu
 
 @export var yes: Button
 @export var no: Button

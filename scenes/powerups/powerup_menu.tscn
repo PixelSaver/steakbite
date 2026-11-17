@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://df02ldtj04gsx" path="res://assets/art/Menu.png" id="2_l4062"]
 [ext_resource type="Script" uid="uid://b1k6jju8wwgf1" path="res://standalones/powerup/powerup.gd" id="2_u25pn"]
 [ext_resource type="Script" uid="uid://by4cmd2o8bbwx" path="res://scenes/powerups/next_button.gd" id="4_3fqmn"]
-[ext_resource type="Resource" uid="uid://cfbl2wrx6wg6g" path="res://assets/powerup_resources/newTestResource.tres" id="4_b1m4a"]
+[ext_resource type="Resource" uid="uid://dqj4x6va3lews" path="res://assets/powerup_resources/poison_steak.tres" id="4_u25pn"]
+[ext_resource type="Resource" uid="uid://bjc0r54430fw5" path="res://assets/powerup_resources/shuffle_powerup.tres" id="5_1ypni"]
 [ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="6_1ypni"]
-[ext_resource type="Resource" uid="uid://fnvo2mu1puff" path="res://assets/powerup_resources/powerup2.tres" id="6_b1m4a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pncx"]
 
@@ -68,7 +68,7 @@ mouse_filter = 1
 script = ExtResource("1_2s6hi")
 player_name_label = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/Player Name")
 player_balance = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide/Balance")
-powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a"), ExtResource("6_b1m4a"), ExtResource("4_b1m4a"), ExtResource("4_b1m4a")])
+powerup_resources = Array[ExtResource("2_u25pn")]([ExtResource("4_u25pn"), ExtResource("5_1ypni")])
 first_focus = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide/PowerupMenuItem")
 left_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel/LeftSide")
 right_side = NodePath("SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/Panel2/RightSide")

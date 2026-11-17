@@ -34,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_7pncx")
 outline = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer/Highlight")
 icon_container = NodePath("Panel/MarginContainer/HBoxContainer/AspectRatioContainer")
@@ -86,6 +87,7 @@ stretch_mode = 6
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_7pncx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer" unique_id=1685223033]

@@ -9,12 +9,20 @@ const TS = TurnManager.TurnState
 @export var game_2: GameContainer
 @export var end_turn_1: DefaultButton
 @export var end_turn_2: DefaultButton
+const NO_STEAK = preload("uid://bvwdwfqkkrpbv")
+const LOSS = preload("uid://dgvrmatmr6fv6")
+
+var p1_balance: int = 0
+var p2_balance: int = 0
+
+var p1_lives: int = 2
+var p2_lives: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	#DEBUG
-	start_game()
+	SignalBus.game_start.connect(start_game)
 	end_turn_1.pressed.connect(_on_end_turn.bind(1))
 	end_turn_2.pressed.connect(_on_end_turn.bind(2))
 
@@ -24,27 +32,28 @@ func _on_end_turn(id:int) -> void:
 			TurnManager.state = TS.POWERUP_TWO
 			#SOUND Ended turn for player 1
 		else:
-			#TODO Get butler to chide you for not eating
-			#SOUND Trying to end turn without eating food P2
-			pass
+			_no_steak_cutscene()
 	elif id == 2 and TurnManager.state == TS.STEAK_TWO:
 		if game_2.steaks_eaten_this_round > 0:
 			TurnManager.state = TS.POWERUP_ONE
 			#SOUND Ended turn for player 1
 		else:
-			#TODO Get butler to chide you for not eating
-			#SOUND Trying to end turn without eating food P2
-			pass
+			_no_steak_cutscene()
 	else:
 		push_error(
 			"Impossible end turn request: TurnManager state=%s, id of end_turn=%s" % 
 			[TS.keys()[TurnManager.state], id]
 		)
 
+func _no_steak_cutscene() -> void:
+	DialogueManager.show_dialogue_balloon(NO_STEAK)
+	#TODO Add butler
+
 func start_game() -> void:
 	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 
 func _on_game_state_changed(new_state: TS) -> void:
+	print("Turn state is %s" % TurnManager.TurnState.keys()[new_state])
 	match new_state:
 		TS.MENU:
 			pass
@@ -65,4 +74,23 @@ func _on_game_state_changed(new_state: TS) -> void:
 			end_turn_2.show()
 			game_2.grab_first_focus()
 		TS.LOSS:
+			end_turn_1.hide()
+			end_turn_2.hide()
+			await get_tree().create_timer(1.0).timeout
+			DialogueManager.show_dialogue_balloon(LOSS, "", [self])
 			pass
+
+func get_winning_player() -> String:
+	if p1_lives > 0:
+		return "Player 1"
+	elif p2_lives > 0:
+		return "Player 2"
+	else:
+		return "no one"
+		
+func play_again():
+	get_tree().reload_current_scene()
+
+func exit_to_menu():
+	# TODO
+	pass

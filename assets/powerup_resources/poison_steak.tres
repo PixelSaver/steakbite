@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PoisonSteakPowerup" format=3 uid="uid://dqj4x6va3lews"]
+
+[ext_resource type="Script" uid="uid://bc48jx282ojxy" path="res://standalones/powerup/poison_steak_powerup.gd" id="1_nls65"]
+[ext_resource type="Texture2D" uid="uid://bflvrs3rueo11" path="res://assets/art/powerups/icon_poison.PNG" id="2_seqke"]
+
+[resource]
+script = ExtResource("1_nls65")
+name = "Poison Steaks"
+description = "Clicking will poison either 1 or 2 steaks on your opponent's side."
+texture = ExtResource("2_seqke")
+metadata/_custom_type_script = "uid://bc48jx282ojxy"

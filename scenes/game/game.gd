@@ -11,12 +11,15 @@ enum TileType {
 const STEAK_TILE = preload("res://scenes/tiles/steak_tile.tscn")
 const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export_subgroup("Nodes")
+@export var input_blocker: Control
 @onready var control: Control = $Game/SubViewport/Control
 @export var left_visual: Control
 @export var right_visual: Control
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
-@export var spotlight: Node2D
+@export var spotlight: TextureRect
+@export var poison_effect: Control
+@export var death_screen: Control
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -40,6 +43,7 @@ var steaks_eaten_this_round := 0
 var main: Main
 
 func _ready() -> void:
+	enable_focus(false)
 	var scene_root = get_tree().current_scene
 	main = scene_root as Main
 	if not main and scene_root != self:
@@ -52,8 +56,14 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	SignalBus.game_start.connect(_on_game_start)
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
-	SignalBus.close_up_menu_closed.connect(func():
+	SignalBus.close_up_menu_closed.connect(func(_c:String):
 		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
+			grab_first_focus()
+	)
+	SignalBus.intro_cutscene_finished.connect(func():
+		if TurnManager.player_turn() == (int(is_right) + 1):
+			await get_tree().process_frame
 			await get_tree().process_frame
 			grab_first_focus()
 	)
@@ -72,20 +82,32 @@ func enable_focus(enable:bool) -> void:
 	subviewport.set_process_input(enable)
 	self.focus_mode = Control.FOCUS_ALL if enable else Control.FOCUS_NONE
 	self.mouse_filter = Control.MOUSE_FILTER_PASS if enable else Control.MOUSE_FILTER_IGNORE
+	input_blocker.visible = !enable
 
 func _on_game_state_changed(new_state: TS) -> void:
 	steaks_eaten_this_round = 0
 	match new_state:
 		TS.MENU:
 			pass
-		TS.POWERUP_ONE or TS.STEAK_ONE:
+		TS.STEAK_ONE:
 			enable_focus(not is_right)
-		TS.POWERUP_TWO or TS.STEAK_TWO:
+		TS.STEAK_TWO:
 			enable_focus(is_right)
+		TS.POWERUP_ONE, TS.POWERUP_TWO:
+			enable_focus(false)
 		TS.LOSS:
 			pass
 
 func _on_steak_selected(steak: SteakTile) -> void:
+	if not (TurnManager.state == TS.STEAK_ONE or \
+		TurnManager.state == TS.STEAK_TWO):
+			# Not steak turn
+			push_warning("Steak tried to be selected when it isn't time to select steaks")
+			return
+	elif TurnManager.player_turn() != int(is_right)+1:
+		# Not right steak turn
+		push_warning("Steak is being selected on the wrong side")
+		return
 	var idx = visual_tiles.find(steak)
 	if idx == -1: 
 		push_warning("Steak selected, and yet wasn't found in GameContainer's visual_tiles array")
@@ -167,9 +189,12 @@ func _process(_delta: float) -> void:
 		)
 	else:
 		spotlight_corner = spotlight_offset
-	spotlight.position = spotlight_target_pos
-	spotlight.look_at(spotlight_corner)
-	spotlight.rotate(PI/2)
+	spotlight.global_position = spotlight_target_pos
+	var direction = spotlight_corner - spotlight.global_position
+	#var length = direction.length()
+	#spotlight.offset_transform_scale.y = length / spotlight.size.y 
+	spotlight.rotation = direction.angle()
+	spotlight.rotation += PI/2
 	spotlight.rotation = fmod(spotlight.rotation, 2*PI)
 #endregion
 
@@ -252,6 +277,8 @@ func get_num_poisoned() -> int:
 			if tile == TileType.STEAK_BAD:
 				count += 1
 	return count
+
+
 func get_random_position() -> Vector2i:
 	return Vector2i(
 		randi_range(0, map_size.x-1),
@@ -263,12 +290,37 @@ func set_tile(pos: Vector2i, tile: TileType) -> void:
 	pos = _clamp_pos(pos)
 	if tile == map[pos.y][pos.x]: return
 	if tile == TileType.STEAK_GOOD:
-		if clean_steaks.has(pos):
+		if !clean_steaks.has(pos):
 			clean_steaks.append(pos)
 	else:
 		clean_steaks.erase(pos)
 	map[pos.y][pos.x] = tile
 	update_visuals()
+
+func shuffle_steaks() -> void:
+	var poisoned = get_num_poisoned()
+	var clean = clean_steaks.size()
+	
+	var all_steaks: Array[TileType] = []
+	for i in poisoned:
+		all_steaks.append(TileType.STEAK_BAD)
+	for i in clean:
+		all_steaks.append(TileType.STEAK_GOOD)
+	all_steaks.shuffle()
+	
+	clean_steaks.clear()
+	for row in map.size():
+		for col in row:
+			if map[row][col] != TileType.EMPTY:
+				var curr: TileType = all_steaks.pop_front()
+				map[row][col] = curr
+				if curr == TileType.STEAK_GOOD:
+					# TODO: check my work, maybe row and col should be switched
+					clean_steaks.append(Vector2i(row, col))
+
+func add_poison() -> void:
+	var pos = clean_steaks.pop_front()
+	map[pos.y][pos.x] = TileType.STEAK_BAD
 
 func get_tile_type(pos: Vector2i) -> TileType:
 	pos = _clamp_pos(pos)
@@ -291,5 +343,31 @@ func eat_steak(pos: Vector2i) -> TileType:
 	set_tile(pos, TileType.EMPTY)
 	if out != TileType.EMPTY:
 		steaks_eaten_this_round += 1
+		if (TurnManager.state == TurnManager.TurnState.STEAK_ONE):
+			main.p1_balance += 1
+		else:
+			main.p2_balance += 1
+		if out == TileType.STEAK_BAD:
+			print("bad steak eaten")
+			lose_life()
 	return out
+	
+func lose_life() -> void:
+	if is_right:
+		main.p2_lives -= 1
+		if main.p2_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+	else:
+		main.p1_lives -= 1
+		if main.p1_lives > 0:
+			poison_effect.start_anim()
+		else:
+			death_screen.show()
+			TurnManager.state = TurnManager.TurnState.LOSS
+			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
+
 #endregion

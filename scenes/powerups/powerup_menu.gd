@@ -6,6 +6,7 @@ const TS = TurnManager.TurnState
 @export var player_balance: RichTextLabel
 @export var powerup_resources: Array[Powerup] = []
 @export var first_focus: Control
+@export var main: Main
 @export var left_side: Control
 @export var right_side: Control
 ## Container with all the buttons in it
@@ -26,7 +27,11 @@ func _ready():
 	mat = PERSPECTIVE_SHADER_MATERIAL.duplicate()
 	subviewport_cont.material = mat
 	flip_percentage = 0.
+	SignalBus.intro_cutscene_finished.connect(_on_game_state_changed.bind(TS.POWERUP_ONE))
+	await SignalBus.game_start
+	print("Game started, listening")
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
+	SignalBus.balance_changed.connect(update_balance)
 
 func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
@@ -41,6 +46,7 @@ func _on_game_state_changed(new_state: TS) -> void:
 
 #region Flipping animation
 func start_anim() -> void:
+	print("Menu starting")
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
 	if t and t.is_running(): t.kill()
 	t = default_tween()
@@ -48,11 +54,11 @@ func start_anim() -> void:
 	#t.tween_property(subviewport_cont, "offset_transform_position_ratio:y", 0.0, 0.7)
 	_fill_visuals()
 	show() 
-	first_focus.grab_focus()
 	_assign_focus()
 	#SOUND Menu / Powerup menu starts flipping up
 	await t.finished
 	#SOUND Menu / Powerup menu finishes flipping up
+	first_focus.grab_focus()
 func end_anim() -> void:
 	assert(mat, "Shadermaterial for PowerupMenu is not initialized")
 	if t and t.is_running(): t.kill()
@@ -77,9 +83,7 @@ func _fill_visuals() -> void:
 	var player_name = "Player 1" if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else "Player 2"
 	player_name_label.text = "[font_size=50]" + player_name + ": Select a Powerup"
 	
-	# TODO: hook up player balance
-	var balance: int = 0
-	player_balance.text = "[font_size=50]Balance: " + str(balance)
+	update_balance()
 	
 	var left_side_children = left_side.get_children()
 	var right_side_children = right_side.get_children()
@@ -96,6 +100,10 @@ func _fill_visuals() -> void:
 			combined[i].set_empty()
 			combined[i].focus_mode = Control.FOCUS_NONE
 			combined[i].mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func update_balance():
+	var balance: int = main.p1_balance if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else main.p2_balance
+	player_balance.text = "[font_size=50]Balance: " + str(balance)
 
 func _assign_focus() -> void:
 	var left_side_children = left_side.get_children()

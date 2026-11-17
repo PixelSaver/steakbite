@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b1x7xs2y1diab"]
+
+[ext_resource type="Script" uid="uid://biyrtf2fgejhv" path="res://scenes/start_menu/start_menu.gd" id="1_ces3l"]
+[ext_resource type="Texture2D" uid="uid://dhv3mhsql1yts" path="res://assets/art/background/steakbite_titlescreen.png" id="2_ujype"]
+[ext_resource type="PackedScene" uid="uid://bk1srw633oqx8" path="res://utilities/ui/menus/default_button.tscn" id="3_ujype"]
+[ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="4_ifyap"]
+
+[node name="StartMenu" type="Control" unique_id=1921412290 node_paths=PackedStringArray("buttons", "table")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 1
+script = ExtResource("1_ces3l")
+buttons = [NodePath("Margin/VBoxContainer/Play"), NodePath("Margin/VBoxContainer/Settings"), NodePath("Margin/VBoxContainer/Credits"), NodePath("Margin/VBoxContainer/Quit")]
+table = NodePath("Tweenable")
+metadata/_custom_type_script = "uid://e0s6oeo4pcwr"
+
+[node name="BG" type="ColorRect" parent="." unique_id=2018925987]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="BGArt" type="TextureRect" parent="." unique_id=1617346093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ujype")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=935469077]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.291
+anchor_top = 0.555
+anchor_right = 0.709
+anchor_bottom = 0.916
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin" unique_id=1852990730]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" parent="Margin/VBoxContainer" unique_id=912109118 instance=ExtResource("3_ujype")]
+layout_mode = 2
+button_text = "[font_size=50]Play"
+
+[node name="Control" type="Control" parent="Margin/VBoxContainer" unique_id=754537845]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Settings" parent="Margin/VBoxContainer" unique_id=2101052720 instance=ExtResource("3_ujype")]
+layout_mode = 2
+button_text = "[font_size=50]Settings"
+
+[node name="Control2" type="Control" parent="Margin/VBoxContainer" unique_id=1621909923]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Credits" parent="Margin/VBoxContainer" unique_id=664114845 instance=ExtResource("3_ujype")]
+layout_mode = 2
+button_text = "[font_size=50]Credits"
+
+[node name="Control3" type="Control" parent="Margin/VBoxContainer" unique_id=2111295975]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Quit" parent="Margin/VBoxContainer" unique_id=69367992 instance=ExtResource("3_ujype")]
+layout_mode = 2
+button_text = "[font_size=50]Quit"
+
+[node name="Tweenable" type="Node" parent="." unique_id=265969595 node_paths=PackedStringArray("parent")]
+script = ExtResource("4_ifyap")
+direction = Vector2(0, -1)
+distance = 1080.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://b4pdlxyjxim6i"

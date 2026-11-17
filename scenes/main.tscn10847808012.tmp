@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://ch81su7nh77vx"]
+
+[ext_resource type="PackedScene" uid="uid://dnjyx1trtl6w3" path="res://scenes/game/game.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://hch2bpbfkl2d" path="res://scenes/main.gd" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://ex4o2373hagv" path="res://assets/art/background/player_left.PNG" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cqo5fpk32trss" path="res://scenes/dialogue/introCutscene.tscn" id="3_85g3d"]
+[ext_resource type="Texture2D" uid="uid://ij11cfg4ehcl" path="res://assets/art/background/player_right.PNG" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
+
+[node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tefeu")
+game_1 = NodePath("HBoxContainer/Game")
+game_2 = NodePath("HBoxContainer/Game2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=703350261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Game" parent="HBoxContainer" unique_id=1104330168 instance=ExtResource("1_o5qli")]
+layout_mode = 2
+
+[node name="Game2" parent="HBoxContainer" unique_id=1085034286 instance=ExtResource("1_o5qli")]
+layout_mode = 2
+is_right = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1014993860]
+
+[node name="IntroCutscene" parent="CanvasLayer" unique_id=1984434612 instance=ExtResource("3_85g3d")]
+z_index = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=361896595]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1298066236]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="LeftPlayer" type="TextureRect" parent="CanvasLayer/HBoxContainer/Control" unique_id=692757117]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_sugp2")
+
+[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1836573595]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="RightPlayer" type="TextureRect" parent="CanvasLayer/HBoxContainer/Control2" unique_id=255700694]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_jyhfs")
+
+[node name="PowerupMenu" parent="CanvasLayer" unique_id=1713500523 instance=ExtResource("5_o6xl0")]
+
+[node name="CloseupScene" parent="CanvasLayer" unique_id=1157262694 node_paths=PackedStringArray("main") instance=ExtResource("7_o6xl0")]
+visible = false
+main = NodePath("../..")

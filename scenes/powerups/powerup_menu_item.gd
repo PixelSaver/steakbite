@@ -22,15 +22,21 @@ func _ready() -> void:
 func _use() -> void:
 	#SOUND Powerup is bought / used
 	var is_player_one = true if TurnManager.state == TurnManager.TurnState.POWERUP_ONE else false
-	resource.apply(is_player_one)
+	var scene_root = get_tree().current_scene
+	var main = scene_root as Main
+	if not main and scene_root != self:
+		push_warning("Main isn't scene root for Game")
+	resource.apply(is_player_one, main)
+	SignalBus.balance_changed.emit()
 	pass
 
 func set_visuals(_resource: Powerup) -> void:
 	self.resource = _resource
 	power_icon.texture = _resource.texture
 	power_name.text = "[font_size=35]" + _resource.name
-	cost_label.text = "[font_size=35]" + str(_resource.cost)
+	cost_label.text = "[font_size=35]Cost: " + str(_resource.cost)
 	description_label.text = "[font_size=20]" + _resource.description
+	self.focus_mode = Control.FOCUS_ALL
 
 func set_empty() -> void:
 	is_empty = true
@@ -38,6 +44,7 @@ func set_empty() -> void:
 	power_name.clear()
 	cost_label.clear()
 	description_label.clear()
+	self.focus_mode = Control.FOCUS_NONE
 
 func _on_focus(entered: bool) -> void:
 	if t and t.is_running(): t.kill()
