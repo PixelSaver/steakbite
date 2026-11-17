@@ -9,13 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://duf028te6deh6" path="res://scenes/powerups/powerup_menu.tscn" id="5_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b1x7xs2y1diab" path="res://scenes/start_menu/start_menu.tscn" id="9_85g3d"]
-[ext_resource type="Script" uid="uid://cntquvi8o81gl" path="res://scenes/dialogue/closeup_balloon.gd" id="11_gqmmt"]
-[ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="12_yc10j"]
-[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.tscn" id="13_jscy8"]
-[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="14_pm3ni"]
-[ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="15_y6deb"]
-[ext_resource type="StyleBox" uid="uid://4llo4rxb5n0x" path="res://scenes/dialogue/new_style_box_flat.tres" id="16_og1vs"]
-[ext_resource type="Script" uid="uid://b8avu2lu1ghb3" path="res://scenes/dialogue/response_example.gd" id="17_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://cfrjwymq0mu44" path="res://scenes/dialogue/closeup_balloon.tscn" id="10_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cahcjv8iu8rh0" path="res://assets/art/butler/butler_notray.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="18_vxglm"]
 
@@ -48,150 +42,6 @@ corner_detail = 5
 shadow_color = Color(0.30980393, 0.2, 0.043137256, 0.6)
 shadow_size = 3
 shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ld40"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.329412, 0.329412, 0.329412, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.121569, 0.121569, 0.121569, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.6, 0.6, 0.6, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="Theme" id="Theme_yq6so"]
-default_font_size = 20
-Button/styles/disabled = SubResource("StyleBoxFlat_0ld40")
-Button/styles/focus = SubResource("StyleBoxFlat_gqmmt")
-Button/styles/hover = SubResource("StyleBoxFlat_yc10j")
-Button/styles/normal = SubResource("StyleBoxFlat_yc10j")
-MarginContainer/constants/margin_bottom = 15
-MarginContainer/constants/margin_left = 30
-MarginContainer/constants/margin_right = 30
-MarginContainer/constants/margin_top = 15
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_jscy8")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv21b"]
-bg_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="Animation" id="Animation_nlsx6"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Progress:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_qkmqt"]
-resource_name = "progress"
-loop_mode = 1
-step = 0.1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Progress:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.2, -0.0157438, -4, -0.2, 0.0112069, 0.25, 0, -4, -0.25, 0, 0.25, 0, 0, -0.2, 0.00299701, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.5, 0.6, 1)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tel4y"]
-_data = {
-&"RESET": SubResource("Animation_nlsx6"),
-&"progress": SubResource("Animation_qkmqt")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkpxi"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.6913386, 0.48604798, 0.21169597, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_pm3ni"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5q0nq"]
-noise = SubResource("FastNoiseLite_pm3ni")
-
-[sub_resource type="Curve" id="Curve_dgi5k"]
-_data = [Vector2(0, 0.40062112), 0.0, 0.0, 0, 0, Vector2(0.50101006, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.40062112), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [node name="Main" type="Control" unique_id=1380770197 node_paths=PackedStringArray("game_1", "game_2", "end_turn_1", "end_turn_2", "no_steak_panel", "no_steak_balloon", "no_steak_tweenable")]
 layout_mode = 3
@@ -383,175 +233,15 @@ game2 = NodePath("../../HBoxContainer/Game2")
 
 [node name="StartMenu" parent="CanvasLayer" unique_id=1921412290 instance=ExtResource("9_85g3d")]
 
-[node name="NoSteak" type="Control" parent="CanvasLayer" unique_id=191469007]
-physics_interpolation_mode = 0
-layout_mode = 3
+[node name="NoSteak" parent="CanvasLayer" unique_id=200645836 instance=ExtResource("10_eb6dy")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("11_gqmmt")
-metadata/_custom_type_script = "uid://cntquvi8o81gl"
 
-[node name="Balloon" type="Control" parent="CanvasLayer/NoSteak" unique_id=330845003]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_yq6so")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/NoSteak/Balloon" unique_id=2146505725]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 388.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 800
-theme_override_constants/margin_top = 69
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 30
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/NoSteak/Balloon/MarginContainer" unique_id=1886803751]
-clip_children = 2
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_fv21b")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer" unique_id=1805725738]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer" unique_id=2072504761]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=609282583]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = -15
-
-[node name="CharacterLabel" type="RichTextLabel" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=859566818]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0.2627451, 0.047058824, 0.047058824, 1)
-theme_override_fonts/normal_font = ExtResource("12_yc10j")
-theme_override_font_sizes/normal_font_size = 90
-bbcode_enabled = true
-text = "Character"
-fit_content = true
-scroll_active = false
-
-[node name="DialogueLabel" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1840273907 instance=ExtResource("13_jscy8")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 45
-text = "Dialogue..."
-
-[node name="Control" type="Control" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1407427172]
-custom_minimum_size = Vector2(20, 10)
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Progress" type="Polygon2D" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=158046848]
-unique_name_in_owner = true
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/NoSteak/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=2025378811]
-libraries/ = SubResource("AnimationLibrary_tel4y")
-autoplay = &"progress"
-
-[node name="CenterContainer" type="MarginContainer" parent="CanvasLayer/NoSteak/Balloon" unique_id=2105514165]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -225.0
-offset_top = -35.0
-offset_bottom = 35.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_right = 100
-
-[node name="ResponsesMenu" type="VBoxContainer" parent="CanvasLayer/NoSteak/Balloon/CenterContainer" unique_id=1043086506 node_paths=PackedStringArray("response_template")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 14
-alignment = 1
-script = ExtResource("14_pm3ni")
-response_template = NodePath("ResponseExample")
-auto_focus_first_item = false
-
-[node name="ResponseExample" type="Button" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu" unique_id=38706021 node_paths=PackedStringArray("tweenable")]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("15_y6deb")
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = ExtResource("16_og1vs")
-theme_override_styles/hover = ExtResource("16_og1vs")
-theme_override_styles/disabled = ExtResource("16_og1vs")
-theme_override_styles/focus = SubResource("StyleBoxFlat_qkpxi")
-text = "Response example"
-script = ExtResource("17_2wyq8")
-tweenable = NodePath("CenterContainer/Tweenable")
-noise = SubResource("NoiseTexture2D_5q0nq")
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu/ResponseExample" unique_id=237515049]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-1920, 0)
-offset_transform_position_ratio = Vector2(-0.6, 0)
-
-[node name="Control" type="Control" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=541520607]
-layout_mode = 2
-offset_transform_enabled = true
-
-[node name="Line2D2" type="Line2D" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=1030796041]
-points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
-width = 30.0
-width_curve = SubResource("Curve_dgi5k")
-default_color = Color(0.6392157, 0.4862745, 0.38431373, 1)
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Line2D" type="Line2D" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=1532110579]
-points = PackedVector2Array(-50, -50, 0, 0, -50, 50)
-width = 20.0
-width_curve = SubResource("Curve_dgi5k")
-default_color = Color(0.6117647, 0.13333334, 0.03529412, 1)
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Tweenable" type="Node" parent="CanvasLayer/NoSteak/Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1735813076 node_paths=PackedStringArray("parent")]
-script = ExtResource("18_vxglm")
-tween_value = 1.0
-direction = Vector2(-1, 0)
-distance = 1920.0
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/NoSteak" unique_id=1842648287]
-unique_name_in_owner = true
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NoSteak" unique_id=1605271801]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NoSteak" unique_id=1337208625]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -560,7 +250,7 @@ offset_transform_position = Vector2(-1200, 0)
 mouse_filter = 2
 texture = ExtResource("18_dp3eg")
 
-[node name="Tweenable" type="Node" parent="CanvasLayer/NoSteak/TextureRect" unique_id=2144786839 node_paths=PackedStringArray("parent")]
+[node name="Tweenable" type="Node" parent="CanvasLayer/NoSteak/TextureRect" unique_id=1220746598 node_paths=PackedStringArray("parent")]
 script = ExtResource("18_vxglm")
 tween_value = 1.0
 direction = Vector2(-1, 0)
@@ -568,7 +258,7 @@ distance = 1200.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://b4pdlxyjxim6i"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/NoSteak" unique_id=1295948548]
+[node name="Panel" type="Panel" parent="CanvasLayer/NoSteak" unique_id=179041147]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15

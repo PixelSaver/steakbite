@@ -2,7 +2,7 @@ extends Control
 class_name CloseUpBalloon
 ## A basic dialogue balloon for use with Dialogue Manager.
 
-
+signal dialogue_finished
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
 
@@ -45,6 +45,7 @@ var dialogue_line: DialogueLine:
 			dialogue_line = value
 			apply_dialogue_line()
 		else:
+			dialogue_finished.emit()
 			# The dialogue has finished so close the balloon
 			if owner == null:
 				queue_free()

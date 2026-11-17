@@ -154,8 +154,10 @@ _data = [Vector2(0, 0.40062112), 0.0, 0.0, 0, 0, Vector2(0.50101006, 1), 0.0, 0.
 point_count = 3
 
 [node name="CloseupBalloon" type="Control" unique_id=200645836]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_bcs1n")
 metadata/_custom_type_script = "uid://cntquvi8o81gl"
 
@@ -167,6 +169,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = SubResource("Theme_qq3yp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Balloon" unique_id=1302081376]
@@ -220,6 +223,7 @@ text = "Dialogue..."
 custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 1
 
 [node name="Progress" type="Polygon2D" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=2091292889]
 unique_name_in_owner = true
@@ -256,6 +260,7 @@ auto_focus_first_item = false
 
 [node name="ResponseExample" type="Button" parent="Balloon/CenterContainer/ResponsesMenu" unique_id=1446810977 node_paths=PackedStringArray("tweenable")]
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -286,6 +291,7 @@ offset_transform_position_ratio = Vector2(-0.6, 0)
 [node name="Control" type="Control" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer" unique_id=1639925381]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 1
 
 [node name="Line2D2" type="Line2D" parent="Balloon/CenterContainer/ResponsesMenu/ResponseExample/CenterContainer/Control" unique_id=2043596667]
 points = PackedVector2Array(-50, -50, 0, 0, -50, 50)

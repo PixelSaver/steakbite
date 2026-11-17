@@ -61,7 +61,7 @@ func _no_steak_cutscene() -> void:
 	t.tween_property(no_steak_tweenable, "tween_value", 0.0, 0.7)
 	t.tween_property(no_steak_panel, "modulate:a", 1.0, 0.7)
 	
-	await DialogueManager.dialogue_ended
+	await no_steak_balloon.dialogue_finished
 	
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
