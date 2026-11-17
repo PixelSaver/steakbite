@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://d2x4vpgh7e3o6" path="res://assets/Fonts/great-victorian.standard.otf" id="2_6jsma"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.tscn" id="3_iwyel"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="4_1si66"]
+[ext_resource type="Script" uid="uid://h2r8t00e8ij3" path="res://scenes/dialogue/butler_speak.gd" id="4_26pdd"]
 [ext_resource type="FontFile" uid="uid://by06swwyt2clv" path="res://assets/Fonts/just-serif.regular.otf" id="5_hkjlq"]
 [ext_resource type="StyleBox" uid="uid://4llo4rxb5n0x" path="res://scenes/dialogue/new_style_box_flat.tres" id="6_t8dq5"]
 [ext_resource type="Script" uid="uid://b8avu2lu1ghb3" path="res://scenes/dialogue/response_example.gd" id="7_i3wi2"]
@@ -442,6 +443,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 45
 text = "Dialogue..."
+
+[node name="ButlerSpeakComponent" type="Node" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel" unique_id=1580956480]
+script = ExtResource("4_26pdd")
+metadata/_custom_type_script = "uid://h2r8t00e8ij3"
 
 [node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=418507161]
 custom_minimum_size = Vector2(20, 10)
