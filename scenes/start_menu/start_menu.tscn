@@ -189,16 +189,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[center][font_size=35][font bt=5][outline_color=#781717][color=#000][font_size=50][b][outline_size=10]CREDITS[/outline_size][/b][/font_size][/color]
-[color=#000s][font_size=30]Made for [b][color=#781717]SteakBite[/color][/b][/font_size][/color]
-
-[font_size=35][b][color=#000]DEVELOPMENT[/color][/b][/font_size]
-[font_size=30][color=#000][b]Game Design[/b][/color][/font_size]
-[color=#781717]PixelSaver[/color]
-[color=#781717]MajesticWater[/color]
+text = "[center][font_size=30][outline_color=#781717][color=#000][font_size=90][b][outline_size=10][font=\"res://assets/Fonts/great-victorian.standard.otf\" bt=-100]CREDITS[/font][/outline_size][/b][/font_size][/color]
+[font bt=25][color=#000s][font_size=30]Made for [b][color=#781717]SteakBite[/color][/b][/font_size][/color][/font]
+[font bt=8][font_size=35][b][color=#000]DEVELOPMENT[/color][/b][/font_size]
 [color=#000][b]Programming[/b][/color]
+[color=#781717]MajesticWater[/color]
+[font_size=22]Powerup system, dialogue system, player lives, cutscenes, and bug fixes[/font_size]
 [color=#781717]PixelSaver[/color]
-[color=#781717]Bree Tassinari[/color]
+[font_size=22]Turn manager state machine, most user interface, steak systems, and bug fixes[/font_size]
 [color=#000][b]Art Team[/b][/color]
 [color=#781717]E. Montgomery[/color]
 [font_size=22]Background art, title screen, creepy character art, spotlight, powerup icon art, turn change banner, art direction, and punching the butler[/font_size]
@@ -216,20 +214,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[center][font_size=35][font bt=5][outline_color=#781717][color=#000][font_size=50][b][outline_size=10][/outline_size][/b][/font_size][/color]
-[color=#000s][font_size=30]Made for [b][color=#781717]SteakBite[/color][/b][/font_size][/color]
-
+text = "[center][font_size=30][font bt=8][outline_color=#781717]
 [font_size=35][b][color=#000]ACKNOWLEDGEMENTS[/color][/b][/font_size]
 [font_size=30][color=#000][b]Special Thanks[/b][/color][/font_size]
 [color=#781717]Abdurrahman Syed[/color]
 [color=#781717]Andrew Le[/color]
 [font_size=20]Both above for playtesting[/font_size]
-Everyone who played!
-[color=#000][b]Music & Sounds[/b][/color]
+[font_size=25][font bt=20]Everyone who played![/font][/font_size]
+[color=#000][b]Music & Sounds[/b][/color][font_size=25]
 [url href=\"https://joegallagher.itch.io/free-orchestral-music-pack \"]Lost Kingdom (Menu Theme)[/url]
-[url href=\"https://juanjosound.itch.io/dreamcore-music \"]6 - Dreamcore: Purgatory[/url]
+[url href=\"https://juanjosound.itch.io/dreamcore-music\"]6 - Dreamcore: Purgatory[/url]
+[url href=\"https://godotshaders.com/shader/2d-perspective/\"]2D Perspective Shader[/url]
+[url href=\"https://dialogue.nathanhoad.net/\"]Dialogue System by Nathan Hoad[/url]
 
-[font_size=20s][color=#000]Made with [url href=\"https://godotengine.org\"]Godot Engine[/url][/color][/font_size]"
+
+[font_size=20][color=#000]Made with [url href=\"https://godotengine.org\"]Godot Engine[/url][/color][/font_size]"
 fit_content = true
 scroll_active = false
 
