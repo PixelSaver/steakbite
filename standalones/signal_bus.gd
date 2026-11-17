@@ -21,6 +21,8 @@ signal close_up_menu_closed(confirm: String)
 signal intro_cutscene_finished()
 @warning_ignore("unused_signal")
 signal balance_changed()
+@warning_ignore("unused_signal")
+signal player_died(is_right: bool)
 
 func _ready() -> void:
 	SignalBus.game_start.connect(_test)

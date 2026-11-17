@@ -18,8 +18,7 @@ const EMPTY_TILE = preload("res://scenes/tiles/empty_tile.tscn")
 @export var subviewport: SubViewport
 @export var game_subviewport_container: SubViewportContainer
 @export var spotlight: TextureRect
-@export var poison_effect: Control
-@export var death_screen: Control
+@export var poison_effect: PoisonEffect
 ## x, y size
 @export var grid_container : GridContainer
 @export_category("Tweaks")
@@ -120,6 +119,7 @@ func _on_steak_selected(steak: SteakTile) -> void:
 	SignalBus.steak_selected.emit(steak, pos, TurnManager.player_turn())
 
 func _update_leftright() -> void:
+	poison_effect.set_right(is_right)
 	if is_right:
 		left_visual.hide()
 		right_visual.show()
@@ -313,14 +313,14 @@ func shuffle_steaks() -> void:
 	all_steaks.shuffle()
 	
 	clean_steaks.clear()
-	for row in map.size():
-		for col in row:
-			if map[row][col] != TileType.EMPTY:
+	for y in map.size():
+		for x in y:
+			if map[y][x] != TileType.EMPTY:
 				var curr: TileType = all_steaks.pop_front()
-				map[row][col] = curr
+				map[y][x] = curr
 				if curr == TileType.STEAK_GOOD:
 					# TODO: check my work, maybe row and col should be switched
-					clean_steaks.append(Vector2i(row, col))
+					clean_steaks.append(Vector2i(x, y))
 
 func add_poison() -> void:
 	var pos = clean_steaks.pop_front()
@@ -362,16 +362,15 @@ func lose_life() -> void:
 		if main.p2_lives > 0:
 			poison_effect.start_anim()
 		else:
-			death_screen.show()
+			#DEATH
+			SignalBus.player_died.emit(is_right)
 			TurnManager.state = TurnManager.TurnState.LOSS
-			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
 	else:
 		main.p1_lives -= 1
 		if main.p1_lives > 0:
 			poison_effect.start_anim()
 		else:
-			death_screen.show()
+			SignalBus.player_died.emit(is_right)
 			TurnManager.state = TurnManager.TurnState.LOSS
-			SignalBus.game_state_changed.emit(TurnManager.TurnState.LOSS)
 
 #endregion
