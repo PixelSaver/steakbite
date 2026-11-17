@@ -69,6 +69,7 @@ func play(
 	volume: float = 0.0,
 	bus: String = "SFX",
 	loop: bool = false,
+	pitch_variation: float=0.
 ) -> void:
 	if not sounds.has(sound):
 		var path := SOUNDS[sound]
@@ -94,7 +95,12 @@ func play(
 	player.stream = stream
 	player.bus = bus
 	player.volume_db = volume
+	player.pitch_scale = randf_range(
+		1.0 - pitch_variation,
+		1.0 + pitch_variation
+	)
 	player.play()
+
 
 func stop_music() -> void:
 	music_player.stop()
