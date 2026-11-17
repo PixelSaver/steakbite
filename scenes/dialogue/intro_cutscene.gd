@@ -41,7 +41,7 @@ func end_anim():
 	t.tween_property(butler_sprite, "offset_transform_position_ratio:x", -0.75, 0.7)
 	t.tween_property(panel, "modulate:a", 0.0, 0.7)
 	await t.finished
-	TurnManager.state = TurnManager.TurnState.POWERUP_ONE
+	TurnManager.state = TurnManager.TurnState.STEAK_ONE
 	SignalBus.intro_cutscene_finished.emit()
 	self.hide()
 	self.queue_free()

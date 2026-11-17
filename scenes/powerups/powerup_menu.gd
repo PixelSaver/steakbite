@@ -42,10 +42,13 @@ func _on_dialogue_ended(_x) -> void:
 	first_focus.grab_focus()
 
 func _on_game_state_changed(new_state: TS) -> void:
+	print("game state changed called in powerup menu")
 	match new_state:
 		TS.POWERUP_ONE, TS.POWERUP_TWO:
+			print("starting because the state is powerup one or two")
 			start_anim()
-		TS.STEAK_ONE, TS.CHOOSE_ONE, TS.STEAK_TWO, TS.CHOOSE_TWO:
+		TS.STEAK_ONE, TS.CHOOSE_ONE, TS.STEAK_TWO, TS.CHOOSE_TWO, TS.MENU:
+			print("ending because the state not powerup one or two")
 			end_anim()
 
 #region Flipping animation
