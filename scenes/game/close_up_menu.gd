@@ -13,6 +13,9 @@ func _ready() -> void:
 	SignalBus.steak_selected.connect(_on_steak_selected)
 
 func _on_steak_selected(_steak: SteakTile, pos: Vector2i, _id: int) -> void:
+	if TurnManager.state == TurnManager.TurnState.CHOOSE_ONE or \
+		TurnManager.state == TurnManager.TurnState.CHOOSE_TWO:
+		return
 	selected_steak_pos = pos
 	start_anim()
 

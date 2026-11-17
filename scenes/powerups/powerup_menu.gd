@@ -32,16 +32,20 @@ func _ready():
 	print("Game started, listening")
 	SignalBus.game_state_changed.connect(_on_game_state_changed)
 	SignalBus.balance_changed.connect(update_balance)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+
+func _on_dialogue_ended(_x) -> void:
+	if not visible: return
+	#if not (TurnManager.state == TS.POWERUP_ONE or TurnManager.state == TS.POWERUP_TWO):
+		#return
+	
+	first_focus.grab_focus()
 
 func _on_game_state_changed(new_state: TS) -> void:
 	match new_state:
-		TS.POWERUP_ONE:
+		TS.POWERUP_ONE, TS.POWERUP_TWO:
 			start_anim()
-		TS.STEAK_ONE:
-			end_anim()
-		TS.POWERUP_TWO:
-			start_anim()
-		TS.STEAK_TWO:
+		TS.STEAK_ONE, TS.CHOOSE_ONE, TS.STEAK_TWO, TS.CHOOSE_TWO:
 			end_anim()
 
 #region Flipping animation

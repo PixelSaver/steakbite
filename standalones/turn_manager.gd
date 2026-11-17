@@ -4,8 +4,10 @@ enum TurnState {
 	MENU,
 	POWERUP_ONE,
 	STEAK_ONE,
+	CHOOSE_ONE,
 	POWERUP_TWO,
 	STEAK_TWO,
+	CHOOSE_TWO,
 	LOSS,
 }
 
@@ -31,9 +33,11 @@ func _on_turn_finished(is_player_one:bool) -> void:
 
 ## Returns 1 if 1, 2 if 2, and 0 if none.
 func player_turn() -> int:
-	if state == TurnState.POWERUP_ONE or state == TurnState.STEAK_ONE:
+	if state == TurnState.POWERUP_ONE or state == TurnState.STEAK_ONE or \
+		state == TurnState.CHOOSE_ONE:
 		return 1
-	elif state == TurnState.POWERUP_TWO or state == TurnState.STEAK_TWO:
+	elif state == TurnState.POWERUP_TWO or state == TurnState.STEAK_TWO or \
+		state == TurnState.CHOOSE_TWO:
 		return 2
 	else: 
 		return 0

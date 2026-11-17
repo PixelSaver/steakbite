@@ -15,6 +15,7 @@ script/source = "extends CanvasLayer
 ## A basic dialogue balloon for use with Dialogue Manager.
 
 
+signal dialogue_finished
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
 
@@ -25,7 +26,7 @@ script/source = "extends CanvasLayer
 @export var auto_start: bool = false
 
 ## If all other input is blocked as long as dialogue is shown.
-@export var will_block_other_input: bool = true
+@export var will_block_other_input: bool = false
 
 ## The action to use for advancing the dialogue
 @export var next_action: StringName = &\"ui_accept\"
@@ -57,6 +58,7 @@ var dialogue_line: DialogueLine:
 			dialogue_line = value
 			apply_dialogue_line()
 		else:
+			dialogue_finished.emit()
 			# The dialogue has finished so close the balloon
 			if owner == null:
 				queue_free()
@@ -380,7 +382,6 @@ point_count = 3
 layer = 100
 script = SubResource("GDScript_ul5i8")
 dialogue_resource = ExtResource("2_8m7h1")
-will_block_other_input = false
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]
 unique_name_in_owner = true

@@ -35,6 +35,7 @@ func _on_game_state_changed(new_state: TurnManager.TurnState) -> void:
 		end_anim()
 
 func start_anim() -> void: 
+	show()
 	buttons.front().grab_focus()
 	if t and t.is_running(): t.kill()
 	t = default_tween()
@@ -45,3 +46,5 @@ func end_anim() -> void:
 	t = default_tween()
 	t.tween_property(table, "tween_value", 1.0, 0.7)
 	t.tween_property(self, "modulate:a", 0.0, 0.7)
+	await t.finished
+	hide()
