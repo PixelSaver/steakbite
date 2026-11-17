@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://iutrot8irjta"]
+[gd_scene format=3 uid="uid://bmkbeolthhcj3"]
 
 [ext_resource type="Script" uid="uid://bwcj8s5oq131f" path="res://scenes/death_screen.gd" id="1_wkxj6"]
 [ext_resource type="Texture2D" uid="uid://7oksju58yv5r" path="res://assets/art/background/red_survived_end.png" id="2_cyxt3"]

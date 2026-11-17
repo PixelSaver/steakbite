@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwbku81ywfsnf" path="res://scenes/dialogue/closeup_scene.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b1x7xs2y1diab" path="res://scenes/start_menu/start_menu.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cfrjwymq0mu44" path="res://scenes/dialogue/closeup_balloon.tscn" id="10_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://iutrot8irjta" path="res://scenes/game/death_screen.tscn" id="12_trceg"]
+[ext_resource type="PackedScene" uid="uid://bmkbeolthhcj3" path="res://scenes/game/death_screen.tscn" id="12_trceg"]
 [ext_resource type="Texture2D" uid="uid://cahcjv8iu8rh0" path="res://assets/art/butler/butler_notray.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://b4pdlxyjxim6i" path="res://utilities/ui/tweenable.gd" id="18_vxglm"]
 
