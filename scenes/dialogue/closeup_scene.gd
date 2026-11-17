@@ -10,7 +10,7 @@ const CLOSEUP_BALLOON = preload("uid://cfrjwymq0mu44")
 @export var game1: GameContainer
 @export var game2: GameContainer
 @export var steaks: Array[TextureRect]
-@export var eat_delay: float = 0.5
+@export var eat_delay: float = 0.6
 var t: Tween
 var selected_steak_pos: Vector2i = Vector2i.MIN
 
@@ -52,6 +52,7 @@ func confirm() -> void:
 		push_warning("Vector position is invalid. Not initialized in CloseUpMenu?")
 		return
 	balloon.hide()
+	AudioManager.play(AudioManager.Audio.EAT_SOUND)
 	for i in range(steaks.size()):
 		steaks[i].show()
 		if i > 0:

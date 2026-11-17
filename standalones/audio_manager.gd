@@ -27,6 +27,7 @@ enum Audio {
 	endTurn,
 	BUTLER_PUNCH,
 	BUTLER_TALK,
+	EAT_SOUND,
 }
 const SOUNDS: Dictionary[Audio, String] = {
 	Audio.TEST: "res://assets/sounds/test.wav",
@@ -43,7 +44,7 @@ const SOUNDS: Dictionary[Audio, String] = {
 	Audio.endTurn: "res://assets/sounds/SpotlightON.wav",
 	Audio.BUTLER_TALK: "res://assets/sounds/ButlerTalk.wav",
 	Audio.BUTLER_PUNCH: "res://assets/sounds/punch.wav",
-	
+	Audio.EAT_SOUND: "res://assets/sounds/EatSound.wav"
 
 	
 }
