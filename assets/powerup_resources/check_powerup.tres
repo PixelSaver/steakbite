@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_25soh")
-name = "Reveal Steak"
-description = "Choose a steak on your side to reveal."
+name = "Reveal Steaks"
+description = "Choose two steaks on your side to reveal."
 texture = ExtResource("2_8iiqb")
 metadata/_custom_type_script = "uid://yhunaldx2h5e"

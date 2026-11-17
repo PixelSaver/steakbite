@@ -99,7 +99,6 @@ func _on_game_state_changed(new_state: TS) -> void:
 			pass
 
 func _on_steak_selected(steak: SteakTile) -> void:
-	print("steak selected????")
 	if not (TurnManager.state == TS.STEAK_ONE or \
 		TurnManager.state == TS.STEAK_TWO or \
 		TurnManager.state == TS.CHOOSE_ONE or \

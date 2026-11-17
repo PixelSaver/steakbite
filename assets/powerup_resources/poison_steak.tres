@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_nls65")
 name = "Poison Steaks"
+cost = 2
 description = "Clicking will poison either 1 or 2 steaks on your opponent's side."
 texture = ExtResource("2_seqke")
 metadata/_custom_type_script = "uid://bc48jx282ojxy"

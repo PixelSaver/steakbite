@@ -40,8 +40,6 @@ func _ready() -> void:
 func _on_dialogue_end(_resource):
 	if (_resource == CLOSEUP_BALLOON):
 		end_anim()
-	else:
-		print("dialogue end called from closeup_scene incorrectly")
 
 func _on_steak_selected(_steak: SteakTile, pos: Vector2i, _id: int) -> void:
 	if TurnManager.state == TurnManager.TurnState.STEAK_ONE or \
