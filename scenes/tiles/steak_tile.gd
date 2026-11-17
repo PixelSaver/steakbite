@@ -14,8 +14,8 @@ signal steak_pressed(steak_tile:SteakTile)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	focus_entered.connect(_on_mouse.bind(true))
-	focus_exited.connect(_on_mouse.bind(false))
+	focus_entered.connect(_on_focus.bind(true))
+	focus_exited.connect(_on_focus.bind(false))
 	pressed.connect(_on_pressed)
 	
 	# to make sure self expands around center instead of 
@@ -29,7 +29,8 @@ func set_right(is_right: bool) -> void:
 	else:
 		left.show()
 		right.hide()
-func _on_mouse(entered:bool) -> void:
+func _on_focus(entered:bool) -> void:
+	#SOUND Spotlight points to steak / steak is highlighted
 	# stops the previous tween where it last was
 	if t and t.is_running(): t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
@@ -44,4 +45,5 @@ func _on_mouse(entered:bool) -> void:
 		pass
 
 func _on_pressed() -> void: # pressed
+	#SOUND Steak is selected, move player to closeup on steak
 	steak_pressed.emit(self)
