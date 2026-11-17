@@ -20,7 +20,7 @@ func _on_button_pressed(_name:String) -> void:
 		"play":
 			SignalBus.game_start.emit()
 			AudioManager.stop_music()
-			AudioManager.play(AudioManager.Audio.altMainTheme, -7, "MUSIC", true)
+			AudioManager.play(AudioManager.Audio.altMainTheme, -12, "MUSIC", true)
 			#TurnManager.state = TurnManager.TurnState.POWERUP_ONE
 		"settings":
 			pass
